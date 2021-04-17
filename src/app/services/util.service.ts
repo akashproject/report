@@ -36,7 +36,6 @@ export class UtilService {
   public direction: any;
   public currecny: any;
   public cside: any;
-  public userInfo: any;
   public selectedCity = new Subject<any>();
   public cartBtn = new Subject<any>();
   public popupRX = new Subject<any>();
@@ -65,7 +64,9 @@ export class UtilService {
   //   token: '',
   //   from: ''
   // }
-
+  public userInfo = JSON.parse(localStorage.getItem('user'))
+    ? JSON.parse(localStorage.getItem('user'))
+    : '';
   public countrys = [
     {
       country_code: 'AF',

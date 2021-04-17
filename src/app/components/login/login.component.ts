@@ -1,70 +1,123 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { UtilService } from 'src/app/services/util.service';
-import { ApiService } from 'src/app/services/api.service';
+import { ApiService } from '../../services/api.service';
+import { UtilService } from '../../services/util.service';
+import * as moment from 'moment';
+import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  mobile: any = '';
   email: any = '';
-  password: any = '';
-  mobile: any = '1234567890';
   showOtp = false;
   otp_value: any = '';
-  hidden_otp_value: any = '';
+  hidden_otp_value_email: any = '';
+  hidden_otp_value_mobile: any = '';
+
+  loginForm: any = {
+    email: '',
+    password: '',
+  };
   constructor(
     private router: Router,
     public util: UtilService,
     private api: ApiService,
-    private navCtrl: Location
+    private navCtrl: Location,
+    private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.util.userInfo != '') {
+      this.router.navigate(['/profile']);
+    }
+  }
+
+  loginuser() {
+    this.api.post('users/loginForUser', this.loginForm).subscribe(
+      (data: any) => {
+        if (data && data.status == '200') {
+          if (data.data.status === 'active') {
+            this.util.userInfo = data.data;
+            localStorage.setItem('user', JSON.stringify(data.data));
+            this.mobile = data.data.mobile;
+            this.email = data.data.email;
+            this.sendOtp(false);
+            this.toastr.success(
+              'has been sent to your mobile and email',
+              'One time password'
+            );
+          } else {
+            this.toastr.error(
+              'Your are blocked please contact administrator',
+              'Error!'
+            );
+          }
+
+          //this.router.navigate(['/profile']);
+        } else if (data && data.status == '500') {
+          this.toastr.error(data.data.message, 'Error!');
+          this.showOtp = false;
+        } else {
+          this.toastr.error('Something went wrong', 'Error!');
+          this.showOtp = false;
+        }
+      },
+      (error) => {
+        this.showOtp = false;
+        this.toastr.error('Something went wrong', 'Error!');
+      }
+    );
+  }
+
   sendOtp(resend) {
     if (!this.mobile) {
-      this.util.getString('Mobile number are required');
+      this.toastr.error('Something went wrong', 'Error!');
       return false;
     }
     let mobile = new String(this.mobile);
     console.log(mobile);
     console.log('Length ' + mobile.length);
     if (mobile.length != 10) {
-      this.util.getString('invalid Mobile number');
+      this.toastr.error('Something went wrong', 'Error!');
       return false;
     }
-
     const param = {
       mobile: this.mobile,
+      email: this.email,
     };
-
     this.api.post('users/sendLoginOtp', param).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
           if (!resend) {
             this.showOtp = true;
           }
-          this.hidden_otp_value = data.data.otp_value;
+          this.hidden_otp_value_email = data.data.otp_value_email;
+          this.hidden_otp_value_mobile = data.data.otp_value_mobile;
         } else if (data && data.status === 500) {
-          this.util.getString(data.data.error);
+          this.toastr.error(data.data.error, 'Error!');
         } else {
-          this.util.getString('Something went wrong');
+          this.toastr.error('Something went wrong', 'Error!');
         }
       },
       (error) => {
-        this.util.getString('Something went wrong');
+        this.toastr.error('Something went wrong', 'Error!');
       }
     );
   }
 
   verifyOtp() {
-    if (this.hidden_otp_value == this.otp_value) {
-      this.goToHome();
+    if (
+      this.hidden_otp_value_email == this.otp_value ||
+      this.hidden_otp_value_mobile == this.otp_value
+    ) {
+      this.router.navigate(['/profile']);
     } else {
-      this.util.getString('invalid one time password');
+      this.toastr.error('invalid one time password', 'Error!');
     }
   }
   goToRegister() {
@@ -81,60 +134,6 @@ export class LoginComponent implements OnInit {
         this.util.stop();
         console.log(data);
         if (data && data.status === 200) {
-          if (data && data.data && data.data.type === 'user') {
-            if (data.data.status === '1') {
-              localStorage.setItem('uid', data.data.id);
-              localStorage.setItem('mobile', data.data.mobile);
-              localStorage.setItem('first_name', data.data.first_name);
-              localStorage.setItem('last_name', data.data.last_name);
-              this.util.userInfo = data.data;
-              const Toast = Swal.mixin({
-                toast: true,
-                position: 'bottom-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                onOpen: (toast) => {
-                  toast.addEventListener('mouseenter', Swal.stopTimer);
-                  toast.addEventListener('mouseleave', Swal.resumeTimer);
-                },
-              });
-
-              Toast.fire({
-                icon: 'success',
-                title: this.util.getString('Signed in successfully'),
-              });
-              // this.router.navigate(['/home']);
-              this.navCtrl.back();
-            } else {
-              console.log('not valid');
-              Swal.fire({
-                title: this.util.getString('Error'),
-                text: this.util.getString(
-                  'Your are blocked please contact administrator'
-                ),
-                icon: 'error',
-                showConfirmButton: true,
-                showCancelButton: true,
-                confirmButtonText: this.util.getString('Need Help?'),
-                backdrop: false,
-                background: 'white',
-              }).then((status) => {
-                if (status && status.value) {
-                  localStorage.setItem('helpId', data.data.id);
-                  this.router.navigate(['inbox']);
-                }
-              });
-            }
-          } else {
-            this.util.toast(
-              'error',
-              this.util.getString('Error'),
-              this.util.getString('Not valid user')
-            );
-            this.email = '';
-            this.password = '';
-          }
         } else if (data && data.status === 500) {
           this.util.toast(
             'error',

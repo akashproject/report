@@ -8,12 +8,31 @@
         </div>
 
         <input
-          type="number"
-          [placeholder]="util.getString('Mobile')"
-          [(ngModel)]="mobile"
+          type="email"
+          [placeholder]="util.getString('Email')"
+          [(ngModel)]="loginForm.email"
           class="form-control"
         />
-        <button type="button" class="btn" (click)="sendOtp(false)">
+        <input
+          type="password"
+          [placeholder]="util.getString('Password')"
+          [(ngModel)]="loginForm.password"
+          class="form-control"
+        />
+        <button
+          type="button"
+          class="btn"
+          (click)="loginuser()"
+          *ngIf="loginForm.email != '' && loginForm.password != ''"
+        >
+          {{ util.getString("Next") }}
+        </button>
+        <button
+          type="button"
+          class="btn"
+          disabled="disabled"
+          *ngIf="loginForm.email == '' || loginForm.password == ''"
+        >
           {{ util.getString("Next") }}
         </button>
 

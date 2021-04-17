@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+import { FootersComponent } from './shared/footers/footers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,9 +20,11 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    FootersComponent,
   ],
   imports: [
     BrowserModule,
+    ToastrModule.forRoot(), // ToastrModule added
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
