@@ -1,0 +1,94 @@
+<div class="container">
+  <div class="row form_row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <div class="form_div" *ngIf="!showOtp">
+        <form>
+          <div class="head_title">
+            <label>{{ util.getString("Create Account") }} </label>
+          </div>
+          <input
+            type="text"
+            [(ngModel)]="signupUserForm.full_name"
+            name="full_name"
+            [placeholder]="util.getString('Full name')"
+            class="form-control"
+          />
+          <input
+            type="text"
+            [(ngModel)]="signupUserForm.email"
+            name="email"
+            [placeholder]="util.getString('Email')"
+            class="form-control"
+          />
+          <input
+            type="number"
+            name="mobile"
+            [(ngModel)]="signupUserForm.mobile"
+            [placeholder]="util.getString('Mobile')"
+            class="form-control"
+          />
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="signupUserForm.password"
+            [placeholder]="util.getString('Password')"
+            class="form-control"
+          />
+          <input
+            type="password"
+            name="c_password"
+            [(ngModel)]="c_password"
+            [placeholder]="util.getString('Confirm Password')"
+            class="form-control"
+          />
+          <button
+            type="button"
+            class="btn"
+            (click)="sendCustomOtp()"
+            *ngIf="signupUserForm.mobile != ''"
+          >
+            {{ util.getString("Next") }}
+          </button>
+          <button
+            type="button"
+            class="btn"
+            disabled="disabled"
+            *ngIf="signupUserForm.mobile == ''"
+          >
+            {{ util.getString("Next") }}
+          </button>
+          <hr />
+
+          <label class="bottom_lbl" (click)="goToLogin()"
+            >{{ util.getString("Already have an account ? Login") }}
+          </label>
+        </form>
+      </div>
+      <div class="form_div_otp" *ngIf="showOtp">
+        <div class="head_title">
+          <label> {{ util.getString("Verify OTP") }} </label>
+        </div>
+
+        <input
+          type="number"
+          [placeholder]="util.getString('Enter Otp')"
+          [(ngModel)]="otp_value"
+          class="form-control"
+        />
+        <button type="button" class="btn" (click)="verifyOtp()">
+          {{ util.getString("Verify otp") }}
+        </button>
+        <label class="bottom_lbl" (click)="sendCustomOtp(true)">
+          {{ util.getString("Resend Otp") }}
+        </label>
+        <hr />
+
+        <label class="bottom_lbl" (click)="goToLogin()"
+          >{{ util.getString("Already have an account ? Login") }}
+        </label>
+      </div>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>

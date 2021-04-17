@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row form_row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4">
+      <div class="form_div" *ngIf="!showOtp">
+        <div class="head_title">
+          <label> {{ util.getString("Login") }} </label>
+        </div>
+
+        <input
+          type="number"
+          [placeholder]="util.getString('Mobile')"
+          [(ngModel)]="mobile"
+          class="form-control"
+        />
+        <button type="button" class="btn" (click)="sendOtp(false)">
+          {{ util.getString("Next") }}
+        </button>
+
+        <hr />
+
+        <label class="bottom_lbl" (click)="goToRegister()">
+          {{ util.getString("Create New Account") }}
+        </label>
+      </div>
+
+      <div class="form_div_otp" *ngIf="showOtp">
+        <div class="head_title">
+          <label> {{ util.getString("Verify OTP") }} </label>
+        </div>
+
+        <input
+          type="number"
+          [placeholder]="util.getString('Enter Otp')"
+          [(ngModel)]="otp_value"
+          class="form-control"
+        />
+        <button type="button" class="btn" (click)="verifyOtp()">
+          {{ util.getString("Verify otp") }}
+        </button>
+        <label class="bottom_lbl" (click)="sendOtp(true)">
+          {{ util.getString("Resend Otp") }}
+        </label>
+        <hr />
+
+        <label class="bottom_lbl" (click)="goToRegister()">
+          {{ util.getString("Create New Account") }}
+        </label>
+      </div>
+    </div>
+    <div class="col-lg-4"></div>
+  </div>
+</div>
