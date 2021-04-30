@@ -18,9 +18,9 @@ export class LoginComponent implements OnInit {
   otp_value: any = '';
   hidden_otp_value_email: any = '';
   hidden_otp_value_mobile: any = '';
-
+  form_validate = false;
   loginForm: any = {
-    email: '',
+    post_data: '',
     password: '',
   };
   constructor(
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.util.userInfo != '') {
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/account']);
     }
   }
 
@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         if (data && data.status == '200') {
           if (data.data.status === 'active') {
-            this.util.userInfo = data.data;
             localStorage.setItem('user', JSON.stringify(data.data));
             this.mobile = data.data.mobile;
             this.email = data.data.email;
@@ -58,7 +57,7 @@ export class LoginComponent implements OnInit {
             );
           }
 
-          //this.router.navigate(['/profile']);
+          //this.router.navigate(['/account']);
         } else if (data && data.status == '500') {
           this.toastr.error(data.data.message, 'Error!');
           this.showOtp = false;
@@ -87,8 +86,7 @@ export class LoginComponent implements OnInit {
       return false;
     }
     const param = {
-      mobile: this.mobile,
-      email: this.email,
+      post_data: this.mobile,
     };
     this.api.post('users/sendLoginOtp', param).subscribe(
       (data: any) => {
@@ -115,13 +113,21 @@ export class LoginComponent implements OnInit {
       this.hidden_otp_value_email == this.otp_value ||
       this.hidden_otp_value_mobile == this.otp_value
     ) {
-      this.router.navigate(['/profile']);
+      this.util.userInfo = JSON.parse(localStorage.getItem('user'));
+      console.log(JSON.parse(localStorage.getItem('user')));
+
+      this.router.navigate(['/account']);
     } else {
       this.toastr.error('invalid one time password', 'Error!');
     }
   }
+
   goToRegister() {
     this.router.navigate(['/register']);
+  }
+
+  goToForgotPassword() {
+    this.router.navigate(['/forgot-password']);
   }
 
   goToHome() {
@@ -162,5 +168,13 @@ export class LoginComponent implements OnInit {
   reset() {
     console.log('reset password');
     this.router.navigate(['reset']);
+  }
+
+  formValidation() {
+    console.log(this.loginForm);
+
+    if (this.loginForm.password != '' && this.loginForm.email != '') {
+      this.form_validate = true;
+    }
   }
 }

@@ -13,6 +13,7 @@
             name="full_name"
             [placeholder]="util.getString('Full name')"
             class="form-control"
+            (ngModelChange)="formValidation()"
           />
           <input
             type="text"
@@ -20,6 +21,7 @@
             name="email"
             [placeholder]="util.getString('Email')"
             class="form-control"
+            (ngModelChange)="formValidation()"
           />
           <input
             type="number"
@@ -27,6 +29,7 @@
             [(ngModel)]="signupUserForm.mobile"
             [placeholder]="util.getString('Mobile')"
             class="form-control"
+            (ngModelChange)="formValidation()"
           />
           <input
             type="password"
@@ -34,6 +37,7 @@
             [(ngModel)]="signupUserForm.password"
             [placeholder]="util.getString('Password')"
             class="form-control"
+            (ngModelChange)="formValidation()"
           />
           <input
             type="password"
@@ -41,12 +45,13 @@
             [(ngModel)]="c_password"
             [placeholder]="util.getString('Confirm Password')"
             class="form-control"
+            (ngModelChange)="formValidation()"
           />
           <button
             type="button"
             class="btn"
             (click)="sendCustomOtp()"
-            *ngIf="signupUserForm.mobile != ''"
+            *ngIf="form_validate"
           >
             {{ util.getString("Next") }}
           </button>
@@ -54,7 +59,7 @@
             type="button"
             class="btn"
             disabled="disabled"
-            *ngIf="signupUserForm.mobile == ''"
+            *ngIf="!form_validate"
           >
             {{ util.getString("Next") }}
           </button>

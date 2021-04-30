@@ -9,16 +9,16 @@
 */
 export const environment = {
   production: true,
-  baseURL: "https://circlepoint.in/API/index.php/",
-  mediaURL: "https://circlepoint.in/API/uploads/",
+  baseURL: 'https://developer.yusmota.in/api/index.php/',
+  mediaURL: 'https://developer.yusmota.in/api/uploads/',
   onesignal: {
-    appId: "d9d6c621-8d9d-4a2f-9098-cfae13036d8b",
-    googleProjectNumber: "888633870378",
-    restKey: "YmQ4OWYwNTEtZjlkMy00NzhhLTkyY2UtN2MwZWY0YjYyNTFm",
+    appId: 'd9d6c621-8d9d-4a2f-9098-cfae13036d8b',
+    googleProjectNumber: '888633870378',
+    restKey: 'YmQ4OWYwNTEtZjlkMy00NzhhLTkyY2UtN2MwZWY0YjYyNTFm',
   },
   general: {
-    symbol: "$",
-    code: "USD",
+    symbol: '$',
+    code: 'USD',
   },
-  authToken: "sL2lM7bL8pE1mD7t",
+  authToken: 'sL2lM7bL8pE1mD7t',
 };

@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   showOtp = false;
   otp_value: any = '';
   hidden_otp_value: any = '';
+  form_validate = false;
   signupUserForm: any = {
     email: '',
     full_name: '',
@@ -37,20 +38,17 @@ export class RegisterComponent implements OnInit {
     private api: ApiService,
     public util: UtilService,
     private toastr: ToastrService
-  ) {
-    this.dummy = this.util.countrys;
-  }
+  ) {}
 
   ngOnInit(): void {
     if (this.util.userInfo != '') {
-      this.router.navigate(['/profile']);
+      this.router.navigate(['/account']);
     }
   }
   sendCustomOtp(resend) {
-    console.log(this.signupUserForm);
-
     const param = {
-      mobile: '+91' + this.signupUserForm.mobile,
+      mobile: this.signupUserForm.mobile,
+      email: this.signupUserForm.email,
     };
 
     this.api.post('users/sendRegistrationOtp', param).subscribe(
@@ -88,8 +86,11 @@ export class RegisterComponent implements OnInit {
     this.api.post('users/registerUser', this.signupUserForm).subscribe(
       (data: any) => {
         if (data && data.status == '200') {
+          this.toastr.success('You have successfully registered.', 'Success!');
           localStorage.setItem('user', JSON.stringify(data.data));
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/']).then(() => {
+            window.location.reload();
+          });
         } else if (data && data.status == '500') {
           this.toastr.error(data.data.message, 'Error!');
           this.showOtp = false;
@@ -108,5 +109,18 @@ export class RegisterComponent implements OnInit {
   onOtpChange(event) {
     console.log(event);
     this.userCode = event;
+  }
+
+  formValidation() {
+    console.log(this.signupUserForm);
+
+    if (
+      this.signupUserForm.password == this.c_password &&
+      this.signupUserForm.full_name != '' &&
+      this.signupUserForm.email != '' &&
+      this.signupUserForm.mobile != ''
+    ) {
+      this.form_validate = true;
+    }
   }
 }

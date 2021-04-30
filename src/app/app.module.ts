@@ -10,9 +10,16 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { FootersComponent } from './shared/footers/footers.component';
+import { HeadersComponent } from './shared/headers/headers.component';
+import { AccountComponent } from './components/account/account.component';
+import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { EmargencyContactComponent } from './components/emargency-contact/emargency-contact.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,11 +27,18 @@ import { FootersComponent } from './shared/footers/footers.component';
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
+    HeadersComponent,
     FootersComponent,
+    AccountComponent,
+    VerifyEmailComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    EmargencyContactComponent,
   ],
   imports: [
     BrowserModule,
     ToastrModule.forRoot(), // ToastrModule added
+    MDBBootstrapModule.forRoot(),
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,

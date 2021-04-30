@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'rp';
   deviceType = 'desktop';
   innerHeight: string;
-  windowWidth: number;
+
   constructor(public api: ApiService, public util: UtilService) {
     console.log(this.util.deviceType);
   }

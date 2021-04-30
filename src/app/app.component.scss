@@ -1,3 +1,8 @@
+.footer_wraper {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
 .flexBox {
   display: flex;
   position: absolute;
@@ -24,7 +29,7 @@
 }
 
 .cartHeader {
-  background: #45c261;
+  background: #4571c2;
   color: white;
 }
 .btns {
@@ -130,7 +135,7 @@
         cursor: pointer;
       }
       .normalItem:hover {
-        color: #45c261;
+        color: #4571c2;
       }
       .price_lbl {
         font-weight: 400;
@@ -194,7 +199,7 @@
       color: white;
       .abs_add {
         width: 100px;
-        background: #45c261;
+        background: #4571c2;
         height: 30px;
         border-radius: 15px;
         display: flex;
@@ -235,7 +240,7 @@
   }
   .title {
     padding: 0px 10px;
-    color: #45c261;
+    color: #4571c2;
   }
 }
 .billing {
@@ -262,7 +267,7 @@
   }
 }
 .instructions {
-  color: #45c261;
+  color: #4571c2;
   margin: 0px;
 }
 .content_div::-webkit-scrollbar {

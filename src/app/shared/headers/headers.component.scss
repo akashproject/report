@@ -8,23 +8,23 @@
   Copyright and Good Faith Purchasers © 2020-present initappz.
 */
 .toolbar {
-  background-color: #45c261 !important;
+  background-color: #4571c2 !important;
   position: fixed;
   top: 0px;
   width: 100%;
   max-width: 100%;
   z-index: 9999;
-  padding: 5px;
+  padding: 10px 0;
 
   .activeCity {
-    background: #45c261;
+    background: #4571c2;
     color: white;
     padding: 10px;
     border-radius: 5px;
   }
   .normalCity {
     background: white;
-    color: #45c261;
+    color: #4571c2;
     padding: 10px;
   }
 
@@ -57,7 +57,7 @@
     min-width: max-content;
   }
   .linkBtn {
-    background-color: #45c261 !important;
+    background-color: #4571c2 !important;
     padding: 10px;
     color: white;
     font-weight: bold;
@@ -93,7 +93,7 @@
     }
 
     a:hover {
-      color: #45c261;
+      color: #4571c2;
     }
 
     label {

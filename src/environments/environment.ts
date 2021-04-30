@@ -13,8 +13,8 @@
 
 export const environment = {
   production: false,
-  baseURL: 'http://developer.yusmota.in/api/index.php/',
-  mediaURL: 'http://developer.yusmota.in/api/uploads/',
+  baseURL: 'https://developer.yusmota.in/api/index.php/',
+  mediaURL: 'https://developer.yusmota.in/api/uploads/',
   general: {
     symbol: '$',
     code: 'USD',
