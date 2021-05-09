@@ -425,7 +425,7 @@
           </button>
         </div>
         <div *ngIf="myContacts.length > 0">
-          <div class="my_col_address" *ngFor="let item of myContacts; let i=index">
+          <div class="my_col_address" *ngFor="let item of myContacts let i=index">
             <label class="bold_lbl2">Name : {{ item.name }}</label>
             <label class="bold_lbl2">Mobile : {{ item.mobile }}</label>
             <label class="bold_lbl2">Email : {{ item.email }}</label>

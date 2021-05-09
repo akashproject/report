@@ -41,9 +41,9 @@ export class EmargencyContactComponent implements OnInit {
           // localStorage.setItem('user', JSON.stringify(data.data));
           this.util.userInfo.contact_added = true;
           this.toastr.success('Emargency contact has been inserted', 'Success');
-          this.router.navigate(['/account']);
+          this.router.navigate(['/emargency-list']);
         } else if (data && data.status === 500) {
-          this.toastr.error(data.data.message, 'Error!');
+          this.toastr.error(data.data.error, 'Error!');
         } else {
           this.toastr.error('Something went wrong', 'Error!');
         }

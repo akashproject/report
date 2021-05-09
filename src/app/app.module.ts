@@ -20,6 +20,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EmargencyContactComponent } from './components/emargency-contact/emargency-contact.component';
+import { EmargencyListComponent } from './components/emargency-list/emargency-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +35,7 @@ import { EmargencyContactComponent } from './components/emargency-contact/emarge
     ForgotPasswordComponent,
     ResetPasswordComponent,
     EmargencyContactComponent,
+    EmargencyListComponent,
   ],
   imports: [
     BrowserModule,

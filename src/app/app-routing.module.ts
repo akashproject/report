@@ -9,6 +9,7 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EmargencyContactComponent } from './components/emargency-contact/emargency-contact.component';
+import { EmargencyListComponent } from './components/emargency-list/emargency-list.component';
 const routes: Routes = [
   { path: '', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'emargency-contact', component: EmargencyContactComponent },
+  { path: 'emargency-list', component: EmargencyListComponent },
 ];
 
 @NgModule({

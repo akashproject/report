@@ -6,12 +6,13 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'angular-bootstrap-md';
 import Swal from 'sweetalert2';
+
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss'],
+  selector: 'app-emargency-list',
+  templateUrl: './emargency-list.component.html',
+  styleUrls: ['./emargency-list.component.scss'],
 })
-export class AccountComponent implements OnInit {
+export class EmargencyListComponent implements OnInit {
   mobile: any = '';
   @ViewChild('contactModal') public contactModal: ModalDirective;
   email: any = '';
@@ -53,7 +54,7 @@ export class AccountComponent implements OnInit {
     public util: UtilService,
     private toastr: ToastrService
   ) {
-    this.currentDiv = 1;
+    this.currentDiv = 4;
   }
 
   ngOnInit(): void {
@@ -62,7 +63,6 @@ export class AccountComponent implements OnInit {
     }
 
     this.isEmailVerified = this.util.userInfo.email_verified;
-    console.log(this.util.userInfo);
 
     this.isContactadded = this.util.userInfo.contact_added;
     if (this.util.userInfo.id) {
