@@ -1,0 +1,194 @@
+<div class="container">
+  <div class="row" *ngIf="isEmailVerified != 'true'">
+    <div class="col-md-12 text-center">
+      <h3 class="alert alert-primary">
+        You need to verify you email addreress! click
+        <a routerLink="/verify-email">
+          <strong>Here</strong>
+        </a>
+        to send OTP
+      </h3>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!isContactadded">
+    <div class="col-md-12 text-center">
+      <h3 class="alert alert-primary">
+        You need to add a Emargency contact to furthur proceed! click
+        <a (click)="gotoContact()">
+          <strong>Here</strong>
+        </a>
+        to add
+      </h3>
+    </div>
+  </div>
+
+  <div class="head_title">
+    <label> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-12 sidemenu">
+      <div class="my_col" (click)="openProfile()">
+        <div class="icn_div">
+          <mdb-icon fas icon="user-circle"></mdb-icon>
+        </div>
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Profile") }}
+          </label>
+        </div>
+      </div>
+
+      <div class="my_col" (click)="parsonalDetails()">
+        <div class="icn_div">
+          <mdb-icon fas icon="phone"></mdb-icon>
+        </div>
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Personal Details") }}
+          </label>
+        </div>
+      </div>
+
+      <div class="my_col" (click)="investmentDetails()">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Investment Details") }}
+          </label>
+        </div>
+      </div>
+
+      <div class="my_col" (click)="logout()">
+        <div class="icn_div">
+          <mdb-icon fas icon="lock"></mdb-icon>
+        </div>
+        <div class="right_div">
+          <label class="title_lbl"> {{ util.getString("Logout") }} </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9 col-md-12">
+      <!-- User Informations -->
+      <div class="row user_div" *ngIf="currentDiv === 1">
+        <div class="head_title col-12">
+          <label> Personal Details </label>
+        </div>
+        <div class="col-12">
+          <div class="row form_div">
+            <div class="col-lg-6 class_col inner-addon left-addon">
+              <mdb-icon fas icon="user-circle"></mdb-icon>
+              <input
+                disabled="disabled"
+                type="text"
+                placeholder="First Name"
+                [(ngModel)]="profileForm.full_name"
+                class="form-control"
+              />
+            </div>
+            <div class="col-lg-6 class_col inner-addon left-addon">
+              <mdb-icon fas icon="user-circle"></mdb-icon>
+              <input
+                type="text"
+                placeholder="Pan card"
+                [(ngModel)]="profileForm.pan_no"
+                class="form-control"
+                (ngModelChange)="formValidation()"
+              />
+            </div>
+            <div class="col-lg-6 class_col inner-addon left-addon">
+              <mdb-icon fas icon="user-circle"></mdb-icon>
+              <input
+                type="text"
+                placeholder="Adhaar card"
+                [(ngModel)]="profileForm.adhaar_no"
+                class="form-control"
+                (ngModelChange)="formValidation()"
+              />
+            </div>
+            <div class="col-lg-6 class_col inner-addon left-addon">
+              <textarea
+                disabled="disabled"
+                placeholder="Address"
+                [(ngModel)]="profileForm.address"
+                class="form-control"
+                (ngModelChange)="formValidation()"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="head_title col-12">
+          <label> Emargency contacts </label>
+        </div>
+        <div *ngIf="emContacts.length > 0">
+          <div
+            class="my_col_address"
+            *ngFor="let item of emContacts; let i = index"
+          >
+            <label class="bold_lbl2">Name : {{ item.name }}</label>
+            <label class="bold_lbl2">Mobile : {{ item.mobile }}</label>
+            <label class="bold_lbl2">Email : {{ item.email }}</label>
+            <label class="bold_lbl2">Address : {{ item.address }}</label>
+          </div>
+        </div>
+      </div>
+      <!-- User Informations -->
+      <div class="row user_div" *ngIf="currentDiv === 2">
+        <div
+          class="head_title"
+          style="display: block; width: 100%; padding: 10px 0"
+        >
+          <label> Investment Details </label>
+        </div>
+        <div class="row form_div" *ngIf="showOtp">
+          <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_email != ''">
+            <label *ngIf="hidden_otp_value_email != ''"
+              >Email Verification Otp:
+            </label>
+            <input
+              type="text"
+              placeholder="One time passwoord"
+              [(ngModel)]="otp_value_email"
+              class="form-control"
+            />
+          </div>
+          <div
+            class="col-lg-12 class_col"
+            *ngIf="hidden_otp_value_mobile != ''"
+          >
+            <label *ngIf="hidden_otp_value_mobile != ''"
+              >Mobile Verification Otp:
+            </label>
+            <input
+              placeholder="One time passwoord"
+              type="text"
+              [(ngModel)]="otp_value_mobile"
+              class="form-control"
+            />
+          </div>
+          <div class="col-12">
+            <div class="submitBtn">
+              <button
+                type="button"
+                (click)="verifyOtp()"
+                mdbWavesEffect
+                mdbBtn
+                class="btn"
+              >
+                {{ util.getString("Verify otp") }}
+              </button>
+              <label class="bottom_lbl" (click)="sendVerificationOtp(true)">
+                {{ util.getString("Resend Otp") }}
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

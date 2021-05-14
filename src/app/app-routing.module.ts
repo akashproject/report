@@ -10,6 +10,8 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { EmargencyContactComponent } from './components/emargency-contact/emargency-contact.component';
 import { EmargencyListComponent } from './components/emargency-list/emargency-list.component';
+import { InvestmentsComponent } from './components/investments/investments.component';
+import { CreateInvestmentsComponent } from './components/create-investments/create-investments.component';
 const routes: Routes = [
   { path: '', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'reset-password', component: ResetPasswordComponent },
   { path: 'emargency-contact', component: EmargencyContactComponent },
   { path: 'emargency-list', component: EmargencyListComponent },
+  { path: 'investments', component: InvestmentsComponent },
+  { path: 'create-investments', component: CreateInvestmentsComponent },
 ];
 
 @NgModule({

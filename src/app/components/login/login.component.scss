@@ -9,7 +9,34 @@ label {
 .form_div_otp {
   padding: 25px;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
+  /* enable absolute positioning */
+  .inner-addon {
+    position: relative;
+  }
 
+  /* style glyph */
+  .inner-addon .fas {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+  }
+
+  /* align glyph */
+  .left-addon .fas {
+    left: 0;
+    top: 2px;
+  }
+  .right-addon .fas {
+    right: 0px;
+  }
+
+  /* add padding  */
+  .left-addon input {
+    padding-left: 30px;
+  }
+  .right-addon input {
+    padding-right: 30px;
+  }
   .head_title {
     display: flex;
     justify-content: space-between;

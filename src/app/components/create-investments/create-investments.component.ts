@@ -7,11 +7,11 @@ import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'angular-bootstrap-md';
 import Swal from 'sweetalert2';
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.scss'],
+  selector: 'app-create-investments',
+  templateUrl: './create-investments.component.html',
+  styleUrls: ['./create-investments.component.scss']
 })
-export class AccountComponent implements OnInit {
+export class CreateInvestmentsComponent implements OnInit {
   mobile: any = '';
   @ViewChild('contactModal') public contactModal: ModalDirective;
   email: any = '';
@@ -71,7 +71,11 @@ export class AccountComponent implements OnInit {
   }
 
   goTobusiness() {
-    this.router.navigate(['/investments']);
+    if (this.isContactadded) {
+      this.currentDiv = 2;
+    } else {
+      this.toastr.error('Add Emargency contact first', 'Error!');
+    }
   }
 
   gotoPassword() {
@@ -118,10 +122,6 @@ export class AccountComponent implements OnInit {
 
   addNewContact() {
     this.router.navigate(['/emargency-contact']);
-  }
-
-  addnewInvestment(){
-    this.router.navigate(['/create-investments']);
   }
 
   actionContact() {

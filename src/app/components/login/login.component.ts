@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   mobile: any = '';
   email: any = '';
   showOtp = false;
+  beforeLoginUser = '';
   otp_value: any = '';
   hidden_otp_value_email: any = '';
   hidden_otp_value_mobile: any = '';
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
       (data: any) => {
         if (data && data.status == '200') {
           if (data.data.status === 'active') {
-            localStorage.setItem('user', JSON.stringify(data.data));
+            this.beforeLoginUser = JSON.stringify(data.data); //localStorage.setItem('user', );
             this.mobile = data.data.mobile;
             this.email = data.data.email;
             this.sendOtp(false);
@@ -114,9 +115,11 @@ export class LoginComponent implements OnInit {
       this.hidden_otp_value_mobile == this.otp_value
     ) {
       this.util.userInfo = JSON.parse(localStorage.getItem('user'));
-      console.log(JSON.parse(localStorage.getItem('user')));
-
-      this.router.navigate(['/account']);
+      //console.log(JSON.parse(localStorage.getItem('user')));
+      localStorage.setItem('user', this.beforeLoginUser);
+      this.router.navigate(['/']).then(() => {
+        window.location.reload();
+      });
     } else {
       this.toastr.error('invalid one time password', 'Error!');
     }

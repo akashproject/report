@@ -7,46 +7,61 @@
           <div class="head_title">
             <label>{{ util.getString("Create Account") }} </label>
           </div>
-          <input
-            type="text"
-            [(ngModel)]="signupUserForm.full_name"
-            name="full_name"
-            [placeholder]="util.getString('Full name')"
-            class="form-control"
-            (ngModelChange)="formValidation()"
-          />
-          <input
-            type="text"
-            [(ngModel)]="signupUserForm.email"
-            name="email"
-            [placeholder]="util.getString('Email')"
-            class="form-control"
-            (ngModelChange)="formValidation()"
-          />
-          <input
-            type="number"
-            name="mobile"
-            [(ngModel)]="signupUserForm.mobile"
-            [placeholder]="util.getString('Mobile')"
-            class="form-control"
-            (ngModelChange)="formValidation()"
-          />
-          <input
-            type="password"
-            name="password"
-            [(ngModel)]="signupUserForm.password"
-            [placeholder]="util.getString('Password')"
-            class="form-control"
-            (ngModelChange)="formValidation()"
-          />
-          <input
-            type="password"
-            name="c_password"
-            [(ngModel)]="c_password"
-            [placeholder]="util.getString('Confirm Password')"
-            class="form-control"
-            (ngModelChange)="formValidation()"
-          />
+          <div class="inner-addon left-addon">
+            <mdb-icon fas icon="user-circle"></mdb-icon>
+            <input
+              type="text"
+              [(ngModel)]="signupUserForm.full_name"
+              name="full_name"
+              [placeholder]="util.getString('Full name')"
+              class="form-control"
+              (ngModelChange)="formValidation()"
+            />
+          </div>
+          <div class="inner-addon left-addon">
+            <mdb-icon fas icon="envelope"></mdb-icon>
+            <input
+              type="text"
+              [(ngModel)]="signupUserForm.email"
+              name="email"
+              [placeholder]="util.getString('Email')"
+              class="form-control"
+              (ngModelChange)="formValidation()"
+            />
+          </div>
+          <div class="inner-addon left-addon">
+            <mdb-icon fas icon="phone"></mdb-icon>
+            <input
+              type="number"
+              name="mobile"
+              [(ngModel)]="signupUserForm.mobile"
+              [placeholder]="util.getString('Mobile')"
+              class="form-control"
+              (ngModelChange)="formValidation()"
+            />
+          </div>
+          <div class="inner-addon left-addon">
+            <mdb-icon fas icon="lock"></mdb-icon>
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="signupUserForm.password"
+              [placeholder]="util.getString('Password')"
+              class="form-control"
+              (ngModelChange)="formValidation()"
+            />
+          </div>
+          <div class="inner-addon left-addon">
+            <mdb-icon fas icon="lock"></mdb-icon>
+            <input
+              type="password"
+              name="c_password"
+              [(ngModel)]="c_password"
+              [placeholder]="util.getString('Confirm Password')"
+              class="form-control"
+              (ngModelChange)="formValidation()"
+            />
+          </div>
           <button
             type="button"
             class="btn"

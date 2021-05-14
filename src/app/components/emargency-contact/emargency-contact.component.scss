@@ -64,6 +64,34 @@ label {
 .user_div {
   padding-left: 25px;
   padding-right: 25px;
+  /* enable absolute positioning */
+  .inner-addon {
+    position: relative;
+  }
+
+  /* style glyph */
+  .inner-addon .fas {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+  }
+
+  /* align glyph */
+  .left-addon .fas {
+    left: 14px;
+    top: 2px;
+  }
+  .right-addon .fas {
+    right: 0px;
+  }
+
+  /* add padding  */
+  .left-addon input {
+    padding-left: 30px;
+  }
+  .right-addon input {
+    padding-right: 30px;
+  }
   .user_img {
     height: 90px;
     width: 90px;
@@ -108,7 +136,36 @@ label {
     }
   }
 
-  .form_div {
+  .form_div,
+  .form_div_otp {
+    /* enable absolute positioning */
+    .inner-addon {
+      position: relative;
+    }
+
+    /* style glyph */
+    .inner-addon .fas {
+      position: absolute;
+      padding: 10px;
+      pointer-events: none;
+    }
+
+    /* align glyph */
+    .left-addon .fas {
+      left: 14px;
+      top: 2px;
+    }
+    .right-addon .fas {
+      right: 0px;
+    }
+
+    /* add padding  */
+    .left-addon input {
+      padding-left: 30px;
+    }
+    .right-addon input {
+      padding-right: 30px;
+    }
     margin-top: 30px;
 
     .class_col {
@@ -145,7 +202,7 @@ label {
   border: 1px solid lightgray;
   border-radius: 5px;
   margin-top: 15px;
-
+  margin-left: 17px;
   .bold_lbl {
     font-weight: 500;
     margin-bottom: 10px;
