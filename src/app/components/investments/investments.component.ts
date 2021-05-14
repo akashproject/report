@@ -16,11 +16,6 @@ export class InvestmentsComponent implements OnInit {
   mobile: any = '';
   @ViewChild('contactModal') public contactModal: ModalDirective;
   email: any = '';
-  showOtp = false;
-  otp_value_email: any = '';
-  otp_value_mobile: any = '';
-  hidden_otp_value_email: any = '';
-  hidden_otp_value_mobile: any = '';
   profileForm: any = {
     id: this.util.userInfo.id,
     full_name: this.util.userInfo.full_name,
@@ -29,13 +24,13 @@ export class InvestmentsComponent implements OnInit {
     adhaar_no: '',
   };
   emContacts: any = [];
-
+  investmentsForm: any = {
+    company: [],
+    med_policy: [],
+  };
   isEmailVerified: any;
-  isContactadded: any;
   currentDiv: any;
   form_validate = false;
-  password_validate = false;
-  newContact: boolean;
   constructor(
     private router: Router,
     private api: ApiService,
@@ -53,10 +48,7 @@ export class InvestmentsComponent implements OnInit {
     this.isEmailVerified = this.util.userInfo.email_verified;
     console.log(this.util.userInfo);
 
-    this.isContactadded = this.util.userInfo.contact_added;
-    if (this.util.userInfo.id) {
-      this.getUserRecords();
-    }
+    this.getUserRecords();
   }
 
   getUserRecords() {
@@ -85,7 +77,7 @@ export class InvestmentsComponent implements OnInit {
       );
   }
 
-  investmentDetails() {
+  gotToCompanyDetails() {
     this.currentDiv = 2;
   }
 
@@ -94,81 +86,38 @@ export class InvestmentsComponent implements OnInit {
     console.log(this.emContacts);
   }
 
-  logout() {
-    localStorage.clear();
-    this.util.userInfo = null;
-    this.router.navigate(['/']).then(() => {
-      window.location.reload();
-    });
+  addNewCompany() {
+    let company = {
+      supervisor_name: '',
+      supervisor_contact_no: '',
+      office_friend_name: '',
+      office_friend_contact_no: '',
+      hr_name: '',
+      hr_contact_no: '',
+    };
+    this.investmentsForm.company.push(company);
+    console.log(this.investmentsForm);
   }
 
-  sendVerificationOtp(resend) {
-    if (
-      this.profileForm.email != this.util.userInfo.email ||
-      this.profileForm.mobile != this.util.userInfo.mobile
-    ) {
-      const param = {
-        post_data: this.mobile,
-      };
-      this.api.post('users/sendOtp', this.profileForm).subscribe(
-        (data: any) => {
-          if (data && data.status === 200) {
-            if (!resend) {
-              this.currentDiv = 5;
-              this.showOtp = true;
-            }
-            if (data.data.otp_value_email) {
-              this.hidden_otp_value_email = data.data.otp_value_email;
-            }
-            if (data.data.otp_value_mobile) {
-              this.hidden_otp_value_mobile = data.data.otp_value_mobile;
-            }
-          } else if (data && data.status === 500) {
-            this.toastr.error(data.data.message, 'Error!');
-          } else {
-            this.toastr.error('Something went wrong', 'Error!');
-          }
-        },
-        (error) => {
-          this.toastr.error('Something went wrong', 'Error!');
-        }
-      );
-    } else {
-      this.update();
-    }
+  addMedPolicy() {
+    let medPolicy = {
+      policy_no: '',
+      previous_policy_no: '',
+      persons_who_are_covered: '',
+      sum_insured: '',
+      renewal_date: '',
+    };
+    this.investmentsForm.med_policy.push(medPolicy);
+    console.log(this.investmentsForm);
   }
 
-  verifyOtp() {
-    if (
-      (this.hidden_otp_value_email != '' &&
-        this.hidden_otp_value_email == this.otp_value_email) ||
-      (this.hidden_otp_value_mobile != '' &&
-        this.hidden_otp_value_mobile == this.otp_value_mobile)
-    ) {
-      this.update();
-    } else {
-      this.toastr.error('invalid one time password', 'Error!');
-    }
+  gotToMedPolicy() {
+    this.currentDiv = 3;
+    console.log(this.investmentsForm);
   }
 
-  update() {
-    console.log(this.profileForm);
-    this.api.post('users/edit_profile', this.profileForm).subscribe(
-      (data: any) => {
-        if (data && data.status === 200) {
-          localStorage.setItem('user', JSON.stringify(data.data));
-          this.util.userInfo = JSON.parse(localStorage.getItem('user'));
-          this.toastr.success('Profile has been updated', 'Success');
-        } else if (data && data.status === 500) {
-          this.toastr.error(data.data.message, 'Error!');
-        } else {
-          this.toastr.error('Something went wrong', 'Error!');
-        }
-      },
-      (error) => {
-        this.toastr.error('Something went wrong', 'Error!');
-      }
-    );
+  gotToInsurancePolicy() {
+    console.log(this.investmentsForm);
   }
 
   openProfile() {
