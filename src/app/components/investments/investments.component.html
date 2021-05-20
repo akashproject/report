@@ -329,6 +329,14 @@
                   class="form-control"
                 />
               </div>
+              <div class="col-lg-3 class_col">
+                <button
+                    type="button"
+                    (click)="removeElement('med_policy',i)"
+                  >
+                    {{ util.getString("X") }}
+                  </button>
+              </div>
             </div>
             <div class="row">
               <div class="col-12">
@@ -430,12 +438,20 @@
                 <input
                   type="text"
                   placeholder="Maturity Date"
-                  [(ngModel)]="investmentsForm.company[i].maturity_date"
+                  [(ngModel)]="investmentsForm.insurance[i].maturity_date"
                   class="form-control"
                   ngbDatepicker
                   #datePicker="ngbDatepicker"
                   (click)="datepicker.toggle()"               
                 />
+              </div>
+              <div class="col-lg-3 class_col">
+                <button
+                    type="button"
+                    (click)="removeElement('insurance',i)"
+                  >
+                    {{ util.getString("X") }}
+                  </button>
               </div>
             </div>
             <div class="row">
