@@ -64,6 +64,9 @@ label {
 .user_div {
   padding-left: 25px;
   padding-right: 25px;
+  .required {
+    border: 1px solid red;
+  }
   /* enable absolute positioning */
   .inner-addon {
     position: relative;

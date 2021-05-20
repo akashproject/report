@@ -5,7 +5,7 @@ import { UtilService } from '../../services/util.service';
 import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'angular-bootstrap-md';
-import Swal from 'sweetalert2';
+import {NgbDateStruct, NgbCalendar,NgbDatepicker} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-investments',
@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 export class InvestmentsComponent implements OnInit {
   mobile: any = '';
   @ViewChild('contactModal') public contactModal: ModalDirective;
+  @ViewChild('datePicker') datePicker: NgbDatepicker;
   email: any = '';
   profileForm: any = {
     id: this.util.userInfo.id,
@@ -27,6 +28,7 @@ export class InvestmentsComponent implements OnInit {
   investmentsForm: any = {
     company: [],
     med_policy: [],
+    insurance: [],
   };
   isEmailVerified: any;
   currentDiv: any;
@@ -35,7 +37,8 @@ export class InvestmentsComponent implements OnInit {
     private router: Router,
     private api: ApiService,
     public util: UtilService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private calendar: NgbCalendar
   ) {
     this.currentDiv = 1;
   }
@@ -78,7 +81,7 @@ export class InvestmentsComponent implements OnInit {
   }
 
   gotToCompanyDetails() {
-    this.currentDiv = 2;
+    this.formValidation(2)
   }
 
   parsonalDetails() {
@@ -108,34 +111,63 @@ export class InvestmentsComponent implements OnInit {
       renewal_date: '',
     };
     this.investmentsForm.med_policy.push(medPolicy);
-    console.log(this.investmentsForm);
+  }
+
+  addInsurancePolicy() {
+    let insurancePolicy = {
+      policy_no: '',
+      policy_holder_ame: '',
+      nominee_name: '',
+      insurance_agent_name: '',
+      insurance_agent_contact_no: '',
+      maturity_date: '',
+    };
+    this.investmentsForm.insurance.push(insurancePolicy);
   }
 
   gotToMedPolicy() {
-    this.currentDiv = 3;
-    console.log(this.investmentsForm);
+    this.formValidation(3)
   }
 
   gotToInsurancePolicy() {
-    console.log(this.investmentsForm);
+    this.formValidation(4)
+  }
+
+  gotToVehicleInsurancePolicy() {
+    this.formValidation(5)
   }
 
   openProfile() {
     this.router.navigate(['/account']);
   }
 
-  formValidation() {
-    console.log(this.profileForm);
+  removeElement(params, item) {
+    this.investmentsForm[params].splice(item, 1);
+  }
 
-    if (
-      this.profileForm.full_name != this.util.userInfo.full_name ||
-      this.profileForm.email != this.util.userInfo.email ||
-      this.profileForm.mobile != this.util.userInfo.mobile ||
-      this.profileForm.address != this.util.userInfo.address
-    ) {
-      this.form_validate = true;
-    } else {
-      this.form_validate = false;
+  formValidation(currentDiv) {
+    let requiredElements = document.getElementById("required_check").querySelectorAll("[required]");
+    console.log(requiredElements);
+    for (var i = 0; i < requiredElements.length; i++) {
+      var e = requiredElements[i];
+      console.log(requiredElements[i]);
+      console.log("here");
+      if(!e.getAttribute("ng-reflect-model")){
+        e.setAttribute("class", "form-control required");
+        console.log("here");     
+      } else {
+        e.setAttribute("class", "form-control");
+      }
     }
+
+         
+    let requiredClass = document.getElementById("required_check").querySelectorAll(".required");
+    console.log(requiredClass);
+    if(requiredClass.length <= 0){
+      this.currentDiv = currentDiv;
+    } else {
+      return false;
+    }
+
   }
 }

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container ">
   <div class="row" *ngIf="isEmailVerified != 'true'">
     <div class="col-md-12 text-center">
       <h3 class="alert alert-primary">
@@ -61,9 +61,22 @@
           </label>
         </div>
       </div>
+
+      <div class="my_col" (click)="gotToInsurancePolicy()">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Insurance Policy") }}
+          </label>
+        </div>
+      </div>
+
     </div>
 
-    <div class="col-lg-9 col-md-12">
+    <div class="col-lg-9 col-md-12 " id="required_check">
       <!-- User Informations -->
       <div class="row user_div" *ngIf="currentDiv === 1">
         <div class="head_title col-12">
@@ -82,13 +95,21 @@
               />
             </div>
             <div class="col-lg-6 class_col inner-addon left-addon">
+              <textarea
+                disabled="disabled"
+                placeholder="Address"
+                [(ngModel)]="profileForm.address"
+                class="form-control"
+              ></textarea>
+            </div>
+            <div class="col-lg-6 class_col inner-addon left-addon">
               <mdb-icon fas icon="user-circle"></mdb-icon>
               <input
                 type="text"
+                required
                 placeholder="Pan card"
                 [(ngModel)]="profileForm.pan_no"
                 class="form-control"
-                (ngModelChange)="formValidation()"
               />
             </div>
             <div class="col-lg-6 class_col inner-addon left-addon">
@@ -98,18 +119,9 @@
                 placeholder="Adhaar card"
                 [(ngModel)]="profileForm.adhaar_no"
                 class="form-control"
-                (ngModelChange)="formValidation()"
               />
             </div>
-            <div class="col-lg-6 class_col inner-addon left-addon">
-              <textarea
-                disabled="disabled"
-                placeholder="Address"
-                [(ngModel)]="profileForm.address"
-                class="form-control"
-                (ngModelChange)="formValidation()"
-              ></textarea>
-            </div>
+            
           </div>
         </div>
         <div class="head_title col-12">
@@ -164,6 +176,7 @@
                 <input
                   type="text"
                   placeholder="Supervisor Name"
+                  required
                   [(ngModel)]="investmentsForm.company[i].supervisor_name"
                   class="form-control"
                 />
@@ -171,10 +184,10 @@
               <div class="col-lg-3 class_col">
                 <input
                   type="number"
+                  required
                   placeholder="Supervisor Contact no"
                   [(ngModel)]="investmentsForm.company[i].supervisor_contact_no"
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
               </div>
               <div class="col-lg-3 class_col">
@@ -183,7 +196,6 @@
                   placeholder="Office friend's Name"
                   [(ngModel)]="investmentsForm.company[i].office_friend_name"
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
               </div>
               <div class="col-lg-3 class_col">
@@ -194,7 +206,6 @@
                     investmentsForm.company[i].office_friend_contact_no
                   "
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
               </div>
               <div class="col-lg-3 class_col">
@@ -203,7 +214,6 @@
                   placeholder="HR Name"
                   [(ngModel)]="investmentsForm.company[i].hr_name"
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
               </div>
               <div class="col-lg-3 class_col">
@@ -212,8 +222,15 @@
                   placeholder="HR Contact No."
                   [(ngModel)]="investmentsForm.company[i].hr_contact_no"
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
+              </div>
+              <div class="col-lg-3 class_col">
+                <button
+                    type="button"
+                    (click)="removeElement('company',i)"
+                  >
+                    {{ util.getString("X") }}
+                  </button>
               </div>
             </div>
             <div class="row">
@@ -271,6 +288,7 @@
               <div class="col-lg-3 class_col">
                 <input
                   type="number"
+                  required
                   placeholder="Policy No"
                   [(ngModel)]="investmentsForm.med_policy[i].policy_no"
                   class="form-control"
@@ -282,36 +300,33 @@
                   placeholder="Previous Policy No"
                   [(ngModel)]="investmentsForm.med_policy[i].previous_policy_no"
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
               </div>
               <div class="col-lg-3 class_col">
                 <input
                   type="text"
+                  required
                   placeholder="Name of all persons who are covered"
                   [(ngModel)]="
-                    investmentsForm.company[i].persons_who_are_covered
+                    investmentsForm.med_policy[i].persons_who_are_covered
                   "
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
               </div>
               <div class="col-lg-3 class_col">
                 <input
                   type="number"
                   placeholder="Sum Insured"
-                  [(ngModel)]="investmentsForm.company[i].sum_insured"
+                  [(ngModel)]="investmentsForm.med_policy[i].sum_insured"
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
               </div>
               <div class="col-lg-3 class_col">
                 <input
                   type="text"
                   placeholder="Renewal Date"
-                  [(ngModel)]="investmentsForm.company[i].renewal_date"
+                  [(ngModel)]="investmentsForm.med_policy[i].renewal_date"
                   class="form-control"
-                  (ngModelChange)="formValidation()"
                 />
               </div>
             </div>
@@ -324,6 +339,114 @@
                     mdbBtn
                     class="btn"
                     (click)="gotToInsurancePolicy()"
+                  >
+                    {{ util.getString("Next") }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Insurance Informations -->
+      <div class="row user_div" *ngIf="currentDiv === 4">
+        <div
+          class="head_title"
+          style="display: block; width: 100%; padding: 10px 0"
+        >
+          <label> Investment Details </label>
+        </div>
+
+        <div class="row form_div">
+          <div class="addNewBtn col-lg-6">
+            <div style="display: block; width: 100%; padding: 10px 0">
+              Insurance - LIC Policy Details
+            </div>
+          </div>
+          <div class="addNewBtn col-lg-6">
+            <button
+              type="button"
+              (click)="addInsurancePolicy()"
+              mdbWavesEffect
+              mdbBtn
+              class="btn"
+            >
+              {{ util.getString("Add New Record") }}
+            </button>
+          </div>
+
+          <div class="col-12">
+            <div
+              class="row"
+              *ngFor="let item of investmentsForm.insurance; let i = index"
+            >
+              <div class="col-lg-12 class_col">SL No #{{ i }}</div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Policy Holder Name"
+                  [(ngModel)]="investmentsForm.insurance[i].policy_no"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="number"
+                  required
+                  placeholder="Policy No"
+                  [(ngModel)]="investmentsForm.insurance[i].policy_no"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Nominee Name"
+                  [(ngModel)]="investmentsForm.insurance[i].nominee_name"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Insurance agent Name"
+                  [(ngModel)]="
+                    investmentsForm.insurance[i].insurance_agent_name
+                  "
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="number"
+                  placeholder="Insurance Agent contact No"
+                  [(ngModel)]="investmentsForm.insurance[i].insurance_agent_contact_no"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Maturity Date"
+                  [(ngModel)]="investmentsForm.company[i].maturity_date"
+                  class="form-control"
+                  ngbDatepicker
+                  #datePicker="ngbDatepicker"
+                  (click)="datepicker.toggle()"               
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="submitBtn">
+                  <button
+                    type="button"
+                    mdbWavesEffect
+                    mdbBtn
+                    class="btn"
+                    (click)="gotToVehicleInsurancePolicy()"
                   >
                     {{ util.getString("Next") }}
                   </button>
