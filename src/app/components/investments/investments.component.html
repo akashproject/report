@@ -27,8 +27,7 @@
           </label>
         </div>
       </div>
-
-      <div class="my_col" (click)="parsonalDetails()">
+      <div class="my_col" (click)="formValidation(1)" [ngClass]="{'active_menu': currentDiv === 1}">
         <div class="icn_div">
           <mdb-icon fas icon="phone"></mdb-icon>
         </div>
@@ -38,8 +37,7 @@
           </label>
         </div>
       </div>
-
-      <div class="my_col" (click)="gotToCompanyDetails()">
+      <div class="my_col" (click)="formValidation(2)" [ngClass]="{'active_menu': currentDiv === 2}" >
         <div class="icn_div">
           <mdb-icon fas icon="fa-briefcase"></mdb-icon>
         </div>
@@ -50,7 +48,7 @@
           </label>
         </div>
       </div>
-      <div class="my_col" (click)="gotToMedPolicy()">
+      <div class="my_col" (click)="formValidation(3)" [ngClass]="{'active_menu': currentDiv === 3}">
         <div class="icn_div">
           <mdb-icon fas icon="fa-briefcase"></mdb-icon>
         </div>
@@ -61,8 +59,7 @@
           </label>
         </div>
       </div>
-
-      <div class="my_col" (click)="gotToInsurancePolicy()">
+      <div class="my_col" (click)="formValidation(4)" [ngClass]="{'active_menu': currentDiv === 4}">
         <div class="icn_div">
           <mdb-icon fas icon="fa-briefcase"></mdb-icon>
         </div>
@@ -73,7 +70,127 @@
           </label>
         </div>
       </div>
+      <div class="my_col" (click)="formValidation(5)" [ngClass]="{'active_menu': currentDiv === 5}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
 
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Vehicle Insurance Policy") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(6)" [ngClass]="{'active_menu': currentDiv === 6}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Fire/Burglary Insurance Policy") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(7)" [ngClass]="{'active_menu': currentDiv === 7}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Bank Accounts") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(8)" [ngClass]="{'active_menu': currentDiv === 8}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Fixed/Recurring/Company Deposit") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(9)" [ngClass]="{'active_menu': currentDiv === 9}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Shares/Debentures/Bonds") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(10)" [ngClass]="{'active_menu': currentDiv === 10}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Locker Details") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(11)" [ngClass]="{'active_menu': currentDiv === 11}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Public Provident Fund (PPF)") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(12)" [ngClass]="{'active_menu': currentDiv === 12}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("UAN Details") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(13)" [ngClass]="{'active_menu': currentDiv === 13}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("NPS account") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(14)" [ngClass]="{'active_menu': currentDiv === 14}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Other Investments") }}
+          </label>
+        </div>
+      </div>
+      <div class="my_col" (click)="formValidation(15)" [ngClass]="{'active_menu': currentDiv === 15}">
+        <div class="icn_div">
+          <mdb-icon fas icon="fa-briefcase"></mdb-icon>
+        </div>
+
+        <div class="right_div">
+          <label class="title_lbl">
+            {{ util.getString("Loans") }}
+          </label>
+        </div>
+      </div>
     </div>
 
     <div class="col-lg-9 col-md-12 " id="required_check">
@@ -241,7 +358,7 @@
                     mdbWavesEffect
                     mdbBtn
                     class="btn"
-                    (click)="gotToMedPolicy()"
+                    (click)="formValidation(3)"
                   >
                     {{ util.getString("Next") }}
                   </button>
@@ -346,7 +463,7 @@
                     mdbWavesEffect
                     mdbBtn
                     class="btn"
-                    (click)="gotToInsurancePolicy()"
+                    (click)="formValidation(4)"
                   >
                     {{ util.getString("Next") }}
                   </button>
@@ -404,7 +521,7 @@
                   type="number"
                   required
                   placeholder="Policy No"
-                  [(ngModel)]="investmentsForm.insurance[i].policy_no"
+                  [(ngModel)]="investmentsForm.insurance[i].policy_holder_ame"
                   class="form-control"
                 />
               </div>
@@ -462,7 +579,567 @@
                     mdbWavesEffect
                     mdbBtn
                     class="btn"
-                    (click)="gotToVehicleInsurancePolicy()"
+                    (click)="formValidation(5)"
+                  >
+                    {{ util.getString("Next") }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Vehicle Insurance Informations -->
+      <div class="row user_div" *ngIf="currentDiv === 5">
+        <div
+          class="head_title"
+          style="display: block; width: 100%; padding: 10px 0"
+        >
+          <label> Investment Details </label>
+        </div>
+
+        <div class="row form_div">
+          <div class="addNewBtn col-lg-6">
+            <div style="display: block; width: 100%; padding: 10px 0">
+              Vehicle Insurance Policy Details
+            </div>
+          </div>
+          <div class="addNewBtn col-lg-6">
+            <button
+              type="button"
+              (click)="addVehicleInsurancePolicy()"
+              mdbWavesEffect
+              mdbBtn
+              class="btn"
+            >
+              {{ util.getString("Add New Record") }}
+            </button>
+          </div>
+
+          <div class="col-12">
+            <div
+              class="row"
+              *ngFor="let item of investmentsForm.vehicle_insurance; let i = index"
+            >
+              <div class="col-lg-12 class_col">SL No #{{ i }}</div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="number"
+                  required
+                  placeholder="Policy No"
+                  [(ngModel)]="investmentsForm.vehicle_insurance[i].policy_no"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="number"
+                  placeholder="Sum Insured"
+                  [(ngModel)]="investmentsForm.vehicle_insurance[i].sum_insured"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Nominee Name"
+                  [(ngModel)]="investmentsForm.vehicle_insurance[i].nominee_name"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Maturity Date"
+                  [(ngModel)]="investmentsForm.vehicle_insurance[i].maturity_date"
+                  class="form-control"
+                  ngbDatepicker
+                  #datePicker="ngbDatepicker"
+                  (click)="datepicker.toggle()"               
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                  <button
+                    type="button"
+                    (click)="removeElement('vehicle_insurance',i)"
+                  >
+                    {{ util.getString("X") }}
+                  </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="submitBtn">
+                  <button
+                    type="button"
+                    mdbWavesEffect
+                    mdbBtn
+                    class="btn"
+                    (click)="formValidation(6)"
+                  >
+                    {{ util.getString("Next") }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FIRE / BURGLARY INSURANCE Informations -->
+      <div class="row user_div" *ngIf="currentDiv === 6">
+        <div
+          class="head_title"
+          style="display: block; width: 100%; padding: 10px 0"
+        >
+          <label> Investment Details </label>
+        </div>
+
+        <div class="row form_div">
+          <div class="addNewBtn col-lg-6">
+            <div style="display: block; width: 100%; padding: 10px 0">
+              FIRE / BURGLARY INSURANCE DETAIL
+            </div>
+          </div>
+          <div class="addNewBtn col-lg-6">
+            <button
+              type="button"
+              (click)="addFireInsurancePolicy()"
+              mdbWavesEffect
+              mdbBtn
+              class="btn"
+            >
+              {{ util.getString("Add New Record") }}
+            </button>
+          </div>
+
+          <div class="col-12">
+            <div
+              class="row"
+              *ngFor="let item of investmentsForm.fire_insurance; let i = index"
+            >
+              <div class="col-lg-12 class_col">SL No #{{ i }}</div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Details of the property which is insured"
+                  [(ngModel)]="investmentsForm.fire_insurance[i].property_insured"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="number"
+                  required
+                  placeholder="Policy No"
+                  [(ngModel)]="investmentsForm.fire_insurance[i].policy_no"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="number"
+                  placeholder="Sum Insured"
+                  [(ngModel)]="investmentsForm.fire_insurance[i].sum_insured"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Maturity Date"
+                  [(ngModel)]="investmentsForm.fire_insurance[i].maturity_date"
+                  class="form-control"
+                  ngbDatepicker
+                  #datePicker="ngbDatepicker"
+                  (click)="datepicker.toggle()"               
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Risks covered"
+                  [(ngModel)]="investmentsForm.fire_insurance[i].risks_covered"
+                  class="form-control"
+                  ngbDatepicker
+                  #datePicker="ngbDatepicker"
+                  (click)="datepicker.toggle()"               
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                  <button
+                    type="button"
+                    (click)="removeElement('fire_insurance',i)"
+                  >
+                    {{ util.getString("X") }}
+                  </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="submitBtn">
+                  <button
+                    type="button"
+                    mdbWavesEffect
+                    mdbBtn
+                    class="btn"
+                    (click)="formValidation(7)"
+                  >
+                    {{ util.getString("Next") }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BANK ACCOUNTS -->
+      <div class="row user_div" *ngIf="currentDiv === 7">
+        <div
+          class="head_title"
+          style="display: block; width: 100%; padding: 10px 0"
+        >
+          <label> Investment Details </label>
+        </div>
+
+        <div class="row form_div">
+          <div class="addNewBtn col-lg-6">
+            <div style="display: block; width: 100%; padding: 10px 0">
+              BANK ACCOUNTS
+            </div>
+          </div>
+          <div class="addNewBtn col-lg-6">
+            <button
+              type="button"
+              (click)="addBankAccount()"
+              mdbWavesEffect
+              mdbBtn
+              class="btn"
+            >
+              {{ util.getString("Add New Record") }}
+            </button>
+          </div>
+
+          <div class="col-12">
+            <div
+              class="row"
+              *ngFor="let item of investmentsForm.bank_account; let i = index"
+            >
+              <div class="col-lg-12 class_col">SL No #{{ i }}</div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Bank Name"
+                  [(ngModel)]="investmentsForm.bank_account[i].bank_name"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Full branch address"
+                  [(ngModel)]="investmentsForm.bank_account[i].full_branch_address"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  required
+                  type="text"
+                  placeholder="Nominee"
+                  [(ngModel)]="investmentsForm.bank_account[i].nominee_name"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Type of account"
+                  [(ngModel)]="investmentsForm.bank_account[i].account_type"
+                  class="form-control"             
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Last 4 digt of A/C number"
+                  [(ngModel)]="investmentsForm.bank_account[i].last_four_digt"
+                  class="form-control"         
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Full A/C number"
+                  [(ngModel)]="investmentsForm.bank_account[i].account_number"
+                  class="form-control"              
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Personal Banker Name"
+                  [(ngModel)]="investmentsForm.bank_account[i].banker_name"
+                  class="form-control"              
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Personal Banker Contact"
+                  [(ngModel)]="investmentsForm.bank_account[i].banker_contact"
+                  class="form-control"              
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                  <button
+                    type="button"
+                    (click)="removeElement('bank_account',i)"
+                  >
+                    {{ util.getString("X") }}
+                  </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="submitBtn">
+                  <button
+                    type="button"
+                    mdbWavesEffect
+                    mdbBtn
+                    class="btn"
+                    (click)="formValidation(8)"
+                  >
+                    {{ util.getString("Next") }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Fixed/Recurring/Company Deposit -->
+      <div class="row user_div" *ngIf="currentDiv === 8">
+        <div
+          class="head_title"
+          style="display: block; width: 100%; padding: 10px 0"
+        >
+          <label> Investment Details </label>
+        </div>
+
+        <div class="row form_div">
+          <div class="addNewBtn col-lg-6">
+            <div style="display: block; width: 100%; padding: 10px 0">
+              Fixed/Recurring/Company Deposit
+            </div>
+          </div>
+          <div class="addNewBtn col-lg-6">
+            <button
+              type="button"
+              (click)="addFixedDeposit()"
+              mdbWavesEffect
+              mdbBtn
+              class="btn"
+            >
+              {{ util.getString("Add New Record") }}
+            </button>
+          </div>
+
+          <div class="col-12">
+            <div
+              class="row"
+              *ngFor="let item of investmentsForm.fixed_deposit; let i = index"
+            >
+              <div class="col-lg-12 class_col">SL No #{{ i }}</div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Bank Name"
+                  [(ngModel)]="investmentsForm.fixed_deposit[i].bank_name"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Full branch address"
+                  [(ngModel)]="investmentsForm.fixed_deposit[i].full_branch_address"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  required
+                  type="text"
+                  placeholder="Nominee"
+                  [(ngModel)]="investmentsForm.fixed_deposit[i].nominee_name"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Type of account"
+                  [(ngModel)]="investmentsForm.fixed_deposit[i].account_type"
+                  class="form-control"             
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Last 4 digt of A/C number"
+                  [(ngModel)]="investmentsForm.fixed_deposit[i].last_four_digt"
+                  class="form-control"         
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Full A/C number"
+                  [(ngModel)]="investmentsForm.fixed_deposit[i].account_number"
+                  class="form-control"              
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                  <button
+                    type="button"
+                    (click)="removeElement('fixed_deposit',i)"
+                  >
+                    {{ util.getString("X") }}
+                  </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="submitBtn">
+                  <button
+                    type="button"
+                    mdbWavesEffect
+                    mdbBtn
+                    class="btn"
+                    (click)="formValidation(9)"
+                  >
+                    {{ util.getString("Next") }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fixed/Recurring/Company Deposit -->
+      <div class="row user_div" *ngIf="currentDiv === 9">
+        <div
+          class="head_title"
+          style="display: block; width: 100%; padding: 10px 0"
+        >
+          <label> Investment Details </label>
+        </div>
+
+        <div class="row form_div">
+          <div class="addNewBtn col-lg-6">
+            <div style="display: block; width: 100%; padding: 10px 0">
+              SHARES/DEBENTURES/BONDS
+            </div>
+          </div>
+          <div class="addNewBtn col-lg-6">
+            <button
+              type="button"
+              (click)="addSharedBonds()"
+              mdbWavesEffect
+              mdbBtn
+              class="btn"
+            >
+              {{ util.getString("Add New Record") }}
+            </button>
+          </div>
+
+          <div class="col-12">
+            <div
+              class="row"
+              *ngFor="let item of investmentsForm.shared_bonds; let i = index"
+            >
+              <div class="col-lg-12 class_col">SL No #{{ i }}</div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="company_name"
+                  [(ngModel)]="investmentsForm.shared_bonds[i].company_name"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Type"
+                  [(ngModel)]="investmentsForm.shared_bonds[i].type"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Units hold"
+                  [(ngModel)]="investmentsForm.shared_bonds[i].units_hold"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  required
+                  type="text"
+                  placeholder="Demat A/C Number"
+                  [(ngModel)]="investmentsForm.shared_bonds[i].demat_number"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  required
+                  placeholder="Demat A/C provider name"
+                  [(ngModel)]="investmentsForm.shared_bonds[i].demat_provider_name"
+                  class="form-control"             
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                <input
+                  type="text"
+                  placeholder="Demat A/C provider contact no."
+                  [(ngModel)]="investmentsForm.shared_bonds[i].demat_provider_contact_no"
+                  class="form-control"         
+                />
+              </div>
+              <div class="col-lg-3 class_col">
+                  <button
+                    type="button"
+                    (click)="removeElement('shared_bonds',i)"
+                  >
+                    {{ util.getString("X") }}
+                  </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="submitBtn">
+                  <button
+                    type="button"
+                    mdbWavesEffect
+                    mdbBtn
+                    class="btn"
+                    (click)="formValidation(10)"
                   >
                     {{ util.getString("Next") }}
                   </button>

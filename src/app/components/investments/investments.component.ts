@@ -29,6 +29,17 @@ export class InvestmentsComponent implements OnInit {
     company: [],
     med_policy: [],
     insurance: [],
+    vehicle_insurance: [],
+    fire_insurance: [],
+    bank_account: [],
+    fixed_deposit: [],
+    shared_bonds: [],
+    locker_details: [],
+    public_provident_fund: [],
+    uan_details:[],
+    nps_account:[],
+    other_investments:[],
+    loans:[],
   };
   isEmailVerified: any;
   currentDiv: any;
@@ -80,15 +91,6 @@ export class InvestmentsComponent implements OnInit {
       );
   }
 
-  gotToCompanyDetails() {
-    this.formValidation(2)
-  }
-
-  parsonalDetails() {
-    this.currentDiv = 1;
-    console.log(this.emContacts);
-  }
-
   addNewCompany() {
     let company = {
       supervisor_name: '',
@@ -125,16 +127,63 @@ export class InvestmentsComponent implements OnInit {
     this.investmentsForm.insurance.push(insurancePolicy);
   }
 
-  gotToMedPolicy() {
-    this.formValidation(3)
+  addVehicleInsurancePolicy() {
+    let vehicleInsurancePolicy = {
+      policy_no: '',
+      sum_insured: '',
+      nominee_name: '',
+      maturity_date: '',
+    };
+    this.investmentsForm.vehicle_insurance.push(vehicleInsurancePolicy);
   }
 
-  gotToInsurancePolicy() {
-    this.formValidation(4)
+  addFireInsurancePolicy() {
+    let fireInsurancePolicy = {
+      property_insured: '',
+      policy_no: '',
+      sum_insured: '',
+      maturity_date: '',
+      risks_covered: '',
+    };
+    this.investmentsForm.fire_insurance.push(fireInsurancePolicy);
   }
 
-  gotToVehicleInsurancePolicy() {
-    this.formValidation(5)
+  addBankAccount() {
+    let bankAccount = {
+      bank_name: '',
+      full_branch_address: '',
+      nominee_name:'',
+      account_type: '',
+      last_four_digt: '',
+      account_number: '',
+      banker_name: '',
+      banker_contact: '',
+    };
+    this.investmentsForm.bank_account.push(bankAccount);
+  }
+
+  addFixedDeposit() {
+    let fixedDeposit = {
+      bank_name: '',
+      full_branch_address: '',
+      nominee_name:'',
+      account_type: '',
+      last_four_digt: '',
+      account_number: '',
+    };
+    this.investmentsForm.fixed_deposit.push(fixedDeposit);
+  }
+
+  addSharedBonds() {
+    let sharedBonds = {
+      company_name: '',
+      type: '',
+      units_hold:'',
+      demat_number: '',
+      demat_provider_name: '',
+      demat_provider_contact_no: '',
+    };
+    this.investmentsForm.shared_bonds.push(sharedBonds);
   }
 
   openProfile() {
