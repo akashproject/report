@@ -186,6 +186,67 @@ export class InvestmentsComponent implements OnInit {
     this.investmentsForm.shared_bonds.push(sharedBonds);
   }
 
+  addlockerDetails() {
+    let lockerDetails = {
+      bank_name: '',
+      full_branch_address: '',
+      nominee_name:'',
+      locker_name: '',
+      locker_number: '',
+    };
+    this.investmentsForm.locker_details.push(lockerDetails);
+  }
+
+  addPpfDetails() {
+    let publicProvidentFund = {
+      bank_name: '',
+      full_branch_address: '',
+      nominee_name:'',
+      account_number: '',
+    };
+    this.investmentsForm.public_provident_fund.push(publicProvidentFund);
+  }
+
+  addUan() {
+    let uan = {
+      uan_number: '',
+      nominee_name:'',
+    };
+    this.investmentsForm.uan_details.push(uan);
+  }
+
+  addNpsAccount() {
+    let nps = {
+      nps_account_number: '',
+      nominee_name:'',
+    };
+    this.investmentsForm.nps_account.push(nps);
+  }
+
+  addOtherInvestments() {
+    let otherInvestments = {
+      description: '',
+      account_number: '',
+      bank_name: '',
+      full_branch_address: '',
+      nominee_name:'',
+    };
+    this.investmentsForm.other_investments.push(otherInvestments);
+  }
+
+  addLoans() {
+    let loans = {
+      loan_type: '',
+      bank_name: '',
+      account_number: '',   
+      full_branch_address: '',
+      amount:'',
+      loaninsured:'',
+      insurance_no:''
+    };
+    this.investmentsForm.loans.push(loans);
+  }
+
   openProfile() {
     this.router.navigate(['/account']);
   }
@@ -195,6 +256,8 @@ export class InvestmentsComponent implements OnInit {
   }
 
   formValidation(currentDiv) {
+    console.log(this.investmentsForm);
+    
     let requiredElements = document.getElementById("required_check").querySelectorAll("[required]");
     console.log(requiredElements);
     for (var i = 0; i < requiredElements.length; i++) {
@@ -218,5 +281,6 @@ export class InvestmentsComponent implements OnInit {
       return false;
     }
 
+ 
   }
 }
