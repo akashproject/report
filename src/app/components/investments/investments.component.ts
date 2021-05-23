@@ -74,11 +74,38 @@ export class InvestmentsComponent implements OnInit {
     console.log(this.util.userInfo);
 
     this.getUserRecords();
+    this.getInvestmentsRecords();
   }
 
   getUserRecords() {
     this.api
       .get('investments/get-user-records/' + this.util.userInfo.id)
+      .subscribe(
+        (data: any) => {
+          if (data && data.status === 200) {
+            this.emContacts = [];
+            for (let i = 0; i < Object.keys(data.data).length; i++) {
+              this.emContacts.push(data.data[i]);
+              // for (const key in data.data[i]) {
+              //   this.myContacts[i][key] = data.data[i][key];
+              // }
+            }
+            console.log(this.emContacts);
+          } else if (data && data.status === 500) {
+            this.toastr.error(data.data.message, 'Error!');
+          } else {
+            this.toastr.error('Something went wrong', 'Error!');
+          }
+        },
+        (error) => {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      );
+  }
+
+  getInvestmentsRecords() {
+    this.api
+      .get('investments/get-investment-records/' + this.util.userInfo.id)
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
@@ -269,7 +296,7 @@ export class InvestmentsComponent implements OnInit {
       (data: any) => {
         if (data && data.status === 200) {
           console.log(data);
-          
+          this.toastr.success('Information has been updated', 'Success');
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.message, 'Error!');
         } else {
