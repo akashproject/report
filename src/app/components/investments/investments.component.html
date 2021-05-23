@@ -15,7 +15,7 @@
     <label> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
   </div>
 
-  <div class="row">
+  <div class="row page_content_wraper">
     <div class="col-lg-3 col-md-12 sidemenu">
       <div class="my_col" (click)="openProfile()">
         <div class="icn_div">
@@ -194,6 +194,7 @@
     </div>
 
     <div class="col-lg-9 col-md-12 " id="required_check">
+
       <!-- User Informations -->
       <div class="row user_div" *ngIf="currentDiv === 1">
         <div class="head_title col-12">
@@ -256,7 +257,7 @@
           </div>
         </div>
       </div>
-      <!-- User Informations -->
+      <!-- Company details -->
       <div class="row user_div" *ngIf="currentDiv === 2">
         <div
           class="head_title"
@@ -266,12 +267,12 @@
         </div>
 
         <div class="row form_div">
-          <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+          <div class="addNewBtn col-lg-8">
+            <div class="inner_header">
               Company contact details in Emergency
             </div>
           </div>
-          <div class="addNewBtn col-lg-6">
+          <div class="addNewBtn col-lg-4">
             <button
               type="button"
               (click)="addNewCompany()"
@@ -360,7 +361,7 @@
                     class="btn"
                     (click)="formValidation(3)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -380,7 +381,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               Medi Claim Policy Details
             </div>
           </div>
@@ -465,7 +466,7 @@
                     class="btn"
                     (click)="formValidation(4)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -485,7 +486,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               Insurance - LIC Policy Details
             </div>
           </div>
@@ -581,7 +582,7 @@
                     class="btn"
                     (click)="formValidation(5)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -601,7 +602,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               Vehicle Insurance Policy Details
             </div>
           </div>
@@ -678,7 +679,7 @@
                     class="btn"
                     (click)="formValidation(6)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -698,7 +699,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               FIRE / BURGLARY INSURANCE DETAIL
             </div>
           </div>
@@ -787,7 +788,7 @@
                     class="btn"
                     (click)="formValidation(7)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -807,7 +808,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               BANK ACCOUNTS
             </div>
           </div>
@@ -916,7 +917,7 @@
                     class="btn"
                     (click)="formValidation(8)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -936,7 +937,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               Fixed/Recurring/Company Deposit
             </div>
           </div>
@@ -986,13 +987,11 @@
                 />
               </div>
               <div class="col-lg-3 class_col">
-                <input
-                  type="text"
-                  required
-                  placeholder="Type of account"
-                  [(ngModel)]="investmentsForm.fixed_deposit[i].account_type"
-                  class="form-control"             
-                />
+                <select required [(ngModel)]="investmentsForm.fixed_deposit[i].account_type" class="form-control" aria-label="Is the loaninsured ">
+                  <option value="" selected>Type of account</option>
+                  <option value="FD">FD</option>
+                  <option value="RD">RD</option>
+                </select>
               </div>
               <div class="col-lg-3 class_col">
                 <input
@@ -1029,7 +1028,7 @@
                     class="btn"
                     (click)="formValidation(9)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -1038,7 +1037,7 @@
         </div>
       </div>
 
-      <!-- Fixed/Recurring/Company Deposit -->
+      <!-- SHARES/DEBENTURES/BONDS -->
       <div class="row user_div" *ngIf="currentDiv === 9">
         <div
           class="head_title"
@@ -1049,7 +1048,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               SHARES/DEBENTURES/BONDS
             </div>
           </div>
@@ -1075,18 +1074,17 @@
                 <input
                   type="text"
                   required
-                  placeholder="company_name"
+                  placeholder="Company name"
                   [(ngModel)]="investmentsForm.shared_bonds[i].company_name"
                   class="form-control"
                 />
               </div>
               <div class="col-lg-3 class_col">
-                <input
-                  type="text"
-                  placeholder="Type"
-                  [(ngModel)]="investmentsForm.shared_bonds[i].type"
-                  class="form-control"
-                />
+                <select [(ngModel)]="investmentsForm.shared_bonds[i].type" class="form-control" aria-label="Type">
+                  <option value="" selected>Type</option>
+                  <option value="Share or Debenture">Share or Debenture</option>
+                  <option value="Bond or Others">Bond or Others</option>
+                </select>
               </div>
               <div class="col-lg-3 class_col">
                 <input
@@ -1099,7 +1097,7 @@
               <div class="col-lg-3 class_col">
                 <input
                   required
-                  type="text"
+                  type="number"
                   placeholder="Demat A/C Number"
                   [(ngModel)]="investmentsForm.shared_bonds[i].demat_number"
                   class="form-control"
@@ -1141,7 +1139,7 @@
                     class="btn"
                     (click)="formValidation(10)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -1150,7 +1148,7 @@
         </div>
       </div>
 
-      <!-- Fixed/Recurring/Company Deposit -->
+      <!-- Locker Details -->
       <div class="row user_div" *ngIf="currentDiv === 10">
         <div
           class="head_title"
@@ -1161,7 +1159,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               Locker Details
             </div>
           </div>
@@ -1245,7 +1243,7 @@
                     class="btn"
                     (click)="formValidation(11)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -1265,7 +1263,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               PUBLIC PROVIDENT FUND (PPF)
             </div>
           </div>
@@ -1341,7 +1339,7 @@
                     class="btn"
                     (click)="formValidation(12)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -1361,7 +1359,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               UAN Details
             </div>
           </div>
@@ -1418,7 +1416,7 @@
                     class="btn"
                     (click)="formValidation(13)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -1438,7 +1436,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               NPS account
             </div>
           </div>
@@ -1496,7 +1494,7 @@
                     class="btn"
                     (click)="formValidation(14)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -1516,7 +1514,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               Other Investments
             </div>
           </div>
@@ -1602,7 +1600,7 @@
                     class="btn"
                     (click)="formValidation(15)"
                   >
-                    {{ util.getString("Next") }}
+                    {{ util.getString("Save and continue") }}
                   </button>
                 </div>
               </div>
@@ -1622,7 +1620,7 @@
 
         <div class="row form_div">
           <div class="addNewBtn col-lg-6">
-            <div style="display: block; width: 100%; padding: 10px 0">
+            <div class="inner_header">
               Loans
             </div>
           </div>
@@ -1728,6 +1726,45 @@
                   </button>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Informations -->
+      <div class="row user_div" *ngIf="currentDiv === 16">
+        <div class="head_title">
+          <label> Verify Your Password </label>
+        </div>
+        <div class="row form_div" style="width: 100%;">
+          <div class="col-lg-12 class_col inner-addon left-addon">
+            <mdb-icon fas icon="user-circle"></mdb-icon>
+            <input
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="verifyPasswordForm.password"
+              class="form-control"
+              (ngModelChange)="passwordFormValidation()"
+            />
+          </div>
+          <div class="col-12">
+            <div class="submitBtn">
+              <button
+                type="button"
+                (click)="verifyPassword()"
+                class="btn"
+                *ngIf="password_validate"
+              >
+                Verify Password
+              </button>
+              <button
+                type="button"
+                class="btn"
+                disabled="disabled"
+                *ngIf="!password_validate"
+              >
+               Verify Password
+              </button>
             </div>
           </div>
         </div>

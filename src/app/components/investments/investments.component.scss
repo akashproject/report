@@ -2,7 +2,9 @@ label {
   display: block;
   margin: 0;
 }
-
+.page_content_wraper{
+  margin-bottom: 50px;
+}
 .sidemenu {
   .my_col {
     padding: 0px 10px;
@@ -146,6 +148,14 @@ label {
   .form_div,
   .form_div_otp {
     /* enable absolute positioning */
+    .inner_header {
+      display: block;
+      width: 100%;
+      padding: 10px 5px;
+      font-size: 19px;
+      border-bottom: 1px solid #ccc;
+    }
+    
     .inner-addon {
       position: relative;
     }

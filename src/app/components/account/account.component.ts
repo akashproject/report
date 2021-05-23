@@ -213,7 +213,7 @@ export class AccountComponent implements OnInit {
   }
 
   updatePassword() {
-    console.log(this.changePasswordForm, this.c_password);
+    console.log(this.changePasswordForm, this.c_password)
     if (this.changePasswordForm.password != this.c_password) {
       this.toastr.error(
         "Password and Confirm password does'nt matched",

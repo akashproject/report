@@ -26,6 +26,10 @@ export class InvestmentsComponent implements OnInit {
   };
   emContacts: any = [];
   investmentsForm: any = {
+    user:{
+      pan: '',
+      adhaar: ''
+    },
     company: [],
     med_policy: [],
     insurance: [],
@@ -44,6 +48,13 @@ export class InvestmentsComponent implements OnInit {
   isEmailVerified: any;
   currentDiv: any;
   form_validate = false;
+  verify_assword : any = false;
+
+  verifyPasswordForm: any = {
+    id: this.util.userInfo.id,
+    password: '',
+  };
+  password_validate = false;
   constructor(
     private router: Router,
     private api: ApiService,
@@ -51,7 +62,7 @@ export class InvestmentsComponent implements OnInit {
     private toastr: ToastrService,
     private calendar: NgbCalendar
   ) {
-    this.currentDiv = 1;
+    this.currentDiv = 16;
   }
 
   ngOnInit(): void {
@@ -251,36 +262,87 @@ export class InvestmentsComponent implements OnInit {
     this.router.navigate(['/account']);
   }
 
+  publishInvestmentRecords(){
+    this.investmentsForm.user.pan = this.profileForm.pan_no;
+    this.investmentsForm.user.adhaar = this.profileForm.adhaar_no;
+    this.api.post('investments/publish-investment-records/' + this.util.userInfo.id, this.investmentsForm).subscribe(
+      (data: any) => {
+        if (data && data.status === 200) {
+          console.log(data);
+          
+        } else if (data && data.status === 500) {
+          this.toastr.error(data.data.message, 'Error!');
+        } else {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('Something went wrong', 'Error!');
+      }
+    );
+  }
+
+  verifyPassword(){
+    console.log(this.verifyPasswordForm.password);
+    this.api.post('users/verifyPassword', this.verifyPasswordForm).subscribe(
+      (data: any) => {
+        if (data && data.status == '200') {
+          this.verify_assword = true;
+          this.currentDiv = 1;
+        } else if (data && data.status == '500') {
+          this.toastr.error(data.data.message, 'Error!');
+        } else {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('Something went wrong', 'Error!');
+      }
+    );
+    
+  }
+
   removeElement(params, item) {
     this.investmentsForm[params].splice(item, 1);
   }
 
   formValidation(currentDiv) {
-    console.log(this.investmentsForm);
-    
-    let requiredElements = document.getElementById("required_check").querySelectorAll("[required]");
-    console.log(requiredElements);
-    for (var i = 0; i < requiredElements.length; i++) {
-      var e = requiredElements[i];
-      console.log(requiredElements[i]);
-      console.log("here");
-      if(!e.getAttribute("ng-reflect-model")){
-        e.setAttribute("class", "form-control required");
-        console.log("here");     
-      } else {
-        e.setAttribute("class", "form-control");
-      }
-    }
-
-         
-    let requiredClass = document.getElementById("required_check").querySelectorAll(".required");
-    console.log(requiredClass);
-    if(requiredClass.length <= 0){
-      this.currentDiv = currentDiv;
+    if(this.verify_assword != true) {
+      this.currentDiv = 16;
     } else {
-      return false;
-    }
+      let requiredElements = document.getElementById("required_check").querySelectorAll("[required]");
+      console.log(requiredElements);
+      for (var i = 0; i < requiredElements.length; i++) {
+        var e = requiredElements[i];
+        console.log(requiredElements[i]);
+        console.log("here");
+        if(!e.getAttribute("ng-reflect-model")){
+          e.setAttribute("class", "form-control required");
+          console.log("here");     
+        } else {
+          e.setAttribute("class", "form-control");
+        }
+      }
 
+          
+      let requiredClass = document.getElementById("required_check").querySelectorAll(".required");
+      if(requiredClass.length <= 0){
+        this.publishInvestmentRecords()
+        this.currentDiv = currentDiv;
+      } else {
+        return false;
+      }
+   }
  
+  }
+
+  passwordFormValidation(){
+    if (
+      this.verifyPasswordForm.password != '' 
+    ) {
+      this.password_validate = true;
+    } else {
+      this.password_validate = false;
+    }
   }
 }
