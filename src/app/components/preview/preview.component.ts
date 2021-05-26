@@ -59,7 +59,7 @@ export class PreviewComponent implements OnInit {
         (data: any) => {
           if (data && data.status === 200) {
             this.investmentsForm = data.data;
-            console.log(this.investmentsForm.user.pan);
+            console.log(this.investmentsForm);
             
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');

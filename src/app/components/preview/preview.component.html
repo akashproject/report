@@ -14,4 +14,17 @@
     <div class="head_title">
       <label> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
     </div>
+    <div class="row page_content_wraper">
+      <div class="col-lg-12 col-md-12">
+        <div class="row user_div" >
+          <div class="col-12">
+            <div  class="row" *ngFor="let items of investmentsForm.company; let i = index" >
+              <div class="col-lg-3 class_col" *ngFor="let item of items | keyvalue">
+                Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
