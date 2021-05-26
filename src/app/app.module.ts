@@ -22,7 +22,8 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
 import { EmargencyContactComponent } from './components/emargency-contact/emargency-contact.component';
 import { EmargencyListComponent } from './components/emargency-list/emargency-list.component';
 import { InvestmentsComponent } from './components/investments/investments.component';
-import { CreateInvestmentsComponent } from './components/create-investments/create-investments.component';
+import { DateformatPipe } from './pipes/dateformat.pipe';
+import { PreviewComponent } from './components/preview/preview.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,8 @@ import { CreateInvestmentsComponent } from './components/create-investments/crea
     EmargencyContactComponent,
     EmargencyListComponent,
     InvestmentsComponent,
-    CreateInvestmentsComponent,
+    DateformatPipe,
+    PreviewComponent,
   ],
   imports: [
     BrowserModule,

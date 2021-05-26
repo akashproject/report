@@ -21,8 +21,6 @@ export class InvestmentsComponent implements OnInit {
     id: this.util.userInfo.id,
     full_name: this.util.userInfo.full_name,
     address: this.util.userInfo.address,
-    pan_no: '',
-    adhaar_no: '',
   };
   emContacts: any = [];
   investmentsForm: any = {
@@ -49,7 +47,8 @@ export class InvestmentsComponent implements OnInit {
   currentDiv: any;
   form_validate = false;
   verify_assword : any = false;
-
+  model: NgbDateStruct;
+  date: { year: number, month: number };
   verifyPasswordForm: any = {
     id: this.util.userInfo.id,
     password: '',
@@ -65,13 +64,29 @@ export class InvestmentsComponent implements OnInit {
     this.currentDiv = 16;
   }
 
+  selectToday() {
+    this.model = this.calendar.getToday();
+  }
+
+  setCurrent() {
+    //Current Date
+    this.datePicker.navigateTo()
+  }
+  setDate() {
+    //Set specific date
+    this.datePicker.navigateTo({ year: 2013, month: 2 });
+  }
+
+  navigateEvent(event) {
+    this.date = event.next;
+  }
+
   ngOnInit(): void {
     if (this.util.userInfo == '') {
       this.router.navigate(['/']);
     }
 
     this.isEmailVerified = this.util.userInfo.email_verified;
-    console.log(this.util.userInfo);
 
     this.getUserRecords();
     this.getInvestmentsRecords();
@@ -90,7 +105,6 @@ export class InvestmentsComponent implements OnInit {
               //   this.myContacts[i][key] = data.data[i][key];
               // }
             }
-            console.log(this.emContacts);
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
           } else {
@@ -109,14 +123,9 @@ export class InvestmentsComponent implements OnInit {
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
-            this.emContacts = [];
-            for (let i = 0; i < Object.keys(data.data).length; i++) {
-              this.emContacts.push(data.data[i]);
-              // for (const key in data.data[i]) {
-              //   this.myContacts[i][key] = data.data[i][key];
-              // }
-            }
-            console.log(this.emContacts);
+            this.investmentsForm = data.data;
+            console.log(this.investmentsForm.user.pan);
+            
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
           } else {
@@ -139,7 +148,6 @@ export class InvestmentsComponent implements OnInit {
       hr_contact_no: '',
     };
     this.investmentsForm.company.push(company);
-    console.log(this.investmentsForm);
   }
 
   addMedPolicy() {
@@ -290,12 +298,10 @@ export class InvestmentsComponent implements OnInit {
   }
 
   publishInvestmentRecords(){
-    this.investmentsForm.user.pan = this.profileForm.pan_no;
-    this.investmentsForm.user.adhaar = this.profileForm.adhaar_no;
+    
     this.api.post('investments/publish-investment-records/' + this.util.userInfo.id, this.investmentsForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
-          console.log(data);
           this.toastr.success('Information has been updated', 'Success');
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.message, 'Error!');
@@ -310,7 +316,6 @@ export class InvestmentsComponent implements OnInit {
   }
 
   verifyPassword(){
-    console.log(this.verifyPasswordForm.password);
     this.api.post('users/verifyPassword', this.verifyPasswordForm).subscribe(
       (data: any) => {
         if (data && data.status == '200') {
@@ -329,23 +334,29 @@ export class InvestmentsComponent implements OnInit {
     
   }
 
+  exportRecords(){
+    this.router.navigate(['/preview']);
+  }
+
   removeElement(params, item) {
     this.investmentsForm[params].splice(item, 1);
   }
 
-  formValidation(currentDiv) {
+  formValidation(currentDiv,allowSave:any = true) {
+    console.log("start");
+    
     if(this.verify_assword != true) {
       this.currentDiv = 16;
+      console.log("if");
     } else {
       let requiredElements = document.getElementById("required_check").querySelectorAll("[required]");
-      console.log(requiredElements);
+      console.log("else",requiredElements);
       for (var i = 0; i < requiredElements.length; i++) {
         var e = requiredElements[i];
-        console.log(requiredElements[i]);
-        console.log("here");
-        if(!e.getAttribute("ng-reflect-model")){
+        console.log("value",(<HTMLInputElement>e).value);
+        
+        if(!(<HTMLInputElement>e).value){
           e.setAttribute("class", "form-control required");
-          console.log("here");     
         } else {
           e.setAttribute("class", "form-control");
         }
@@ -354,7 +365,10 @@ export class InvestmentsComponent implements OnInit {
           
       let requiredClass = document.getElementById("required_check").querySelectorAll(".required");
       if(requiredClass.length <= 0){
-        this.publishInvestmentRecords()
+        if(allowSave) {
+          this.publishInvestmentRecords()
+        }
+        
         this.currentDiv = currentDiv;
       } else {
         return false;
@@ -372,4 +386,15 @@ export class InvestmentsComponent implements OnInit {
       this.password_validate = false;
     }
   }
+
+  todate(dob){
+    if (dob) {
+      const [year, month, day] = dob.split('-');
+      const obj = { year: parseInt(year), month: parseInt(month), day: 
+        parseInt(day.split(' ')[0].trim()) };
+       return obj;
+      }
+    return dob;
+  }
+   
 }

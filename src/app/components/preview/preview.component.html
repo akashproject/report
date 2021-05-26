@@ -1,0 +1,17 @@
+<div class="container ">
+    <div class="row" *ngIf="isEmailVerified != 'true'">
+      <div class="col-md-12 text-center">
+        <h3 class="alert alert-primary">
+          You need to verify you email addreress! click
+          <a routerLink="/verify-email">
+            <strong>Here</strong>
+          </a>
+          to send OTP
+        </h3>
+      </div>
+    </div>
+  
+    <div class="head_title">
+      <label> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
+    </div>
+</div>

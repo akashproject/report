@@ -59,7 +59,7 @@ label {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid lightgray;
-
+  padding: 10px 0;
   label {
     font-weight: 500;
     font-size: 26px;
@@ -155,6 +155,11 @@ label {
       font-size: 19px;
       border-bottom: 1px solid #ccc;
     }
+
+    label.input_label {
+      font-size: 16px;
+      font-weight: 500;
+  }
     
     .inner-addon {
       position: relative;
