@@ -14,13 +14,25 @@
     <div class="head_title">
       <label> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
     </div>
+    <div class="addNewBtn col-lg-12">
+      <button
+        type="button"
+        (click)="exportRecords()"
+        mdbWavesEffect
+        mdbBtn
+        class="btn"
+      >
+        {{ util.getString("Download") }}
+      </button>
+    </div>
     <div class="row page_content_wraper">
       <div class="col-lg-12 col-md-12">
         <div class="row user_div" >
-          <div class="col-12">
-            <div  class="row" *ngFor="let items of investmentsForm.company; let i = index" >
-              <div class="col-lg-3 class_col" *ngFor="let item of items | keyvalue">
-                Key: <b>{{item.key}}</b> and Value: <b>{{item.value}}</b>
+          <div class="col-12" *ngFor="let items of investmentsForm | keyvalue">
+            <div class="prev_heading">{{items.key}}</div>
+            <div class="row" style="padding-bottom: 15px;" *ngFor="let item of items.value | keyvalue">
+              <div class="col-lg-3 class_col" *ngFor="let fields of item.value | keyvalue">
+               <b>{{ fields.key }} :</b>  {{ fields.value }}
               </div>
             </div>
           </div>
