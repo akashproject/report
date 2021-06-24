@@ -88,7 +88,6 @@ export class InvestmentsComponent implements OnInit {
     }
 
     this.isEmailVerified = this.util.userInfo.email_verified;
-    console.log("em",this.emContacts.length);
     
     this.getUserRecords();
     this.getInvestmentsRecords();
@@ -121,9 +120,14 @@ export class InvestmentsComponent implements OnInit {
       .get('investments/get-investment-records/' + this.util.userInfo.id)
       .subscribe(
         (data: any) => {
-          if (data && data.status === 200) {       
-                 
-            if(data.data.length !=undefined && data.data.length > 0){
+          if (data && data.status === 200) {  
+            console.log(data.data.data.length);
+            
+            if(typeof data.data.data.length == "undefined" && data.data.data.length == 0) {
+              
+             console.log("not inserted");
+             
+            } else {
               this.investmentsForm = data.data;
             }
             
