@@ -6,7 +6,7 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'angular-bootstrap-md';
 import {NgbDateStruct, NgbCalendar,NgbDatepicker} from '@ng-bootstrap/ng-bootstrap';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-preview',
   templateUrl: './preview.component.html',
@@ -39,13 +39,19 @@ export class PreviewComponent implements OnInit {
     full_name: this.util.userInfo.full_name,
     address: this.util.userInfo.address,
   };
+  uservault: any = '';
   constructor(
     private router: Router,
     private api: ApiService,
     public util: UtilService,
     private toastr: ToastrService,
-    private calendar: NgbCalendar
+    private calendar: NgbCalendar,
+    
   ) {
+    if (!localStorage.getItem('verify_assword')) {
+      this.router.navigate(['/investments']);
+    }
+    this.uservault = environment.uservault;
   }
 
   ngOnInit(): void {

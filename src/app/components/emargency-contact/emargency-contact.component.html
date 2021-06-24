@@ -1,133 +1,95 @@
 <div class="container">
-  <div class="row">
-    <div class="col-lg-3 col-md-12 sidemenu">
-      <div class="my_col" (click)="openProfile()">
-        <div class="icn_div">
-          <mdb-icon fas icon="user-circle"></mdb-icon>
-        </div>
-        <div class="right_div">
-          <label class="title_lbl">
+    <div class="row">
+        <div class="col-lg-3 col-md-12 sidemenu">
+            <div class="my_col" (click)="openProfile()">
+                <div class="icn_div">
+                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                </div>
+                <div class="right_div">
+                    <label class="title_lbl">
             {{ util.getString("Profile") }}
           </label>
-        </div>
-      </div>
+                </div>
+            </div>
 
-      <div class="my_col" (click)="gotoContact()">
-        <div class="icn_div">
-          <mdb-icon fas icon="user-circle"></mdb-icon>
-        </div>
-        <div class="right_div">
-          <label class="title_lbl">
+            <div class="my_col" (click)="gotoContact()">
+                <div class="icn_div">
+                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                </div>
+                <div class="right_div">
+                    <label class="title_lbl">
             {{ util.getString("Emargency Contact") }}
           </label>
-        </div>
-      </div>
+                </div>
+            </div>
 
-      <div class="my_col" (click)="gotoPassword()">
-        <div class="icn_div">
-          <mdb-icon fas icon="user-circle"></mdb-icon>
-        </div>
-        <div class="right_div">
-          <label class="title_lbl">
+            <div class="my_col" (click)="gotoPassword()">
+                <div class="icn_div">
+                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                </div>
+                <div class="right_div">
+                    <label class="title_lbl">
             {{ util.getString("Change Password") }}
           </label>
-        </div>
-      </div>
+                </div>
+            </div>
 
-      <div class="my_col" (click)="goTobusiness()">
-        <div class="icn_div">
-          <mdb-icon fas icon="map-marker-alt"></mdb-icon>
-        </div>
+            <div class="my_col" (click)="goTobusiness()">
+                <div class="icn_div">
+                    <mdb-icon fas icon="map-marker-alt"></mdb-icon>
+                </div>
 
-        <div class="right_div">
-          <label class="title_lbl">
-            {{ util.getString("Business Details") }}
+                <div class="right_div">
+                    <label class="title_lbl">
+            {{ util.getString("Investment Details") }}
           </label>
-        </div>
-      </div>
+                </div>
+            </div>
 
-      <div class="my_col" (click)="logout()">
-        <div class="icn_div">
-          <mdb-icon fas icon="lock"></mdb-icon>
+            <div class="my_col" (click)="logout()">
+                <div class="icn_div">
+                    <mdb-icon fas icon="lock"></mdb-icon>
+                </div>
+                <div class="right_div">
+                    <label class="title_lbl"> {{ util.getString("Logout") }} </label>
+                </div>
+            </div>
         </div>
-        <div class="right_div">
-          <label class="title_lbl"> {{ util.getString("Logout") }} </label>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-lg-9 col-md-12">
-      <!-- User Informations -->
-      <div class="row user_div">
-        <div class="head_title">
-          <label> Add Emargency Contact</label>
-        </div>
-        <div class="row form_div">
-          <div class="col-lg-6 class_col inner-addon left-addon">
-            <mdb-icon fas icon="user-circle"></mdb-icon>
-            <input
-              type="text"
-              placeholder="Contact Name"
-              [(ngModel)]="contactForm.name"
-              class="form-control"
-              (ngModelChange)="formValidation()"
-            />
-          </div>
-          <div class="col-lg-6 class_col inner-addon left-addon">
-            <mdb-icon fas icon="envelope"></mdb-icon>
-            <input
-              type="email"
-              placeholder="Email"
-              [(ngModel)]="contactForm.email"
-              class="form-control"
-              (ngModelChange)="formValidation()"
-            />
-          </div>
-          <div class="col-lg-6 class_col inner-addon left-addon">
-            <mdb-icon fas icon="phone"></mdb-icon>
-            <input
-              placeholder="Phone number"
-              type="tel"
-              [(ngModel)]="contactForm.mobile"
-              class="form-control"
-              (ngModelChange)="formValidation()"
-            />
-          </div>
-          <div class="col-lg-6 class_col inner-addon left-addon">
-            <textarea
-              placeholder="Address"
-              type="tel"
-              [(ngModel)]="contactForm.address"
-              class="form-control"
-              (ngModelChange)="formValidation()"
-            ></textarea>
-          </div>
-          <div class="col-12">
-            <div class="submitBtn">
-              <button
-                type="button"
-                (click)="update()"
-                mdbWavesEffect
-                mdbBtn
-                class="btn"
-                *ngIf="form_validate"
-              >
+        <div class="col-lg-9 col-md-12">
+            <!-- User Informations -->
+            <div class="row user_div">
+                <div class="head_title">
+                    <label> Add Emargency Contact</label>
+                </div>
+                <div class="row form_div">
+                    <div class="col-lg-6 class_col inner-addon left-addon">
+                        <mdb-icon fas icon="user-circle"></mdb-icon>
+                        <input type="text" placeholder="Contact Name" [(ngModel)]="contactForm.name" class="form-control" (ngModelChange)="formValidation()" />
+                    </div>
+                    <div class="col-lg-6 class_col inner-addon left-addon">
+                        <mdb-icon fas icon="envelope"></mdb-icon>
+                        <input type="email" placeholder="Email" [(ngModel)]="contactForm.email" class="form-control" (ngModelChange)="formValidation()" />
+                    </div>
+                    <div class="col-lg-6 class_col inner-addon left-addon">
+                        <mdb-icon fas icon="phone"></mdb-icon>
+                        <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" (ngModelChange)="formValidation()" />
+                    </div>
+                    <div class="col-lg-6 class_col inner-addon left-addon">
+                        <textarea placeholder="Address" type="tel" [(ngModel)]="contactForm.address" class="form-control" (ngModelChange)="formValidation()"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <div class="submitBtn">
+                            <button type="button" (click)="update()" mdbWavesEffect mdbBtn class="btn" *ngIf="form_validate">
                 {{ util.getString("Update Contact") }}
               </button>
-              <button
-                type="button"
-                mdbWavesEffect
-                mdbBtn
-                class="btn"
-                disabled="disabled"
-                *ngIf="!form_validate"
-              >
+                            <button type="button" mdbWavesEffect mdbBtn class="btn" disabled="disabled" *ngIf="!form_validate">
                 {{ util.getString("Add Emargency Contact") }}
               </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

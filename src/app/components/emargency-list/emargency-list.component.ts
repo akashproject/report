@@ -71,11 +71,14 @@ export class EmargencyListComponent implements OnInit {
   }
 
   goTobusiness() {
-    if (this.isContactadded) {
-      this.currentDiv = 2;
+    console.log(this.myContacts.length);
+    if(this.myContacts.length > 0){
+      this.router.navigate(['/investments']);
     } else {
-      this.toastr.error('Add Emargency contact first', 'Error!');
+      this.toastr.error('Please add at least 1 emargency contact details', 'Error!');
+      this.currentDiv = 4;
     }
+    //
   }
 
   gotoPassword() {
@@ -96,9 +99,6 @@ export class EmargencyListComponent implements OnInit {
             this.myContacts = [];
             for (let i = 0; i < Object.keys(data.data).length; i++) {
               this.myContacts.push(data.data[i]);
-              // for (const key in data.data[i]) {
-              //   this.myContacts[i][key] = data.data[i][key];
-              // }
             }
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');

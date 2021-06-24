@@ -11,6 +11,7 @@ export const environment = {
   production: true,
   baseURL: 'https://developer.yusmota.in/api/index.php/',
   mediaURL: 'https://developer.yusmota.in/api/uploads/',
+  uservault: 'https://developer.yusmota.in/api/investments/',
   onesignal: {
     appId: 'd9d6c621-8d9d-4a2f-9098-cfae13036d8b',
     googleProjectNumber: '888633870378',

@@ -71,7 +71,14 @@ export class AccountComponent implements OnInit {
   }
 
   goTobusiness() {
-    this.router.navigate(['/investments']);
+    console.log(this.myContacts.length);
+    if(this.myContacts.length > 0){
+      this.router.navigate(['/investments']);
+    } else {
+      this.toastr.error('Please add at least 1 emargency contact details', 'Error!');
+      this.currentDiv = 4;
+    }
+    //
   }
 
   gotoPassword() {
@@ -80,7 +87,7 @@ export class AccountComponent implements OnInit {
 
   gotoContact() {
     this.currentDiv = 4;
-    console.log(this.myContacts);
+    console.log(this.myContacts.length);
   }
 
   getAllContacts() {
@@ -90,12 +97,14 @@ export class AccountComponent implements OnInit {
         (data: any) => {
           if (data && data.status === 200) {
             this.myContacts = [];
-            for (let i = 0; i < Object.keys(data.data).length; i++) {
-              this.myContacts.push(data.data[i]);
-              // for (const key in data.data[i]) {
-              //   this.myContacts[i][key] = data.data[i][key];
-              // }
+            
+            if(data.data.length !=undefined && data.data.length > 0){
+              for (let i = 0; i < Object.keys(data.data).length; i++) {
+                this.myContacts.push(data.data[i]);
+              }
             }
+            
+
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
           } else {

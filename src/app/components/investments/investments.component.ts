@@ -62,6 +62,7 @@ export class InvestmentsComponent implements OnInit {
     private calendar: NgbCalendar
   ) {
     this.currentDiv = 16;
+    localStorage.removeItem("verify_assword");
   }
 
   selectToday() {
@@ -87,7 +88,8 @@ export class InvestmentsComponent implements OnInit {
     }
 
     this.isEmailVerified = this.util.userInfo.email_verified;
-
+    console.log("em",this.emContacts.length);
+    
     this.getUserRecords();
     this.getInvestmentsRecords();
   }
@@ -101,9 +103,6 @@ export class InvestmentsComponent implements OnInit {
             this.emContacts = [];
             for (let i = 0; i < Object.keys(data.data).length; i++) {
               this.emContacts.push(data.data[i]);
-              // for (const key in data.data[i]) {
-              //   this.myContacts[i][key] = data.data[i][key];
-              // }
             }
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
@@ -122,8 +121,9 @@ export class InvestmentsComponent implements OnInit {
       .get('investments/get-investment-records/' + this.util.userInfo.id)
       .subscribe(
         (data: any) => {
-          if (data && data.status === 200) {            
-            if(data.data) {
+          if (data && data.status === 200) {       
+                 
+            if(data.data.length !=undefined && data.data.length > 0){
               this.investmentsForm = data.data;
             }
             
@@ -298,6 +298,24 @@ export class InvestmentsComponent implements OnInit {
     this.router.navigate(['/account']);
   }
 
+  previewRecords(){
+    this.api.get('investments/export-to-csv/' + this.util.userInfo.id).subscribe(
+      (data: any) => {
+        if (data && data.status === 200) {
+          this.router.navigate(['/preview']);
+        } else if (data && data.status === 500) {
+          this.toastr.error(data.data.message, 'Error!');
+        } else {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('Something went wrong', 'Error!');
+      }
+    );
+    
+  }
+
   publishInvestmentRecords(){
     
     this.api.post('investments/publish-investment-records/' + this.util.userInfo.id, this.investmentsForm).subscribe(
@@ -321,6 +339,7 @@ export class InvestmentsComponent implements OnInit {
       (data: any) => {
         if (data && data.status == '200') {
           this.verify_assword = true;
+          localStorage.setItem('verify_assword', this.verify_assword);
           this.currentDiv = 1;
         } else if (data && data.status == '500') {
           this.toastr.error(data.data.message, 'Error!');
@@ -335,20 +354,15 @@ export class InvestmentsComponent implements OnInit {
     
   }
 
-  previewRecords(){
-    this.router.navigate(['/preview']);
-  }
-
   removeElement(params, item) {
     this.investmentsForm[params].splice(item, 1);
   }
 
   formValidation(currentDiv,allowSave:any = true) {
-    console.log("start");
+    console.log("start",this.investmentsForm);
     
     if(this.verify_assword != true) {
       this.currentDiv = 16;
-      console.log("if");
     } else {
       let requiredElements = document.getElementById("required_check").querySelectorAll("[required]");
       console.log("else",requiredElements);

@@ -12,18 +12,10 @@
     </div>
   
     <div class="head_title">
-      <label> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
+      <label> <mdb-icon fas icon="long-arrow-alt-left" style="color: #1e8e1e;" routerLink="/investments"></mdb-icon> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
     </div>
     <div class="addNewBtn col-lg-12">
-      <button
-        type="button"
-        (click)="exportRecords()"
-        mdbWavesEffect
-        mdbBtn
-        class="btn"
-      >
-        {{ util.getString("Download") }}
-      </button>
+      <a class="btn" href="{{uservault}}investment_{{profileForm.id}}.csv" download>  {{ util.getString("Download") }} </a>
     </div>
     <div class="row page_content_wraper">
       <div class="col-lg-12 col-md-12">
