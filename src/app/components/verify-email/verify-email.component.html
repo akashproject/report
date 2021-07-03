@@ -1,42 +1,31 @@
 <div class="container">
-  <div class="row" *ngIf="!isEmailVerified">
-    <div class="col-md-12 text-center">
-      <h3 class="alert alert-primary">
-        A verification link has been sent to you email address
-      </h3>
+    <div class="row" *ngIf="!isEmailVerified">
+        <div class="col-md-12 text-center">
+            <h3 class="alert alert-primary">
+                A verification link has been sent to you email address
+            </h3>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-3 col-md-12 sidemenu"></div>
+    <div class="row">
+        <div class="col-lg-3 col-md-12 sidemenu"></div>
 
-    <div class="col-lg-9 col-md-12">
-      <!-- User Informations -->
-      <div class="row user_div">
-        <div class="row form_div">
-          <div class="col-lg-12 class_col">
-            <label for="otp_value">One time passwoord : </label>
-            <input
-              type="email"
-              placeholder="Email"
-              [(ngModel)]="otp_value"
-              class="form-control"
-            />
-          </div>
-          <div class="col-12">
-            <div class="submitBtn">
-              <button
-                type="button"
-                (click)="verifyOtp()"
-                mdbWavesEffect
-                mdbBtn
-                class="btn"
-              >
+        <div class="col-lg-9 col-md-12">
+            <!-- User Informations -->
+            <div class="row user_div">
+                <div class="row form_div">
+                    <div class="col-lg-12 class_col">
+                        <label for="otp_value">One time passwoord : </label>
+                        <input type="text" placeholder="Please enter OTP Number" [(ngModel)]="otp_value" class="form-control" />
+                    </div>
+                    <div class="col-12">
+                        <div class="submitBtn">
+                            <button type="button" (click)="verifyOtp()" mdbWavesEffect mdbBtn class="btn">
                 {{ util.getString("verify") }}
               </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>

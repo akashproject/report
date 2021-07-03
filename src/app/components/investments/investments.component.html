@@ -328,10 +328,10 @@
                         <div class="row" *ngFor="let item of investmentsForm.med_policy; let i = index">
                             <div class="col-lg-12 class_col">SL No #{{ i }}</div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" required placeholder="Policy No" [(ngModel)]="investmentsForm.med_policy[i].policy_no" class="form-control" />
+                                <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.med_policy[i].policy_no" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" placeholder="Previous Policy No" [(ngModel)]="investmentsForm.med_policy[i].previous_policy_no" class="form-control" />
+                                <input type="text" placeholder="Previous Policy No" [(ngModel)]="investmentsForm.med_policy[i].previous_policy_no" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <input type="text" required placeholder="Name of all persons who are covered" [(ngModel)]="
@@ -342,7 +342,7 @@
                                 <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.med_policy[i].sum_insured" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="text" placeholder="Renewal Date" [(ngModel)]="investmentsForm.med_policy[i].renewal_date" class="form-control" ngbDatepicker #datePicker="ngbDatepicker" (click)="datePicker.toggle()" />
+                                <input type="text" placeholder="Renewal Date" [(ngModel)]="investmentsForm.med_policy[i].renewal_date" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <button type="button" (click)="removeElement('med_policy',i)">
@@ -388,7 +388,7 @@
                                 <input type="text" required placeholder="Policy Holder Name" [(ngModel)]="investmentsForm.insurance[i].policy_no" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" required placeholder="Policy No" [(ngModel)]="investmentsForm.insurance[i].policy_holder_ame" class="form-control" />
+                                <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.insurance[i].policy_holder_ame" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <input type="text" placeholder="Nominee Name" [(ngModel)]="investmentsForm.insurance[i].nominee_name" class="form-control" />
@@ -402,7 +402,7 @@
                                 <input type="number" placeholder="Insurance Agent contact No" [(ngModel)]="investmentsForm.insurance[i].insurance_agent_contact_no" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.insurance[i].maturity_date" class="form-control" ngbDatepicker #datePicker="ngbDatepicker" (click)="datePicker.toggle()" />
+                                <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.insurance[i].maturity_date" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <button type="button" (click)="removeElement('insurance',i)">
@@ -445,7 +445,7 @@
                         <div class="row" *ngFor="let item of investmentsForm.vehicle_insurance; let i = index">
                             <div class="col-lg-12 class_col">SL No #{{ i }}</div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" required placeholder="Policy No" [(ngModel)]="investmentsForm.vehicle_insurance[i].policy_no" class="form-control" />
+                                <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.vehicle_insurance[i].policy_no" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.vehicle_insurance[i].sum_insured" class="form-control" />
@@ -454,7 +454,7 @@
                                 <input type="text" placeholder="Nominee Name" [(ngModel)]="investmentsForm.vehicle_insurance[i].nominee_name" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.vehicle_insurance[i].maturity_date" class="form-control" ngbDatepicker #datePicker="ngbDatepicker" (click)="datePicker.toggle()" />
+                                <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.vehicle_insurance[i].maturity_date" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <button type="button" (click)="removeElement('vehicle_insurance',i)">
@@ -500,16 +500,19 @@
                                 <input type="text" required placeholder="Details of the property which is insured" [(ngModel)]="investmentsForm.fire_insurance[i].property_insured" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" required placeholder="Policy No" [(ngModel)]="investmentsForm.fire_insurance[i].policy_no" class="form-control" />
+                                <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.fire_insurance[i].policy_no" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.fire_insurance[i].sum_insured" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.fire_insurance[i].maturity_date" class="form-control" ngbDatepicker #datePicker="ngbDatepicker" (click)="datepicker.toggle()" />
+                                <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.fire_insurance[i].maturity_date" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="text" placeholder="Risks covered" [(ngModel)]="investmentsForm.fire_insurance[i].risks_covered" class="form-control" ngbDatepicker #datePicker="ngbDatepicker" (click)="datepicker.toggle()" />
+                                <input type="text" placeholder="Risks covered" [(ngModel)]="investmentsForm.fire_insurance[i].risks_covered" class="form-control" />
+                            </div>
+                            <div class="col-lg-3 class_col">
+                                <input type="text" required placeholder="Renewal Date" [(ngModel)]="investmentsForm.fire_insurance[i].renewal_date" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <button type="button" (click)="removeElement('fire_insurance',i)">
@@ -625,14 +628,14 @@
                                 <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.fixed_deposit[i].nominee_name" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <select required [(ngModel)]="investmentsForm.fixed_deposit[i].account_type" class="form-control" aria-label="Is the loaninsured ">
-                  <option value="" selected>Type of account</option>
-                  <option value="FD">FD</option>
-                  <option value="RD">RD</option>
-                </select>
+                                <select required [(ngModel)]="investmentsForm.fixed_deposit[i].account_type" class="form-control" aria-label="Is the loan insured ">
+                                    <option value="" selected>Type of account</option>
+                                    <option value="FD">FD</option>
+                                    <option value="RD">RD</option>
+                                    </select>
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="text" placeholder="Last 4 digt of A/C number" [(ngModel)]="investmentsForm.fixed_deposit[i].last_four_digt" class="form-control" />
+                                <input type="text" required placeholder="Last 4 digt of A/C number" [(ngModel)]="investmentsForm.fixed_deposit[i].last_four_digt" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <input type="text" placeholder="Full A/C number" [(ngModel)]="investmentsForm.fixed_deposit[i].account_number" class="form-control" />
@@ -752,7 +755,7 @@
                                 <input type="text" placeholder="Locker in the Name" [(ngModel)]="investmentsForm.locker_details[i].locker_name" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" placeholder="Locker No" [(ngModel)]="investmentsForm.locker_details[i].locker_number" class="form-control" />
+                                <input type="text" placeholder="Locker No" [(ngModel)]="investmentsForm.locker_details[i].locker_number" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <button type="button" (click)="removeElement('locker_details',i)">
@@ -804,7 +807,7 @@
                                 <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.public_provident_fund[i].nominee_name" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" placeholder="Account number" [(ngModel)]="investmentsForm.public_provident_fund[i].account_number" class="form-control" />
+                                <input type="number" required placeholder="Account number" [(ngModel)]="investmentsForm.public_provident_fund[i].account_number" class="form-control" />
                             </div>
 
                             <div class="col-lg-3 class_col">
@@ -848,7 +851,7 @@
                         <div class="row" *ngFor="let item of investmentsForm.uan_details; let i = index">
                             <div class="col-lg-12 class_col">SL No #{{ i }}</div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" placeholder="Uan No" [(ngModel)]="investmentsForm.uan_details[i].uan_number" class="form-control" />
+                                <input type="text" required placeholder="UAN No" [(ngModel)]="investmentsForm.uan_details[i].uan_number" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.uan_details[i].nominee_name" class="form-control" />
@@ -894,7 +897,7 @@
                         <div class="row" *ngFor="let item of investmentsForm.nps_account; let i = index">
                             <div class="col-lg-12 class_col">SL No #{{ i }}</div>
                             <div class="col-lg-3 class_col">
-                                <input required type="number" placeholder="Uan No" [(ngModel)]="investmentsForm.nps_account[i].nps_account_number" class="form-control" />
+                                <input required type="text" placeholder="NPS account no" [(ngModel)]="investmentsForm.nps_account[i].nps_account_number" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.nps_account[i].nominee_name" class="form-control" />
@@ -1020,13 +1023,13 @@
                             </div>
                             <div class="col-lg-3 class_col">
                                 <select [(ngModel)]="investmentsForm.loans[i].loaninsured" class="form-control" aria-label="Is the loaninsured ">
-                  <option value="" selected>Is the loaninsured</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                </select>
+                                <option value="" selected>Is the loan insured</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                                </select>
                             </div>
                             <div class="col-lg-3 class_col">
-                                <input type="number" placeholder="Insurance No" [(ngModel)]="investmentsForm.loans[i].insurance_no" class="form-control" />
+                                <input type="text" placeholder="Insurance No" [(ngModel)]="investmentsForm.loans[i].insurance_no" class="form-control" />
                             </div>
                             <div class="col-lg-3 class_col">
                                 <button type="button" (click)="removeElement('loans',i)">
@@ -1038,7 +1041,7 @@
                             <div class="col-12">
                                 <div class="submitBtn">
                                     <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(15)">
-                    {{ util.getString("Publish Your Information") }}
+                    {{ util.getString("Save And continue") }}
                   </button>
                                 </div>
                             </div>

@@ -17,34 +17,26 @@
                 </div>
                 <div class="modal-body">
                     <div class="md-form">
-                        <label for="text" style="padding: 10px 0; padding-bottom: 5px; font-weight: bold">
-              {{ util.getString("Name :") }}
-            </label>
+
                         <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput />
                     </div>
                     <div class="md-form">
-                        <label for="text" style="padding: 10px 0; padding-bottom: 5px; font-weight: bold">
-              {{ util.getString("Email :") }}
-            </label>
+
                         <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text" mdbInput />
                     </div>
                     <div class="md-form">
-                        <label for="text" style="padding: 10px 0; padding-bottom: 5px; font-weight: bold">
-              {{ util.getString("Phone number :") }}
-            </label>
+
                         <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" />
                     </div>
                     <div class="md-form">
-                        <label for="text" style="padding: 10px 0; padding-bottom: 5px; font-weight: bold">
-              {{ util.getString("Address :") }}
-            </label>
+
                         <input placeholder="Address" type="tel" [(ngModel)]="contactForm.address" class="form-control" />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="contactModal.hide()" mdbWavesEffect>
-            {{ util.getString("Close") }}
-          </button>
+                        {{ util.getString("Close") }}
+                    </button>
                     <button type="button" (click)="actionContact()" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>
             <span *ngIf="newContact === true">
               {{ util.getString("Save") }}

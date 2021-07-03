@@ -121,14 +121,10 @@ export class InvestmentsComponent implements OnInit {
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {  
-            console.log(data.data.data.length);
-            
-            if(typeof data.data.data.length == "undefined" && data.data.data.length == 0) {
-              
-             console.log("not inserted");
-             
-            } else {
+     
+            if(data.message == "Success") {
               this.investmentsForm = data.data;
+              console.log(" inserted");            
             }
             
           } else if (data && data.status === 500) {
@@ -195,6 +191,7 @@ export class InvestmentsComponent implements OnInit {
       sum_insured: '',
       maturity_date: '',
       risks_covered: '',
+      renewal_date: '',
     };
     this.investmentsForm.fire_insurance.push(fireInsurancePolicy);
   }
