@@ -14,7 +14,7 @@ import { InvestmentsComponent } from './components/investments/investments.compo
 import { PreviewComponent } from './components/preview/preview.component';
 
 const routes: Routes = [
-  { path: '', component: RegisterComponent },
+  { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
