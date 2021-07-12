@@ -1,4 +1,4 @@
-.footer_wraper {
+/*.footer_wraper {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -18,10 +18,6 @@
   }
 }
 .centerItems {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
   position: absolute;
   top: 50%;
   transform: translate(-50%, 50%);
@@ -54,7 +50,7 @@
   padding: 10px 0px;
   overflow: scroll;
   height: 60vh !important;
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; 
   -ms-overflow-style: none;
   overflow: auto;
   white-space: nowrap;
@@ -184,7 +180,7 @@
 
       ion-button {
         position: absolute;
-        // right: 0;
+       
         bottom: 0;
         width: 90px;
         font-size: 12px;
@@ -284,7 +280,7 @@
   }
 }
 
-/* iphone 4 */
+
 @media only screen and (min-device-width: 320px) and (max-device-height: 480px) and (-webkit-device-pixel-ratio: 2) {
   .topNavBtn {
     position: fixed;
@@ -294,7 +290,7 @@
   }
 }
 
-/* iphone 5 */
+
 @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
   .topNavBtn {
     position: fixed;
@@ -304,7 +300,7 @@
   }
 }
 
-/* iphone 6, 6s, 7, 8 */
+
 @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (-webkit-device-pixel-ratio: 2) {
   .topNavBtn {
     position: fixed;
@@ -314,7 +310,7 @@
   }
 }
 
-/* iphone 6+, 6s+, 7+, 8+ */
+
 @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
   .topNavBtn {
     position: fixed;
@@ -324,7 +320,7 @@
   }
 }
 
-/* iphone X , XS, 11 Pro */
+
 @media only screen and (min-device-width: 375px) and (max-device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
   .topNavBtn {
     position: fixed;
@@ -334,7 +330,7 @@
   }
 }
 
-/* iphone XR, 11 */
+
 @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
   .topNavBtn {
     position: fixed;
@@ -344,7 +340,7 @@
   }
 }
 
-/* iphone XS Max, 11 Pro Max */
+
 @media only screen and (min-device-width: 414px) and (max-device-height: 896px) and (-webkit-device-pixel-ratio: 3) {
   .topNavBtn {
     position: fixed;
@@ -352,4 +348,4 @@
     right: 5px;
     z-index: 999;
   }
-}
+}*/

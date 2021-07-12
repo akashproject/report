@@ -1,0 +1,200 @@
+.hero_section{
+    width: 100%;
+    position: relative;
+    height: 754px;
+    img{
+        &.b_bg{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            
+        }
+    }
+    .container{
+        position: relative;
+    }
+    .content_back{
+        max-width: 70%;
+        flex: 0 0 70%;
+        h1, h2, h3{
+            color: var(--white-color);
+            font-weight: normal;
+            margin: 0; padding: 0;
+        }
+        h3{
+            font-weight: 300;
+        }
+        h2{
+            font-size: 40px;
+            position: relative;
+            margin-top: 24px;
+            &::after{
+                width: 535px; height: 72px; background-color: rgba(255,255,255,.1); position: absolute; top: 0; left: -40px; bottom: 0; margin: auto; content: "";
+            }
+        }
+        h1{
+            font-weight: 900; line-height: 62px;
+        }
+        p{
+            color: var(--white-color); margin-top: 31px; padding-right: 11%;
+        }
+        
+        .group{
+            position: relative;
+            img{
+                position: absolute;
+                top: 14px;
+                left: -40px;
+                margin: auto;
+            }
+        }
+        .custom_button_back{
+            margin-top: 38px; flex-wrap: wrap;
+            .custom_button{
+                margin-right: 19px;
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+    .avator{
+        position: relative;
+        left: -124px;
+        top: 65px;
+    }
+}
+
+@media only screen and (max-width:1599px){
+    .hero_section{
+        .content_back{
+            max-width: 63%;
+            flex: 0 0 63%;
+        }
+        .avator{
+            width: 100%;
+            max-width: 46%;
+            flex: 0 0 46%;
+            left: 0;
+            top: 0;
+        }
+    }
+}
+@media only screen and (max-width:1365px){
+    .hero_section{
+        .content_back{
+            flex: 0 0 54%;
+            h1{
+                font-size: 50px;
+            }
+            h2{
+                font-size: 35px;
+                &::after{
+                    width: 474px;
+                }
+            }
+            p{
+                font-size: 14px;
+            }
+        }
+        .avator{
+            max-width: 46%;
+            flex: 0 0 46%;
+        }
+    }
+}
+@media only screen and (max-width:1023px){
+    .container{
+        max-width: 100%; width: 100%;
+    }
+    .hero_section{
+        padding-top: 160px; padding-bottom: 60px; background-image: var(--gradient-style); height: auto; align-items: flex-start; border-bottom: #8b9bc2 20px solid;
+        img{
+            &.b_bg{
+                object-fit: cover;
+                display: none;
+            }
+        }
+        .container{
+            flex-direction: column; align-items: flex-start; justify-content: flex-end; 
+        }
+        .content_back{
+            max-width: 100%;
+            flex: 0 0 100%;
+            order: 2;
+            width: 100%;
+            text-align: center;
+            
+            h2{
+                &::after{
+                    display: none;
+                }
+            }
+            p{
+                padding-right: 0; width: 100%;
+            }
+          
+            .group {
+                img{
+                    display: none;
+                }
+            }
+            .custom_button_back {
+                justify-content: center;
+            }
+        }
+        .avator{
+            max-width: 50%;
+            flex: 0 0 50%;
+            order: 1;
+            margin-bottom: 50px;
+            
+        }
+    }
+}
+
+@media only screen and (max-width:599px){
+    .hero_section{
+        .content_back{
+            h1{
+                font-size: 40px;
+            }
+            h2{
+                font-size: 28px;
+            }
+            h3{
+                font-size: 24px;
+            }
+        }
+        .avator{
+            flex: 0 0 80%; max-width: 80%; width: 80%;
+        }
+    }
+}
+
+@media only screen and (max-width:450px){
+    .hero_section{
+        .content_back{
+            h1{
+                font-size: 28px;
+            }
+            h2{
+                font-size: 20px; margin-top: 0;
+            }
+            h3{
+                font-size: 18px;
+            }
+            .custom_button_back{
+                .custom_button{
+                    margin-right: 8px; margin-bottom: 8px;
+                    
+                }
+            }
+        }
+        .avator{
+            flex: 0 0 80%; max-width: 80%; width: 80%;
+        }
+    }
+}

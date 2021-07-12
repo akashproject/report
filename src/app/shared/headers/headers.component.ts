@@ -20,7 +20,7 @@ export class HeadersComponent implements OnInit {
   lngId: any;
   dummyLang = Array(5);
   langs: any[] = [];
-
+  active: boolean = false;
   constructor(
     private router: Router,
     public util: UtilService,
@@ -75,5 +75,11 @@ export class HeadersComponent implements OnInit {
 
   goChat() {
     this.router.navigate(['chats']);
+  }
+  open_menu() {
+    this.active = true;
+  }
+  close_menu() {
+    this.active = false;
   }
 }

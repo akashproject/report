@@ -1,0 +1,28 @@
+.encrypted_section{
+    width: 100%; background-color: var(--grey-color);
+    img{
+        width: 100%;
+    }
+    .custom_heading{
+        padding-top: 30px;
+        h2{
+            text-transform: none;
+        }
+    }
+    .custom_button{
+        margin-top: 30px;
+        a{
+            color: var(--white-color);
+        }
+    }
+}
+
+@media only screen and (max-width:1023px){
+    .encrypted_section{
+        padding-bottom: 85px;
+        .custom_button{
+            display: flex; justify-content: center;
+        }
+    }
+    
+}

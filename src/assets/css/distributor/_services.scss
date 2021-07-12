@@ -1,0 +1,34 @@
+.our_services_section{
+    width: 100%; padding-bottom: 55px;
+    
+    .main_section{
+        width: 100%; margin-top: 42px;
+        .portion{
+            width: 100%; min-height: 430px; padding: 40px 30px 40px 30px; background-color: var(--primary-color); border-radius: 30px;
+            margin-bottom: 30px;
+            .icon{
+                margin-bottom: 26px; display: block;
+            }
+            h5, p{
+                color: var(--white-color);
+            }
+            p{
+                margin-top: 8px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width:1023px){
+    .our_services_section{
+    
+        .main_section{
+            text-align: center;
+            .portion{
+                .icon{
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
