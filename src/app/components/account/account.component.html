@@ -18,19 +18,19 @@
                 <div class="modal-body">
                     <div class="md-form">
 
-                        <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput />
+                        <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput required />
                     </div>
                     <div class="md-form">
 
-                        <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text" mdbInput />
+                        <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text" mdbInput required />
                     </div>
                     <div class="md-form">
 
-                        <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" />
+                        <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" required/>
                     </div>
                     <div class="md-form">
 
-                        <input placeholder="Address" type="tel" [(ngModel)]="contactForm.address" class="form-control" />
+                        <input placeholder="Address" type="tel" [(ngModel)]="contactForm.address" class="form-control" required/>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -165,6 +165,7 @@ export class InvestmentsComponent implements OnInit {
   addInsurancePolicy() {
     let insurancePolicy = {
       policy_no: '',
+      policy_company_name: '',
       policy_holder_ame: '',
       nominee_name: '',
       insurance_agent_name: '',
