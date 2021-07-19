@@ -33,9 +33,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.util.userInfo != '') {
-      this.router.navigate(['/account']);
-    }
+
   }
 
   loginuser() {
@@ -117,7 +115,8 @@ export class LoginComponent implements OnInit {
       this.util.userInfo = JSON.parse(localStorage.getItem('user'));
       //console.log(JSON.parse(localStorage.getItem('user')));
       localStorage.setItem('user', this.beforeLoginUser);
-      this.router.navigate(['/']).then(() => {
+      localStorage.setItem('loginflag', '1');
+      this.router.navigate(['/account']).then(() => {
         window.location.reload();
       });
     } else {

@@ -28,15 +28,15 @@ export class AccountComponent implements OnInit {
     address: '',
   };
   profileForm: any = {
-    id: this.util.userInfo.id,
-    email: this.util.userInfo.email,
-    full_name: this.util.userInfo.full_name,
-    mobile: this.util.userInfo.mobile,
-    address: this.util.userInfo.address,
+    id: "",
+    email: "",
+    full_name: "",
+    mobile: "",
+    address: "",
   };
   myContacts: any = [];
   changePasswordForm: any = {
-    id: this.util.userInfo.id,
+    id: '',
     old_password: '',
     password: '',
   };
@@ -46,6 +46,7 @@ export class AccountComponent implements OnInit {
   currentDiv: any;
   form_validate = false;
   password_validate = false;
+  contactform_validate = true;
   newContact: boolean;
   constructor(
     private router: Router,
@@ -57,9 +58,17 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('loginflag'));
+    
     if (this.util.userInfo == '') {
       this.router.navigate(['/']);
     }
+    
+    // if (localStorage.getItem('loginflag') != '1') {
+    //   this.router.navigate(['/']);
+    // } else {
+    //   setTimeout(function(){ localStorage.setItem('loginflag', '0'); }, 10000);
+    // }
 
     this.isEmailVerified = this.util.userInfo.email_verified;
     console.log(this.util.userInfo);
@@ -68,6 +77,13 @@ export class AccountComponent implements OnInit {
     if (this.util.userInfo.id) {
       this.getAllContacts();
     }
+    this.profileForm.id = this.util.userInfo.id;
+    this.profileForm.email = this.util.userInfo.email;
+    this.profileForm.full_name = this.util.userInfo.full_name;
+    this.profileForm.mobile = this.util.userInfo.mobile;
+    this.profileForm.address = this.util.userInfo.address;
+    this.changePasswordForm.id = this.util.userInfo.id;
+
   }
 
   goTobusiness() {
@@ -343,4 +359,21 @@ export class AccountComponent implements OnInit {
       this.password_validate = false;
     }
   }
+
+  contactFromValidation(){
+    console.log(this.contactForm);
+    console.log(this.contactform_validate);
+    
+    if (
+      this.contactForm.name != '' &&
+      this.contactForm.email != '' &&
+      this.contactForm.mobile != '' &&
+      this.contactForm.address != ''
+    ) {
+      this.contactform_validate = true;
+    } else {
+      this.contactform_validate = false;
+    }
+  }
+
 }

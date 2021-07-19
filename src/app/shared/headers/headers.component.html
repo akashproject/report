@@ -140,24 +140,24 @@
 </header>-->
 
 <header>
-  <div class="container d-flex align-items-center justify-content-between">
-      <a href="" class="logo"><img src="assets/images/logo.png" alt=""></a>
-      <div class="hamburger" (click)="open_menu()"></div>
-      <div class="right d-flex align-items-center" [class.active]="active">
-        <div class="cross" (click)="close_menu()"></div>
-          <ul class="menu d-flex">
-              <li><a href="">home</a></li>
-              <li><a href="">about us</a></li>
-              <li><a href="">our services</a></li>
-              <li><a href="">contact us</a></li>
-          </ul>
-          <ul class="social d-flex align-items-center">
-              <li><a href=""><span class="fa fa-whatsapp"></span></a></li>
-              <li><a href=""><span class="fa fa-facebook"></span></a></li>
-              <li><a href=""><span class="fa fa-linkedin"></span></a></li>
-              <li><a href=""><span class="fa fa-twitter"></span></a></li>
-          </ul>
-      </div>
-      
-  </div>
+    <div class="container d-flex align-items-center justify-content-between">
+        <a href="" class="logo"><img src="assets/images/logo.png" alt=""></a>
+        <div class="hamburger" (click)="open_menu()"></div>
+        <div class="right d-flex align-items-center" [class.active]="active">
+            <div class="cross" (click)="close_menu()"></div>
+            <ul class="menu d-flex">
+                <li><a routerLink="/">home</a></li>
+                <li><a href="">about us</a></li>
+                <li><a href="">our services</a></li>
+                <li><a href="">contact us</a></li>
+            </ul>
+            <ul class="social d-flex align-items-center">
+                <li><a href=""><span class="fa fa-whatsapp"></span></a></li>
+                <li><a href=""><span class="fa fa-facebook"></span></a></li>
+                <li><a href=""><span class="fa fa-linkedin"></span></a></li>
+                <li><a href=""><span class="fa fa-twitter"></span></a></li>
+            </ul>
+        </div>
+
+    </div>
 </header>

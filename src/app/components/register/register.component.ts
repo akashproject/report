@@ -88,7 +88,7 @@ export class RegisterComponent implements OnInit {
         if (data && data.status == '200') {
           this.toastr.success('You have successfully registered.', 'Success!');
           localStorage.setItem('user', JSON.stringify(data.data));
-          this.router.navigate(['/']).then(() => {
+          this.router.navigate(['/account']).then(() => {
             window.location.reload();
           });
         } else if (data && data.status == '500') {

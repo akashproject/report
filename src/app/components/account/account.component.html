@@ -18,33 +18,42 @@
                 <div class="modal-body">
                     <div class="md-form">
 
-                        <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput required />
+                        <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput (ngModelChange)="contactFromValidation()" />
                     </div>
                     <div class="md-form">
 
-                        <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text" mdbInput required />
+                        <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text" mdbInput (ngModelChange)="contactFromValidation()" />
                     </div>
                     <div class="md-form">
 
-                        <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" required/>
+                        <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" (ngModelChange)="contactFromValidation()" />
                     </div>
                     <div class="md-form">
 
-                        <input placeholder="Address" type="tel" [(ngModel)]="contactForm.address" class="form-control" required/>
+                        <input placeholder="Address" type="text" [(ngModel)]="contactForm.address" class="form-control" (ngModelChange)="contactFromValidation()" />
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="contactModal.hide()" mdbWavesEffect>
             {{ util.getString("Close") }}
           </button>
-                    <button type="button" (click)="actionContact()" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>
-            <span *ngIf="newContact === true">
-              {{ util.getString("Save") }}
-            </span>
-            <span *ngIf="newContact === false">
-              {{ util.getString("Update") }}
-            </span>
-          </button>
+                    <button type="button" disabled="disabled" *ngIf="!contactform_validate" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>
+                <span *ngIf="newContact === true">
+                {{ util.getString("Save") }}
+                </span>
+                <span *ngIf="newContact === false">
+                {{ util.getString("Update") }}
+                </span>
+            </button>
+                    <button type="button" *ngIf="contactform_validate" (click)="actionContact()" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>
+                <span *ngIf="newContact === true">
+                {{ util.getString("Save") }}
+                </span>
+                <span *ngIf="newContact === false">
+                {{ util.getString("Update") }}
+                </span>
+            </button>
+
                 </div>
             </div>
         </div>
