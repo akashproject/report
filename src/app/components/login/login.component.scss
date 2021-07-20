@@ -2,29 +2,42 @@ label {
   display: block;
 }
 
-.form_row {
-  margin-top: 130px;
-}
+
 .form_div,
 .form_div_otp {
-  padding: 25px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4);
-  /* enable absolute positioning */
+  width: 100%;
+  margin-top: 80px;
+  background-color: var(--white-color);
+  padding: 30px;
+  border-radius: 20px;
+  -webkit-box-shadow: rgba(118, 118, 118, 0.13) 0 24px 60px;
+          box-shadow: rgba(118, 118, 118, 0.13) 0 24px 60px;
   .inner-addon {
     position: relative;
+  }
+
+  .form-control{
+    padding-left: 40px !important;
   }
 
   /* style glyph */
   .inner-addon .fas {
     position: absolute;
-    padding: 10px;
+    padding: 0;
     pointer-events: none;
+    bottom: 0;
+    margin: auto;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
   }
 
   /* align glyph */
   .left-addon .fas {
-    left: 0;
-    top: 2px;
+    left: 10px;
+    top: 0;
   }
   .right-addon .fas {
     right: 0px;
@@ -65,7 +78,8 @@ label {
   }
 
   .btn {
-    background: #4571c2;
+    /*background: #4571c2;*/
+    background-image: var(--gradient-style);
     color: white;
     width: 100%;
     margin-top: 10px;

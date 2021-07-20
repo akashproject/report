@@ -1,274 +1,293 @@
-<div class="container">
-    <div mdbModal #contactModal="mdbModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" style="z-index: 9999">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="contactModal.hide()">
-            <span aria-hidden="true">×</span>
-          </button>
-                    <h4 class="modal-title w-100" id="myModalLabel">
-                        <span *ngIf="newContact === true">
-              {{ util.getString("Create Emargency Contact") }}
-            </span>
-                        <span *ngIf="newContact === false">
-              {{ util.getString("Update Emargency Contact") }}
-            </span>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="md-form">
-
-                        <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput />
+<div class="others_page_back pt pb">
+    <div class="container">
+        <div mdbModal #contactModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+            aria-labelledby="myBasicModalLabel" aria-hidden="true" style="z-index: 9999">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="contactModal.hide()">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title w-100" id="myModalLabel">
+                            <span *ngIf="newContact === true">
+                                {{ util.getString("Create Emargency Contact") }}
+                            </span>
+                            <span *ngIf="newContact === false">
+                                {{ util.getString("Update Emargency Contact") }}
+                            </span>
+                        </h4>
                     </div>
-                    <div class="md-form">
+                    <div class="modal-body">
+                        <div class="md-form">
 
-                        <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text" mdbInput />
+                            <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput />
+                        </div>
+                        <div class="md-form">
+
+                            <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text"
+                                mdbInput />
+                        </div>
+                        <div class="md-form">
+
+                            <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile"
+                                class="form-control" />
+                        </div>
+                        <div class="md-form">
+
+                            <input placeholder="Address" type="tel" [(ngModel)]="contactForm.address"
+                                class="form-control" />
+                        </div>
                     </div>
-                    <div class="md-form">
-
-                        <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" />
+                    <div class="modal-footer">
+                        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+                            (click)="contactModal.hide()" mdbWavesEffect>
+                            {{ util.getString("Close") }}
+                        </button>
+                        <button type="button" (click)="actionContact()" mdbBtn color="primary"
+                            class="relative waves-light" mdbWavesEffect>
+                            <span *ngIf="newContact === true">
+                                {{ util.getString("Save") }}
+                            </span>
+                            <span *ngIf="newContact === false">
+                                {{ util.getString("Update") }}
+                            </span>
+                        </button>
                     </div>
-                    <div class="md-form">
-
-                        <input placeholder="Address" type="tel" [(ngModel)]="contactForm.address" class="form-control" />
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="contactModal.hide()" mdbWavesEffect>
-                        {{ util.getString("Close") }}
-                    </button>
-                    <button type="button" (click)="actionContact()" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect>
-            <span *ngIf="newContact === true">
-              {{ util.getString("Save") }}
-            </span>
-            <span *ngIf="newContact === false">
-              {{ util.getString("Update") }}
-            </span>
-          </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" *ngIf="isEmailVerified != 'true'">
-        <div class="col-md-12 text-center">
-            <h3 class="alert alert-primary">
-                You need to verify you email addreress! click
-                <a routerLink="/verify-email">
-                    <strong>Here</strong>
-                </a>
-                to send OTP
-            </h3>
-        </div>
-    </div>
-
-    <div class="row" *ngIf="!isContactadded">
-        <div class="col-md-12 text-center">
-            <h3 class="alert alert-primary">
-                You need to add a Emargency contact to furthur proceed! click
-                <a (click)="gotoContact()">
-                    <strong>Here</strong>
-                </a>
-                to add
-            </h3>
-        </div>
-    </div>
-
-    <div class="head_title">
-        <label> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
-    </div>
-
-    <div class="row">
-        <div class="col-lg-3 col-md-12 sidemenu">
-            <div class="my_col" (click)="openProfile()">
-                <div class="icn_div">
-                    <mdb-icon fas icon="user-circle"></mdb-icon>
-                </div>
-                <div class="right_div">
-                    <label class="title_lbl">
-            {{ util.getString("Edit Profile") }}
-          </label>
-                </div>
-            </div>
-
-            <div class="my_col" (click)="gotoContact()">
-                <div class="icn_div">
-                    <mdb-icon fas icon="user-circle"></mdb-icon>
-                </div>
-                <div class="right_div">
-                    <label class="title_lbl">
-            {{ util.getString("Emargency Contact") }}
-          </label>
-                </div>
-            </div>
-
-            <div class="my_col" (click)="gotoPassword()">
-                <div class="icn_div">
-                    <mdb-icon fas icon="user-circle"></mdb-icon>
-                </div>
-                <div class="right_div">
-                    <label class="title_lbl">
-            {{ util.getString("Change Password") }}
-          </label>
-                </div>
-            </div>
-
-            <div class="my_col" (click)="goTobusiness()">
-                <div class="icn_div">
-                    <mdb-icon fas icon="map-marker-alt"></mdb-icon>
-                </div>
-
-                <div class="right_div">
-                    <label class="title_lbl">
-            {{ util.getString("Investment Details") }}
-          </label>
-                </div>
-            </div>
-
-            <div class="my_col" (click)="logout()">
-                <div class="icn_div">
-                    <mdb-icon fas icon="lock"></mdb-icon>
-                </div>
-                <div class="right_div">
-                    <label class="title_lbl"> {{ util.getString("Logout") }} </label>
                 </div>
             </div>
         </div>
 
-        <div class="col-lg-9 col-md-12">
-            <!-- User Informations -->
-            <div class="row user_div" *ngIf="currentDiv === 1">
-                <div class="head_title">
-                    <label> Update Your Profile </label>
+
+
+        <div class="alert alert-danger verify_alert" role="alert" *ngIf="isEmailVerified != 'true'">
+            You need to verify you email addreress! click
+            <a routerLink="/verify-email">
+                <b>Here</b>
+            </a>
+            to send OTP
+        </div>
+
+        <div class="alert alert-danger verify_alert" role="alert" *ngIf="!isContactadded">
+            You need to add a Emargency contact to furthur proceed! click
+            <a (click)="gotoContact()">
+                <strong>Here</strong>
+            </a>
+            to add
+        </div>
+
+        
+        <div class="main_edit_area">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 sidemenu">
+                    <h3>{{ util.getString("Hi, ") }} {{ profileForm.full_name }} </h3>
+                    <ul class="left_list" >
+                        <li class="d-flex align-items-center" (click)="openProfile()">
+                            <mdb-icon fas icon="user-circle"></mdb-icon>
+                            {{ util.getString("Edit Profile") }}
+                        </li>
+                        <li class="d-flex align-items-center phone_ro" (click)="gotoContact()">
+                            <mdb-icon fas  icon="phone"></mdb-icon>
+                            {{ util.getString("Emargency Contact") }}
+                        </li>
+                        <li class="d-flex align-items-center" (click)="gotoPassword()">
+                            <mdb-icon fas icon="user-circle"></mdb-icon>
+                            {{ util.getString("Change Password") }}
+                        </li>
+                        <li class="d-flex align-items-center" (click)="goTobusiness()">
+                            <mdb-icon fas icon="user-circle"></mdb-icon>
+                            {{ util.getString("Investment Details") }}
+                        </li>
+                        <li class="d-flex align-items-center" (click)="logout()">
+                            <mdb-icon fas icon="lock"></mdb-icon>
+                            {{ util.getString("Logout") }}
+                        </li>
+                    </ul>>
                 </div>
-                <div class="row form_div">
-                    <div class="col-lg-6 class_col">
-                        <input type="text" placeholder="First Name" [(ngModel)]="profileForm.full_name" class="form-control" (ngModelChange)="formValidation()" />
+    
+                <div class="col-lg-9 col-md-12">
+                    <!-- User Informations -->
+                    <div class="user_div" *ngIf="currentDiv === 1">
+                        <h3>Update Your Profile</h3>
+                        <div class="row form_div main_form">
+                            <div class="col-lg-6">
+                                <div class="inner-addon left-addon">
+                                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                                    <input type="text" placeholder="First Name" [(ngModel)]="profileForm.full_name" class="form-control" (ngModelChange)="formValidation()" />
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="inner-addon left-addon">
+                                    <mdb-icon fas icon="envelope"></mdb-icon>
+                                    <input type="email" placeholder="Email" [(ngModel)]="profileForm.email" class="form-control" (ngModelChange)="formValidation()" />
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="inner-addon left-addon">
+                                    <mdb-icon fas icon="phone"></mdb-icon>
+                                    <input placeholder="Phone number" type="tel" [(ngModel)]="profileForm.mobile" class="form-control" (ngModelChange)="formValidation()" />
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="inner-addon left-addon">
+                                    <textarea placeholder="Address" [(ngModel)]="profileForm.address" class="form-control" (ngModelChange)="formValidation()"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="col-12">
+                                <div class="submitBtn">
+                                    <button type="button" (click)="sendVerificationOtp()" mdbWavesEffect mdbBtn class="btn custom" *ngIf="form_validate">
+                        {{ util.getString("Update Profile") }}
+                      </button>
+                                    <button type="button" mdbWavesEffect mdbBtn class="btn custom" disabled="disabled" *ngIf="!form_validate">
+                        {{ util.getString("Update Profile") }}
+                      </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6 class_col">
-                        <input type="email" placeholder="Email" [(ngModel)]="profileForm.email" class="form-control" (ngModelChange)="formValidation()" />
+                    <!-- User Informations -->
+                    <div class="user_div" *ngIf="currentDiv === 5">
+                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
+                            <label> Verify One time password </label>
+                        </div>
+                        <div class="row form_div" *ngIf="showOtp">
+                            <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_email != ''">
+                                <label *ngIf="hidden_otp_value_email != ''">Email Verification Otp:
+                    </label>
+                                <input type="text" placeholder="One time passwoord" [(ngModel)]="otp_value_email" class="form-control" />
+                            </div>
+                            <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_mobile != ''">
+                                <label *ngIf="hidden_otp_value_mobile != ''">Mobile Verification Otp:
+                    </label>
+                                <input placeholder="One time passwoord" type="text" [(ngModel)]="otp_value_mobile" class="form-control" />
+                            </div>
+                            <div class="col-12">
+                                <div class="submitBtn">
+                                    <button type="button" (click)="verifyOtp()" mdbWavesEffect mdbBtn class="btn">
+                        {{ util.getString("Verify otp") }}
+                      </button>
+                                    <label class="bottom_lbl" (click)="sendVerificationOtp(true)">
+                        {{ util.getString("Resend Otp") }}
+                      </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6 class_col">
-                        <input placeholder="Phone number" type="tel" [(ngModel)]="profileForm.mobile" class="form-control" (ngModelChange)="formValidation()" />
+                    <!-- Business Informations -->
+                    <div *ngIf="currentDiv === 2">
+                        <div class="addNewBtn">
+                            <button type="button" (click)="addnewInvestment()" mdbWavesEffect mdbBtn class="btn">{{ util.getString("Add Investments") }}</button>
+                        </div>
+                        <div class="my_col_address" *ngFor="let item of myaddress">
+                            <label class="bold_lbl2">{{ item.title }}</label>
+        
+                            <label class="small_lbl">{{ item.house }} - {{ item.landmark }} - {{ item.address }}</label>
+        
+                            <div class="action_div">
+                                <label (click)="updateAddress(item)">
+                                {{ util.getString("Edit Address") }}
+                                </label>
+                                        <label (click)="deleteAddress(item)">{{ util.getString("Delete Address") }}
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-6 class_col">
-                        <textarea placeholder="Address" [(ngModel)]="profileForm.address" class="form-control" (ngModelChange)="formValidation()"></textarea>
+                    <!-- Change Password -->
+                    <div class="user_div" *ngIf="currentDiv === 3">
+                        <h3>Update Your Password</h3>
+                        
+                        <div class="row form_div">
+                            <div class="col-lg-12">
+                                <div class="inner-addon left-addon">
+                                     <mdb-icon fas icon="user-circle"></mdb-icon>
+                                    <input type="password" placeholder="Old Password" [(ngModel)]="changePasswordForm.old_password" class="form-control" (ngModelChange)="passwordFormValidation()" />
+                                </div>
+                               
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="inner-addon left-addon">
+                                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                                    <input type="password" placeholder="New Password" [(ngModel)]="changePasswordForm.password" class="form-control" (ngModelChange)="passwordFormValidation()" />
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="inner-addon left-addon">
+                                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                                    <input placeholder="Confirm Password" type="password" [(ngModel)]="c_password" class="form-control" (ngModelChange)="passwordFormValidation()" />
+                                </div>
+                                
+                            </div>
+                            <div class="col-12">
+                                <div class="submitBtn">
+                                    <button type="button" (click)="updatePassword()" class="btn custom" *ngIf="password_validate">
+                            Update Password
+                        </button>
+                                    <button type="button" class="btn custom" disabled="disabled" *ngIf="!password_validate">
+                            Update Password
+                        </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-12">
-                        <div class="submitBtn">
-                            <button type="button" (click)="sendVerificationOtp()" mdbWavesEffect mdbBtn class="btn" *ngIf="form_validate">
-                {{ util.getString("Update Profile") }}
-              </button>
-                            <button type="button" mdbWavesEffect mdbBtn class="btn" disabled="disabled" *ngIf="!form_validate">
-                {{ util.getString("Update Profile") }}
-              </button>
+                    <!-- Business Informations -->
+                    <div class="user_div" *ngIf="currentDiv === 4">
+                        <div class="d-flex justify-content-between">
+                            <h3>Emargency Contact</h3>
+                            <div class="add_button" *ngIf="myContacts.length < 2">
+                                <h3 (click)="addNewContact()" mdbWavesEffect>{{ util.getString("+ Add Emargency Contact") }}</h3>
+                            </div>
+                        </div>
+                        
+                        <div class="emer_section" *ngIf="myContacts.length > 0">
+                            <ul class="emar_details_list" *ngFor="let item of myContacts; let i = index">
+                                <li class="d-flex">
+                                    <div class="title">
+                                        <mdb-icon fas icon="user-circle"></mdb-icon>
+                                        Name:
+                                    </div>
+                                    <div class="details">{{ item.name }}</div>
+                                </li>
+                                <li class="d-flex">
+                                    <div class="title">
+                                        <mdb-icon fas icon="phone"></mdb-icon>
+                                        Mobile:
+                                    </div>
+                                    <div class="details">{{ item.mobile }}</div>
+                                </li>
+                                <li class="d-flex">
+                                    <div class="title">
+                                        <mdb-icon fas icon="envelope"></mdb-icon>
+                                        Mobile:
+                                    </div>
+                                    <div class="details">{{ item.email }}</div>
+                                </li>
+                                <li class="d-flex">
+                                    <div class="title">
+                                        <mdb-icon fas icon="envelope"></mdb-icon>
+                                        Address:
+                                    </div>
+                                    <div class="details">{{ item.address }}</div>
+                                </li>
+                                <li>
+                                    <div class="action_div d-flex align-items-center">
+                                        <button type="button" class="btn custom" (click)="updateContact(item)">{{ util.getString("Edit Contact") }}</button>
+                                        <label *ngIf="i <= 0"> </label>
+                                        <button type="button" class="btn custom" (click)="deleteContact(item)" *ngIf="i > 0">{{ util.getString("Delete Contact") }}</button>
+                                        
+                                    </div>
+                                </li>
+                            </ul>
+                           
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- User Informations -->
-            <div class="row user_div" *ngIf="currentDiv === 5">
-                <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                    <label> Verify One time password </label>
-                </div>
-                <div class="row form_div" *ngIf="showOtp">
-                    <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_email != ''">
-                        <label *ngIf="hidden_otp_value_email != ''">Email Verification Otp:
-            </label>
-                        <input type="text" placeholder="One time passwoord" [(ngModel)]="otp_value_email" class="form-control" />
-                    </div>
-                    <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_mobile != ''">
-                        <label *ngIf="hidden_otp_value_mobile != ''">Mobile Verification Otp:
-            </label>
-                        <input placeholder="One time passwoord" type="text" [(ngModel)]="otp_value_mobile" class="form-control" />
-                    </div>
-                    <div class="col-12">
-                        <div class="submitBtn">
-                            <button type="button" (click)="verifyOtp()" mdbWavesEffect mdbBtn class="btn">
-                {{ util.getString("Verify otp") }}
-              </button>
-                            <label class="bottom_lbl" (click)="sendVerificationOtp(true)">
-                {{ util.getString("Resend Otp") }}
-              </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Business Informations -->
-            <div *ngIf="currentDiv === 2">
-                <div class="addNewBtn">
-                    <button type="button" (click)="addnewContact()" mdbWavesEffect mdbBtn class="btn">
-            {{ util.getString("Add Business") }}
-          </button>
-                </div>
-                <div class="my_col_address" *ngFor="let item of myaddress">
-                    <label class="bold_lbl2">{{ item.title }}</label>
-
-                    <label class="small_lbl">{{ item.house }} - {{ item.landmark }} - {{ item.address }}</label
-          >
-
-          <div class="action_div">
-            <label (click)="updateAddress(item)">
-              {{ util.getString("Edit Address") }}
-            </label>
-                    <label (click)="deleteAddress(item)">{{ util.getString("Delete Address") }}
-            </label>
-                </div>
-            </div>
         </div>
-        <!-- Change Password -->
-        <div class="row user_div" *ngIf="currentDiv === 3">
-            <div class="head_title">
-                <label> Update Your Password </label>
-            </div>
-            <div class="row form_div">
-                <div class="col-lg-12 class_col">
-                    <input type="password" placeholder="Old Password" [(ngModel)]="changePasswordForm.old_password" class="form-control" (ngModelChange)="passwordFormValidation()" />
-                </div>
-                <div class="col-lg-12 class_col">
-                    <input type="password" placeholder="New Password" [(ngModel)]="changePasswordForm.password" class="form-control" (ngModelChange)="passwordFormValidation()" />
-                </div>
-                <div class="col-lg-12 class_col">
-                    <input placeholder="Confirm Password" type="password" [(ngModel)]="c_password" class="form-control" (ngModelChange)="passwordFormValidation()" />
-                </div>
-                <div class="col-12">
-                    <div class="submitBtn">
-                        <button type="button" (click)="updatePassword()" class="btn" *ngIf="password_validate">
-                Update Password
-              </button>
-                        <button type="button" class="btn" disabled="disabled" *ngIf="!password_validate">
-                Update Password
-              </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Business Informations -->
-        <div *ngIf="currentDiv === 4">
-            <div class="addNewBtn" *ngIf="myContacts.length < 2">
-                <button type="button" (click)="addNewContact()" mdbWavesEffect mdbBtn class="btn">
-            {{ util.getString("Add Emargency Contact") }}
-          </button>
-            </div>
-            <div *ngIf="myContacts.length > 0">
-                <div class="my_col_address" *ngFor="let item of myContacts let i=index">
-                    <label class="bold_lbl2">Name : {{ item.name }}</label>
-                    <label class="bold_lbl2">Mobile : {{ item.mobile }}</label>
-                    <label class="bold_lbl2">Email : {{ item.email }}</label>
-                    <label class="bold_lbl2">Address : {{ item.address }}</label>
 
-                    <div class="action_div">
-                        <label (click)="updateContact(item)">
-                {{ util.getString("Edit Contact") }}
-              </label>
-                        <label *ngIf="i <= 0">
-              </label>
-                        <label (click)="deleteContact(item)" *ngIf="i > 0">{{ util.getString("Delete Contact") }}
-              </label>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </div>
-</div>
 </div>

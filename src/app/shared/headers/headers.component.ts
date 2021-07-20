@@ -22,9 +22,9 @@ export class HeadersComponent implements OnInit {
   langs: any[] = [];
   active: boolean = false;
   constructor(
-    private router: Router,
+    public router: Router,
     public util: UtilService,
-    public api: ApiService
+    public api: ApiService,
   ) {}
 
   ngOnInit(): void {}

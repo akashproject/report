@@ -199,7 +199,8 @@ label {
       justify-content: center;
       align-items: center;
       .btn {
-        background: #4571c2;
+         /* background: #4571c2;*/
+       background-image: var(--gradient-style);
         color: white;
         margin-top: 10px;
         margin-bottom: 10px;

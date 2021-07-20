@@ -237,3 +237,38 @@ label {
     }
   }
 }
+
+
+/* style glyph */
+.inner-addon .fas {
+  position: absolute;
+  padding: 0;
+  pointer-events: none;
+  bottom: 0;
+  margin: auto;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/* align glyph */
+.left-addon .fas {
+  left: 10px;
+  top: 0;
+}
+.right-addon .fas {
+  right: 0px;
+}
+
+.form-control{
+  padding-left: 50px !important;
+}
+textarea{
+  &.form-control{
+    height: 200px;
+    resize: none;
+    padding-top: 20px;
+  }
+}

@@ -138,26 +138,53 @@
     </div>
   </div>
 </header>-->
-
-<header>
+<ng-container *ngIf="router.url === '/home' || router.url === '/'; then homeheader; else mainheader">
+</ng-container>
+<ng-template #homeheader>
+  <header>
     <div class="container d-flex align-items-center justify-content-between">
-        <a href="" class="logo"><img src="assets/images/logo.png" alt=""></a>
-        <div class="hamburger" (click)="open_menu()"></div>
-        <div class="right d-flex align-items-center" [class.active]="active">
-            <div class="cross" (click)="close_menu()"></div>
-            <ul class="menu d-flex">
-                <li><a routerLink="/">home</a></li>
-                <li><a href="">about us</a></li>
-                <li><a href="">our services</a></li>
-                <li><a href="">contact us</a></li>
-            </ul>
-            <ul class="social d-flex align-items-center">
-                <li><a href=""><span class="fa fa-whatsapp"></span></a></li>
-                <li><a href=""><span class="fa fa-facebook"></span></a></li>
-                <li><a href=""><span class="fa fa-linkedin"></span></a></li>
-                <li><a href=""><span class="fa fa-twitter"></span></a></li>
-            </ul>
-        </div>
+      <a href="" class="logo"><img src="assets/images/logo.png" alt=""></a>
+      <div class="hamburger" (click)="open_menu()"></div>
+      <div class="right d-flex align-items-center" [class.active]="active">
+        <div class="cross" (click)="close_menu()"></div>
+        <ul class="menu d-flex">
+          <li><a routerLink="/">home</a></li>
+          <li><a href="">about us</a></li>
+          <li><a href="">our services</a></li>
+          <li><a href="">contact us</a></li>
+        </ul>
+        <ul class="social d-flex align-items-center">
+          <li><a href=""><span class="fa fa-whatsapp"></span></a></li>
+          <li><a href=""><span class="fa fa-facebook"></span></a></li>
+          <li><a href=""><span class="fa fa-linkedin"></span></a></li>
+          <li><a href=""><span class="fa fa-twitter"></span></a></li>
+        </ul>
+      </div>
 
     </div>
-</header>
+  </header>
+</ng-template>
+<ng-template #mainheader>
+  <header class="others_page">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="" class="logo"><img src="assets/images/logo.png" alt=""></a>
+      <div class="hamburger" (click)="open_menu()"></div>
+      <div class="right d-flex align-items-center" [class.active]="active">
+        <div class="cross" (click)="close_menu()"></div>
+        <ul class="menu d-flex">
+          <li><a routerLink="/">home</a></li>
+          <li><a href="">about us</a></li>
+          <li><a href="">our services</a></li>
+          <li><a href="">contact us</a></li>
+        </ul>
+        <ul class="social d-flex align-items-center">
+          <li><a href=""><span class="fa fa-whatsapp"></span></a></li>
+          <li><a href=""><span class="fa fa-facebook"></span></a></li>
+          <li><a href=""><span class="fa fa-linkedin"></span></a></li>
+          <li><a href=""><span class="fa fa-twitter"></span></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </header>
+</ng-template>

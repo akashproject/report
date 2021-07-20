@@ -47,6 +47,41 @@ label {
     }
   }
 }
+.form-control{
+  padding-left: 50px !important;
+}
+textarea{
+  &.form-control{
+    height: 200px;
+    resize: none;
+    padding-top: 20px;
+  }
+}
+.inner-addon{
+  position: relative;
+}
+/* style glyph */
+.inner-addon .fas {
+  position: absolute;
+  padding: 0;
+  pointer-events: none;
+  bottom: 0;
+  margin: auto;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+/* align glyph */
+.left-addon .fas {
+  left: 10px;
+  top: 0;
+}
+.right-addon .fas {
+  right: 0px;
+}
 
 .head_title {
   display: flex;
@@ -174,15 +209,26 @@ label {
     .submitBtn {
       display: flex;
       flex-direction: row;
-      justify-content: center;
+      justify-content: left;
       align-items: center;
       .btn {
-        background: #4571c2;
+       /* background: #4571c2;*/
+       background-image: var(--gradient-style);
         color: white;
         margin-top: 10px;
         margin-bottom: 10px;
+        
       }
     }
+  }
+}
+
+
+
+.add_button{
+  cursor: pointer;
+  .btn.custom{
+    width: 236px !important;
   }
 }
 
