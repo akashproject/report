@@ -1,34 +1,34 @@
-<div class="container ">
-    <div class="row" *ngIf="isEmailVerified != 'true'">
-      <div class="col-md-12 text-center">
-        <h3 class="alert alert-primary">
-          You need to verify you email addreress! click
-          <a routerLink="/verify-email">
-            <strong>Here</strong>
-          </a>
-          to send OTP
-        </h3>
-      </div>
+<div class="others_page_back pt pb">
+  <div class="container ">
+    <div class="alert alert-danger verify_alert" role="alert" *ngIf="isEmailVerified != 'true'">
+      You need to verify you email addreress! click
+      <a routerLink="/verify-email">
+        <b>Here</b>
+      </a>
+      to send OTP
     </div>
-  
-    <div class="head_title">
-      <label> <mdb-icon fas icon="long-arrow-alt-left" style="color: #1e8e1e;" routerLink="/investments"></mdb-icon> {{ util.getString("Hi") }} {{ profileForm.full_name }} </label>
+    <div class="d-flex align-items-center justify-content-between">
+      <h3>
+        <mdb-icon fas icon="long-arrow-alt-left" style="color: #1e8e1e;" routerLink="/investments"></mdb-icon> {{
+        util.getString("Hi") }} {{ profileForm.full_name }}
+      </h3>
+      <a class="btn custom" href="{{uservault}}investment_{{profileForm.id}}.csv" download> {{
+        util.getString("Download") }} </a>
     </div>
-    <div class="addNewBtn col-lg-12">
-      <a class="btn" href="{{uservault}}investment_{{profileForm.id}}.csv" download>  {{ util.getString("Download") }} </a>
+
+    <div class="new_details_add_section" *ngFor="let items of investmentsForm | keyvalue">
+      <h4>{{items.key}}</h4>
+      <table class="table table-striped" *ngFor="let item of items.value | keyvalue">
+        <tbody>
+          <tr *ngFor="let fields of item.value | keyvalue">
+            <td>{{ fields.key }}</td>
+            <td>{{ fields.value }}</td>
+          </tr>
+        </tbody>
+        
+      </table>
+      
     </div>
-    <div class="row page_content_wraper">
-      <div class="col-lg-12 col-md-12">
-        <div class="row user_div" >
-          <div class="col-12" *ngFor="let items of investmentsForm | keyvalue">
-            <div class="prev_heading">{{items.key}}</div>
-            <div class="row" style="padding-bottom: 15px;" *ngFor="let item of items.value | keyvalue">
-              <div class="col-lg-3 class_col" *ngFor="let fields of item.value | keyvalue">
-               <b>{{ fields.key }} :</b>  {{ fields.value }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
+  </div>
 </div>

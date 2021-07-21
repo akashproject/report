@@ -90,54 +90,53 @@
                     <div class="user_div" *ngIf="currentDiv === 1">
                         <div class="d-flex justify-content-between">
                             <h3>Personal Details</h3>
-                            <button type="button" (click)="previewRecords()" mdbWavesEffect mdbBtn class="btn custom">
+                            <!--<button type="button" (click)="previewRecords()" mdbWavesEffect mdbBtn class="btn custom all">
                                 {{ util.getString("Preview And Export") }}
-                              </button>
+                              </button>-->
+                              <h3 (click)="previewRecords()" class="pointer">{{ util.getString("+ Preview And Export") }}</h3>
                         </div>
         
-                        <div class="col-12">
-                            <div class="row form_div main_form">
-                                <div class="col-lg-6">
-                                    <div class="inner-addon left-addon">
-                                        <mdb-icon fas icon="user-circle"></mdb-icon>
-                                        <input disabled="disabled" type="text" placeholder="First Name" [(ngModel)]="profileForm.full_name" class="form-control" />
-                                    </div>
-                                    
+                        <div class="row form_div main_form">
+                            <div class="col-lg-6">
+                                <label for="pan" class="input_label">Your Name</label>
+                                <div class="inner-addon left-addon">
+                                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                                    <input disabled="disabled" type="text" placeholder="First Name" [(ngModel)]="profileForm.full_name" class="form-control" />
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="inner-addon left-addon">
-                                        <textarea disabled="disabled" placeholder="Address" [(ngModel)]="profileForm.address" class="form-control"></textarea>
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="inner-addon left-addon">
-                                        <label for="pan" class="input_label">Pan card (required)</label>
-                                        <mdb-icon fas icon="user-circle" style="top:23px"></mdb-icon>
-                                        <input type="text" id="pan" required placeholder="Pan card" [(ngModel)]="investmentsForm.user.pan" class="form-control" />
-                                    </div>
-                                    
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="inner-addon left-addon">
-                                        <label for="pan" class="input_label">Adhaar card (optional)</label>
-                                        <mdb-icon fas icon="user-circle" style="top:23px"></mdb-icon>
-                                        <input type="text" placeholder="Adhaar card" [(ngModel)]="investmentsForm.user.adhaar" class="form-control" />
-                                    </div>
-                                    
-                                </div>
-        
+                                
                             </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="submitBtn addNewBtn">
-                                <button type="button" mdbWavesEffect mdbBtn class="btn custom" (click)="formValidation(2)">  {{ util.getString("Save and continue") }}
-                                </button>
+                            <div class="col-lg-6">
+                                <label for="pan" class="input_label">Pan card (required)</label>
+                                <div class="inner-addon left-addon">
+                                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                                    <input type="text" id="pan" required placeholder="Pan card" [(ngModel)]="investmentsForm.user.pan" class="form-control" />
+                                </div>
+                                
                             </div>
+                            <div class="col-lg-12">
+                                <label for="pan" class="input_label">Adhaar card (optional)</label>
+                                <div class="inner-addon left-addon">
+                                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                                    <input type="text" placeholder="Adhaar card" [(ngModel)]="investmentsForm.user.adhaar" class="form-control" />
+                                </div>
+                                
+                            </div>
+                            <div class="col-lg-12">
+                               
+                                <div class="inner-addon left-addon">
+                                    <textarea disabled="disabled" placeholder="Address" [(ngModel)]="profileForm.address" class="form-control"></textarea>
+                                </div>
+                                
+                            </div>
+                            
+    
                         </div>
-                        <h3>margency contacts</h3>
+                        <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(2)">  {{ util.getString("Save and continue") }}
+                        </button>
                         
-                        <div class="emer_section" *ngIf="emContacts.length > 0">
+                        
+                        <div class="emer_section second" *ngIf="emContacts.length > 0">
+                            <h3>Emargency Contacts</h3>
                             <ul class="emar_details_list" *ngFor="let item of emContacts; let i = index">
                                 <li class="d-flex">
                                     <div class="title">
@@ -175,810 +174,590 @@
                         
                     </div>
                     <!-- Company details -->
-                    <div class="row user_div" *ngIf="currentDiv === 2">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-8">
-                                <div class="inner_header">
-                                    Company contact details in Emergency
-                                </div>
-                            </div>
-                            <div class="addNewBtn col-lg-4">
-                                <button type="button" (click)="addNewCompany()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.company; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Supervisor Name" required [(ngModel)]="investmentsForm.company[i].supervisor_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" required placeholder="Supervisor Contact no" [(ngModel)]="investmentsForm.company[i].supervisor_contact_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Office friend's Name" [(ngModel)]="investmentsForm.company[i].office_friend_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" placeholder="Friend's Contact no." [(ngModel)]="
-                            investmentsForm.company[i].office_friend_contact_no
-                          " class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="HR Name" [(ngModel)]="investmentsForm.company[i].hr_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" placeholder="HR Contact No." [(ngModel)]="investmentsForm.company[i].hr_contact_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('company',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(3)">  {{ util.getString("Save and continue") }}
-                                            </button>
+                    <div class="user_div company_details" *ngIf="currentDiv === 2">
+                        <h3>Investment Details</h3>
+                        <h4>Company contact details in Emergency</h4>
+                            <button type="button" (click)="addNewCompany()" mdbWavesEffect mdbBtn class="btn custom">
+                                {{ util.getString("Add New Record") }}
+                              </button>
+                              <div class="add_new_record_form" *ngFor="let item of investmentsForm.company; let i = index">
+                                    <h3>SL No #{{ i+1 }}</h3>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" placeholder="Supervisor Name" required [(ngModel)]="investmentsForm.company[i].supervisor_name" class="form-control" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="number" required placeholder="Supervisor Contact no" [(ngModel)]="investmentsForm.company[i].supervisor_contact_no" class="form-control" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" placeholder="Office friend's Name" [(ngModel)]="investmentsForm.company[i].office_friend_name" class="form-control" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="number" placeholder="Friend's Contact no." [(ngModel)]="
+                        investmentsForm.company[i].office_friend_contact_no
+                      " class="form-control" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" placeholder="HR Name" [(ngModel)]="investmentsForm.company[i].hr_name" class="form-control" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="number" placeholder="HR Contact No." [(ngModel)]="investmentsForm.company[i].hr_contact_no" class="form-control" />
+                                        </div>
+                                        <div class="col-md-12">
+                                            <input type="number" placeholder="HR Contact No." [(ngModel)]="investmentsForm.company[i].hr_contact_no" class="form-control" />
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <div class="buttions d-flex align-items-center">
+                                        <button type="button" class="btn custom all" (click)="removeElement('company',i)">
+                                            {{ util.getString("Delete") }}
+                                        </button>
+                                        <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(3)">  {{ util.getString("Save and continue") }}
+                                        </button>
+                                    </div>
+                                    
+                              </div>
                     </div>
         
                     <!-- Mediclaim Informations -->
-                    <div class="row user_div" *ngIf="currentDiv === 3">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    Medi Claim Policy Details
-                                </div>
-                            </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addMedPolicy()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.med_policy; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.med_policy[i].policy_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Previous Policy No" [(ngModel)]="investmentsForm.med_policy[i].previous_policy_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Name of all persons who are covered" [(ngModel)]="
-                            investmentsForm.med_policy[i].persons_who_are_covered
-                          " class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.med_policy[i].sum_insured" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Renewal Date" [(ngModel)]="investmentsForm.med_policy[i].renewal_date" class="form-control" required />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('med_policy',i)">
-                            {{ util.getString("X") }}
+                    <div class="user_div company_details" *ngIf="currentDiv === 3">
+                        <h3>Investment Details</h3>
+                        <h4>Medi Claim Policy Details</h4>
+                        <button type="button" (click)="addMedPolicy()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
                           </button>
-                                    </div>
+                          <div class="add_new_record_form" *ngFor="let item of investmentsForm.med_policy; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.med_policy[i].policy_no" class="form-control" />
                                 </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(4)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Previous Policy No" [(ngModel)]="investmentsForm.med_policy[i].previous_policy_no" class="form-control" />
                                 </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Name of all persons who are covered" [(ngModel)]="
+                        investmentsForm.med_policy[i].persons_who_are_covered
+                      " class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.med_policy[i].sum_insured" class="form-control" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <input type="text" placeholder="Renewal Date" [(ngModel)]="investmentsForm.med_policy[i].renewal_date" class="form-control" required />
+                                </div>
+                                
                             </div>
-                        </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('med_policy',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(4)">  {{ util.getString("Save and continue") }}
+                                </button>
+                            </div>
+                          </div>
                     </div>
         
                     <!-- Insurance Informations -->
-                    <div class="row user_div" *ngIf="currentDiv === 4">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    Insurance - LIC Policy Details
+                    <div class="user_div company_details" *ngIf="currentDiv === 4">
+                        <h3>Investment Details</h3>
+                        <h4>Insurance - LIC Policy Details</h4>
+                        <button type="button" (click)="addInsurancePolicy()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                          </button>
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.insurance; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Policy Holder Name" [(ngModel)]="investmentsForm.insurance[i].policy_no" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Policy Company Name" [(ngModel)]="investmentsForm.insurance[i].policy_company_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.insurance[i].policy_holder_ame" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Nominee Name" [(ngModel)]="investmentsForm.insurance[i].nominee_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Insurance agent Name" [(ngModel)]="
+                        investmentsForm.insurance[i].insurance_agent_name
+                      " class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="number" placeholder="Insurance Agent contact No" [(ngModel)]="investmentsForm.insurance[i].insurance_agent_contact_no" class="form-control" />
+                                </div>
+                                <div class="col-lg-12">
+                                    <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.insurance[i].maturity_date" class="form-control" required />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addInsurancePolicy()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.insurance; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Policy Holder Name" [(ngModel)]="investmentsForm.insurance[i].policy_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Policy Company Name" [(ngModel)]="investmentsForm.insurance[i].policy_company_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.insurance[i].policy_holder_ame" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Nominee Name" [(ngModel)]="investmentsForm.insurance[i].nominee_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Insurance agent Name" [(ngModel)]="
-                            investmentsForm.insurance[i].insurance_agent_name
-                          " class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" placeholder="Insurance Agent contact No" [(ngModel)]="investmentsForm.insurance[i].insurance_agent_contact_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.insurance[i].maturity_date" class="form-control" required />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('insurance',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(5)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('insurance',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(5)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+                       
                     </div>
         
                     <!-- Vehicle Insurance Informations -->
-                    <div class="row user_div" *ngIf="currentDiv === 5">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    Vehicle Insurance Policy Details
+                    <div class="user_div company_details" *ngIf="currentDiv === 5">
+                        <h3>Investment Details</h3>
+                        <h4>Vehicle Insurance Policy Details</h4>
+                        <button type="button" (click)="addVehicleInsurancePolicy()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.vehicle_insurance; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.vehicle_insurance[i].policy_no" class="form-control" />
                                 </div>
+                                <div class="col-lg-6">
+                                    <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.vehicle_insurance[i].sum_insured" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Nominee Name" [(ngModel)]="investmentsForm.vehicle_insurance[i].nominee_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.vehicle_insurance[i].maturity_date" class="form-control" required/>
+                                </div>
+                                
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addVehicleInsurancePolicy()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.vehicle_insurance; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.vehicle_insurance[i].policy_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.vehicle_insurance[i].sum_insured" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Nominee Name" [(ngModel)]="investmentsForm.vehicle_insurance[i].nominee_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.vehicle_insurance[i].maturity_date" class="form-control" required/>
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('vehicle_insurance',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(6)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('vehicle_insurance',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(6)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+                       
                     </div>
         
                     <!-- FIRE / BURGLARY INSURANCE Informations -->
-                    <div class="row user_div" *ngIf="currentDiv === 6">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    FIRE / BURGLARY INSURANCE DETAIL
+                    <div class="user_div company_details" *ngIf="currentDiv === 6">
+                        <h3>Investment Details</h3>
+                        <h4> FIRE / BURGLARY INSURANCE DETAIL</h4>
+                        <button type="button" (click)="addFireInsurancePolicy()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.fire_insurance; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Details of the property which is insured" [(ngModel)]="investmentsForm.fire_insurance[i].property_insured" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.fire_insurance[i].policy_no" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.fire_insurance[i].sum_insured" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.fire_insurance[i].maturity_date" class="form-control" required />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Risks covered" [(ngModel)]="investmentsForm.fire_insurance[i].risks_covered" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Renewal Date" [(ngModel)]="investmentsForm.fire_insurance[i].renewal_date" class="form-control" required/>
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addFireInsurancePolicy()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.fire_insurance; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Details of the property which is insured" [(ngModel)]="investmentsForm.fire_insurance[i].property_insured" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Policy No" [(ngModel)]="investmentsForm.fire_insurance[i].policy_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.fire_insurance[i].sum_insured" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.fire_insurance[i].maturity_date" class="form-control" required />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Risks covered" [(ngModel)]="investmentsForm.fire_insurance[i].risks_covered" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Renewal Date" [(ngModel)]="investmentsForm.fire_insurance[i].renewal_date" class="form-control" required/>
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('fire_insurance',i)">
-                                            {{ util.getString("X") }}
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(7)">
-                                                {{ util.getString("Save and continue") }}
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('fire_insurance',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(7)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
         
                     <!-- BANK ACCOUNTS -->
-                    <div class="row user_div" *ngIf="currentDiv === 7">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    BANK ACCOUNTS
+                    <div class="user_div company_details" *ngIf="currentDiv === 7">
+                        <h3>Investment Details</h3>
+                        <h4>  BANK ACCOUNTS</h4>
+                        <button type="button" (click)="addBankAccount()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.bank_account; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.bank_account[i].bank_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.bank_account[i].full_branch_address" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.bank_account[i].nominee_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Type of account" [(ngModel)]="investmentsForm.bank_account[i].account_type" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Last 4 digt of A/C number" [(ngModel)]="investmentsForm.bank_account[i].last_four_digt" class="form-control" required />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Full A/C number" [(ngModel)]="investmentsForm.bank_account[i].account_number" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Personal Banker Name" [(ngModel)]="investmentsForm.bank_account[i].banker_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Personal Banker Contact" [(ngModel)]="investmentsForm.bank_account[i].banker_contact" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addBankAccount()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.bank_account; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.bank_account[i].bank_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.bank_account[i].full_branch_address" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.bank_account[i].nominee_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Type of account" [(ngModel)]="investmentsForm.bank_account[i].account_type" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Last 4 digt of A/C number" [(ngModel)]="investmentsForm.bank_account[i].last_four_digt" class="form-control" required />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Full A/C number" [(ngModel)]="investmentsForm.bank_account[i].account_number" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Personal Banker Name" [(ngModel)]="investmentsForm.bank_account[i].banker_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Personal Banker Contact" [(ngModel)]="investmentsForm.bank_account[i].banker_contact" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('bank_account',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(8)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('bank_account',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(7)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
+                    
         
                     <!-- Fixed/Recurring/Company Deposit -->
-                    <div class="row user_div" *ngIf="currentDiv === 8">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    Fixed/Recurring/Company Deposit
+                    <div class="user_div company_details" *ngIf="currentDiv === 8">
+                        <h3>Investment Details</h3>
+                        <h4>Fixed/Recurring/Company Deposit</h4>
+                        <button type="button" (click)="addFixedDeposit()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.fixed_deposit; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.fixed_deposit[i].bank_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.fixed_deposit[i].full_branch_address" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.fixed_deposit[i].nominee_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <select required [(ngModel)]="investmentsForm.fixed_deposit[i].account_type" class="form-control" aria-label="Is the loan insured ">
+                                        <option value="" selected>Type of account</option>
+                                        <option value="FD">FD</option>
+                                        <option value="RD">RD</option>
+                                        </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Last 4 digt of A/C number" [(ngModel)]="investmentsForm.fixed_deposit[i].last_four_digt" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Full A/C number" [(ngModel)]="investmentsForm.fixed_deposit[i].account_number" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addFixedDeposit()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.fixed_deposit; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.fixed_deposit[i].bank_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.fixed_deposit[i].full_branch_address" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.fixed_deposit[i].nominee_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <select required [(ngModel)]="investmentsForm.fixed_deposit[i].account_type" class="form-control" aria-label="Is the loan insured ">
-                                            <option value="" selected>Type of account</option>
-                                            <option value="FD">FD</option>
-                                            <option value="RD">RD</option>
-                                            </select>
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Last 4 digt of A/C number" [(ngModel)]="investmentsForm.fixed_deposit[i].last_four_digt" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Full A/C number" [(ngModel)]="investmentsForm.fixed_deposit[i].account_number" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('fixed_deposit',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(9)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('fixed_deposit',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(8)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
+                   
         
                     <!-- SHARES/DEBENTURES/BONDS -->
-                    <div class="row user_div" *ngIf="currentDiv === 9">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    SHARES/DEBENTURES/BONDS
+                    <div class="user_div company_details" *ngIf="currentDiv === 9">
+                        <h3>Investment Details</h3>
+                        <h4>SHARES/DEBENTURES/BONDS</h4>
+                        <button type="button" (click)="addSharedBonds()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.shared_bonds; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Company name" [(ngModel)]="investmentsForm.shared_bonds[i].company_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <select [(ngModel)]="investmentsForm.shared_bonds[i].type" class="form-control" aria-label="Type">
+                      <option value="" selected>Type</option>
+                      <option value="Share or Debenture">Share or Debenture</option>
+                      <option value="Bond or Others">Bond or Others</option>
+                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Units hold" [(ngModel)]="investmentsForm.shared_bonds[i].units_hold" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input required type="number" placeholder="Demat A/C Number" [(ngModel)]="investmentsForm.shared_bonds[i].demat_number" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Demat A/C provider name" [(ngModel)]="investmentsForm.shared_bonds[i].demat_provider_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Demat A/C provider contact no." [(ngModel)]="investmentsForm.shared_bonds[i].demat_provider_contact_no" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addSharedBonds()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.shared_bonds; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Company name" [(ngModel)]="investmentsForm.shared_bonds[i].company_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <select [(ngModel)]="investmentsForm.shared_bonds[i].type" class="form-control" aria-label="Type">
-                          <option value="" selected>Type</option>
-                          <option value="Share or Debenture">Share or Debenture</option>
-                          <option value="Bond or Others">Bond or Others</option>
-                        </select>
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Units hold" [(ngModel)]="investmentsForm.shared_bonds[i].units_hold" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input required type="number" placeholder="Demat A/C Number" [(ngModel)]="investmentsForm.shared_bonds[i].demat_number" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Demat A/C provider name" [(ngModel)]="investmentsForm.shared_bonds[i].demat_provider_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Demat A/C provider contact no." [(ngModel)]="investmentsForm.shared_bonds[i].demat_provider_contact_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('shared_bonds',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(10)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('shared_bonds',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(9)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
-        
+
+                  
                     <!-- Locker Details -->
-                    <div class="row user_div" *ngIf="currentDiv === 10">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    Locker Details
+                    <div class="user_div company_details" *ngIf="currentDiv === 10">
+                        <h3>Investment Details</h3>
+                        <h4> Locker Details</h4>
+                        <button type="button" (click)="addlockerDetails()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.locker_details; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.locker_details[i].bank_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.locker_details[i].full_branch_address" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.locker_details[i].nominee_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Locker in the Name" [(ngModel)]="investmentsForm.locker_details[i].locker_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Locker No" [(ngModel)]="investmentsForm.locker_details[i].locker_number" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addlockerDetails()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.locker_details; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.locker_details[i].bank_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.locker_details[i].full_branch_address" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.locker_details[i].nominee_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Locker in the Name" [(ngModel)]="investmentsForm.locker_details[i].locker_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Locker No" [(ngModel)]="investmentsForm.locker_details[i].locker_number" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('locker_details',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(11)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('locker_details',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(10)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
+                  
         
                     <!-- PUBLIC PROVIDENT FUND (PPF) -->
-                    <div class="row user_div" *ngIf="currentDiv === 11">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    PUBLIC PROVIDENT FUND (PPF)
+                    <div class="user_div company_details" *ngIf="currentDiv === 11">
+                        <h3>Investment Details</h3>
+                        <h4>PUBLIC PROVIDENT FUND (PPF)</h4>
+                        <button type="button" (click)="addPpfDetails()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.public_provident_fund; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.public_provident_fund[i].bank_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.public_provident_fund[i].full_branch_address" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.public_provident_fund[i].nominee_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="number" required placeholder="Account number" [(ngModel)]="investmentsForm.public_provident_fund[i].account_number" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addPpfDetails()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.public_provident_fund; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.public_provident_fund[i].bank_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.public_provident_fund[i].full_branch_address" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.public_provident_fund[i].nominee_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" required placeholder="Account number" [(ngModel)]="investmentsForm.public_provident_fund[i].account_number" class="form-control" />
-                                    </div>
-        
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('public_provident_fund',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(12)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('public_provident_fund',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(11)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
         
                     <!-- UAN Details -->
-                    <div class="row user_div" *ngIf="currentDiv === 12">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    UAN Details
+                    <div class="user_div company_details" *ngIf="currentDiv === 12">
+                        <h3>Investment Details</h3>
+                        <h4>UAN Details</h4>
+                        <button type="button" (click)="addUan()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.uan_details; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="UAN No" [(ngModel)]="investmentsForm.uan_details[i].uan_number" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.uan_details[i].nominee_name" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addUan()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.uan_details; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="UAN No" [(ngModel)]="investmentsForm.uan_details[i].uan_number" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.uan_details[i].nominee_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('uan_details',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(13)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('uan_details',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(12)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
         
                     <!--  NPS account -->
-                    <div class="row user_div" *ngIf="currentDiv === 13">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    NPS account
+
+                    <div class="user_div company_details" *ngIf="currentDiv === 13">
+                        <h3>Investment Details</h3>
+                        <h4>NPS account</h4>
+                        <button type="button" (click)="addNpsAccount()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.nps_account; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input required type="text" placeholder="NPS account no" [(ngModel)]="investmentsForm.nps_account[i].nps_account_number" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.nps_account[i].nominee_name" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addNpsAccount()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.nps_account; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <input required type="text" placeholder="NPS account no" [(ngModel)]="investmentsForm.nps_account[i].nps_account_number" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.nps_account[i].nominee_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('nps_account',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(14)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('nps_account',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(13)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
         
                     <!-- Other Investments -->
-                    <div class="row user_div" *ngIf="currentDiv === 14">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    Other Investments
+                    <div class="user_div company_details" *ngIf="currentDiv === 14">
+                        <h3>Investment Details</h3>
+                        <h4>Other Investments</h4>
+                        <button type="button" (click)="addOtherInvestments()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.other_investments; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Investment description" [(ngModel)]="investmentsForm.other_investments[i].description" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="A/C no or Investment id" [(ngModel)]="investmentsForm.other_investments[i].account_number" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.other_investments[i].bank_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.other_investments[i].full_branch_address" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.other_investments[i].nominee_name" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addOtherInvestments()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.other_investments; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>.
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Investment description" [(ngModel)]="investmentsForm.other_investments[i].description" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="A/C no or Investment id" [(ngModel)]="investmentsForm.other_investments[i].account_number" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.other_investments[i].bank_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.other_investments[i].full_branch_address" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input required type="text" placeholder="Nominee" [(ngModel)]="investmentsForm.other_investments[i].nominee_name" class="form-control" />
-                                    </div>
-        
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('other_investments',i)">
-                            {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(15)">
-                            {{ util.getString("Save and continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('other_investments',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(14)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
+                   
         
                     <!-- Loans -->
-                    <div class="row user_div" *ngIf="currentDiv === 15">
-                        <div class="head_title" style="display: block; width: 100%; padding: 10px 0">
-                            <label> Investment Details </label>
-                        </div>
-        
-                        <div class="row form_div">
-                            <div class="addNewBtn col-lg-6">
-                                <div class="inner_header">
-                                    Loans
+
+                    <div class="user_div company_details" *ngIf="currentDiv === 15">
+                        <h3>Investment Details</h3>
+                        <h4>Loans</h4>
+                        <button type="button" (click)="addLoans()" mdbWavesEffect mdbBtn class="btn custom">
+                            {{ util.getString("Add New Record") }}
+                        </button>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.loans; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <select placeholder="Type of Loan" [(ngModel)]="investmentsForm.loans[i].loan_type" class="form-control" aria-label="Type of Loan" required>
+                      <option value="" selected>Type of Loan</option>
+                      <option value="House">House</option>
+                      <option value="Car">Car</option>
+                      <option value="Personal">Personal</option>
+                      <option value="Credit Card">Credit Card</option>
+                      <option value="Education">Education</option>
+                      <option value="Other">Other</option>
+                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.loans[i].bank_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.loans[i].full_branch_address" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input required type="text" placeholder="A/C no or Investment id" [(ngModel)]="investmentsForm.loans[i].account_number" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="number" placeholder="Amount" [(ngModel)]="investmentsForm.loans[i].amount" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <select [(ngModel)]="investmentsForm.loans[i].loaninsured" class="form-control" aria-label="Is the loaninsured ">
+                                    <option value="" selected>Is the loan insured</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Insurance No" [(ngModel)]="investmentsForm.loans[i].insurance_no" class="form-control" />
                                 </div>
                             </div>
-                            <div class="addNewBtn col-lg-6">
-                                <button type="button" (click)="addLoans()" mdbWavesEffect mdbBtn class="btn">
-                      {{ util.getString("Add New Record") }}
-                    </button>
-                            </div>
-        
-                            <div class="col-12">
-                                <div class="row" *ngFor="let item of investmentsForm.loans; let i = index">
-                                    <div class="col-lg-12 class_col">SL No #{{ i+1 }}</div>
-                                    <div class="col-lg-4 class_col">
-                                        <select placeholder="Type of Loan" [(ngModel)]="investmentsForm.loans[i].loan_type" class="form-control" aria-label="Type of Loan" required>
-                          <option value="" selected>Type of Loan</option>
-                          <option value="House">House</option>
-                          <option value="Car">Car</option>
-                          <option value="Personal">Personal</option>
-                          <option value="Credit Card">Credit Card</option>
-                          <option value="Education">Education</option>
-                          <option value="Other">Other</option>
-                        </select>
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.loans[i].bank_name" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" required placeholder="Full branch address" [(ngModel)]="investmentsForm.loans[i].full_branch_address" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input required type="text" placeholder="A/C no or Investment id" [(ngModel)]="investmentsForm.loans[i].account_number" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="number" placeholder="Amount" [(ngModel)]="investmentsForm.loans[i].amount" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <select [(ngModel)]="investmentsForm.loans[i].loaninsured" class="form-control" aria-label="Is the loaninsured ">
-                                        <option value="" selected>Is the loan insured</option>
-                                        <option value="Yes">Yes</option>
-                                        <option value="No">No</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <input type="text" placeholder="Insurance No" [(ngModel)]="investmentsForm.loans[i].insurance_no" class="form-control" />
-                                    </div>
-                                    <div class="col-lg-4 class_col">
-                                        <button type="button" (click)="removeElement('loans',i)">
-                          {{ util.getString("X") }}
-                          </button>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="submitBtn">
-                                            <button type="button" mdbWavesEffect mdbBtn class="btn" (click)="formValidation(15)">
-                            {{ util.getString("Save And continue") }}
-                          </button>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all"  (click)="removeElement('loans',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+                                <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(15)">  {{ util.getString("Save and continue") }}
+                                </button>
                             </div>
                         </div>
+        
+                       
                     </div>
+
+                   
         
                     <!-- User Informations -->
                     <div class="user_div" *ngIf="currentDiv === 16">
