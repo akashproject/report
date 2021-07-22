@@ -225,12 +225,7 @@ textarea{
 
 
 
-.add_button{
-  cursor: pointer;
-  .btn.custom{
-    width: 236px !important;
-  }
-}
+
 
 .addNewBtn {
   display: flex;
@@ -281,5 +276,14 @@ textarea{
     label {
       cursor: pointer;
     }
+  }
+}
+
+@media only screen and (max-width:500px){
+  .form-control{
+      padding-left: 35px !important;
+  }
+  .left-addon .fas{
+    left: 14px !important;
   }
 }

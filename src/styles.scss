@@ -1550,3 +1550,113 @@ textarea{
     margin-bottom: 30px;
   }
 }
+
+@media only screen and (max-width:500px){
+  .others_page_back{
+    &.pt{
+      padding-top: 30px;
+    }
+    &.pb{
+      padding-bottom: 30px;
+    }
+    .alert{
+      font-size: 14px;
+      margin-bottom: 30px;
+    }
+    .main_edit_area{
+      padding: 15px;
+      .left_list {
+        margin: 10px 0 30px 0;
+        li{
+          font-size: 12px;
+          i{
+            width: 30px;
+            height: 30px;
+            font-size: 11px;
+            margin: 0 5px 0 0;
+          }
+        }
+      }
+    }
+    .user_div{
+      padding: 0 !important;
+      .d-flex{
+        flex-wrap: wrap;
+      }
+    }
+    .btn.custom{
+      width: 100%;
+    }
+    textarea{
+      &.form-control{
+        border-radius: 20px;
+        padding-top: 15px;
+      }
+    }
+    .form-control{
+      padding: 0 10px;
+      padding-left: 35px !important;
+    }
+
+    .left-addon .fas{
+      left: -5px;
+      top: -2px;
+    }
+    
+  }
+  .emer_section{
+    padding: 0;
+  }
+  .action_div{
+    flex-wrap: wrap;
+  }
+  .emar_details_list {
+    li{
+      padding: 10px;
+      .title{
+        margin-bottom: 10px;
+        i{
+          margin: 0;
+        }
+      }
+      .details{
+        font-size: 13px;
+      }
+    }
+  }
+  .main_edit_area{
+    h3{
+      font-size: 14px;
+    }
+  }
+  .page_content_wraper{
+    margin-bottom: 0 !important;
+  }
+  .company_details {
+    h4{
+      font-size: 18px;
+    }
+  }
+  .add_new_record_form{
+    .form-control{
+      padding-left: 10px !important;
+    }
+  }
+  .d-flex{
+    flex-wrap: wrap;
+    h3{
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+  }
+  .new_details_add_section{
+    margin-top: 20px;
+    padding: 15px;
+    h4{
+      font-size: 18px;
+    }
+  }
+  .custom .modal-body{
+    width: 90%;
+  }
+}
