@@ -41,9 +41,7 @@ export class RegisterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.util.userInfo != '') {
-      this.router.navigate(['/account']);
-    }
+    
   }
   sendCustomOtp(resend) {
     const param = {
@@ -88,6 +86,7 @@ export class RegisterComponent implements OnInit {
         if (data && data.status == '200') {
           this.toastr.success('You have successfully registered.', 'Success!');
           localStorage.setItem('user', JSON.stringify(data.data));
+          localStorage.setItem('loginflag', '1');
           this.router.navigate(['/account']).then(() => {
             window.location.reload();
           });

@@ -33,8 +33,12 @@ export class HeadersComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  goToHome(val) {
-    this.router.navigate(['home']);
+  goToHome() {
+	if (this.util.userInfo == '') {
+		this.router.navigate(['/']);
+    } else {
+		this.router.navigate(['/account']);
+	}
   }
 
   getAccount() {

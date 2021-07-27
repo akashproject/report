@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BnNgIdleService } from 'bn-ng-idle'; // import bn-ng-idle service
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -47,13 +48,14 @@ import { PreviewComponent } from './components/preview/preview.component';
     BrowserModule,
     ToastrModule.forRoot(), // ToastrModule added
     MDBBootstrapModule.forRoot(),
+    BsDatepickerModule.forRoot(),    
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     NgbModule,
   ],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule,BnNgIdleService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

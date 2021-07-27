@@ -1,7 +1,6 @@
 <div class="others_page_back pt pb">
     <div class="container">
-        <div mdbModal #contactModal="mdbModal" class="modal fade custom " tabindex="-1" role="dialog"
-            aria-labelledby="myBasicModalLabel" aria-hidden="true" style="z-index: 9999">
+        <div mdbModal #contactModal="mdbModal" class="modal fade custom " tabindex="-1" role="dialog" aria-labelledby="myBasicModalLabel" aria-hidden="true" style="z-index: 9999">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content d-flex align-items-center justify-content-center flex-column">
                     <div class="modal-header">
@@ -21,31 +20,25 @@
 
                         <div class="row">
                             <div class="col-md-6">
-                                <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput
-                                (ngModelChange)="contactFromValidation()" />
+                                <input id="text" [(ngModel)]="contactForm.name" class="form-control" type="text" mdbInput (ngModelChange)="contactFromValidation()" />
                             </div>
                             <div class="col-md-6">
-                                <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text" mdbInput
-                                (ngModelChange)="contactFromValidation()" />
+                                <input id="text" [(ngModel)]="contactForm.email" class="form-control" type="text" mdbInput (ngModelChange)="contactFromValidation()" />
                             </div>
                             <div class="col-md-6">
-                                <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile"
-                                class="form-control" (ngModelChange)="contactFromValidation()" />
+                                <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" (ngModelChange)="contactFromValidation()" />
                             </div>
                             <div class="col-md-6">
-                                <input placeholder="Address" type="text" [(ngModel)]="contactForm.address"
-                                class="form-control" (ngModelChange)="contactFromValidation()" />
+                                <input placeholder="Address" type="text" [(ngModel)]="contactForm.address" class="form-control" (ngModelChange)="contactFromValidation()" />
                             </div>
                         </div>
-                        
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" mdbBtn color="secondary" class="btn custom" aria-label="Close"
-                            (click)="contactModal.hide()" mdbWavesEffect>
+                        <button type="button" mdbBtn color="secondary" class="btn custom" aria-label="Close" (click)="contactModal.hide()" mdbWavesEffect>
                             {{ util.getString("Close") }}
                         </button>
-                        <button type="button" disabled="disabled" *ngIf="!contactform_validate" class="btn custom"
-                            mdbWavesEffect>
+                        <button type="button" disabled="disabled" *ngIf="!contactform_validate" class="btn custom" mdbWavesEffect>
                             <span *ngIf="newContact === true">
                                 {{ util.getString("Save") }}
                             </span>
@@ -53,8 +46,7 @@
                                 {{ util.getString("Update") }}
                             </span>
                         </button>
-                        <button type="button" *ngIf="contactform_validate" (click)="actionContact()" mdbBtn
-                            class="btn custom btn-danger" mdbWavesEffect>
+                        <button type="button" *ngIf="contactform_validate" (click)="actionContact()" mdbBtn class="btn custom btn-danger" mdbWavesEffect>
                             <span *ngIf="newContact === true">
                                 {{ util.getString("Save") }}
                             </span>
@@ -93,7 +85,7 @@
                     <ul class="left_list">
                         <li class="d-flex align-items-center" (click)="openProfile()">
                             <mdb-icon fas icon="user-circle"></mdb-icon>
-                            {{ util.getString("Edit Profile") }}
+                            {{ util.getString("View Profile") }}
                         </li>
                         <li class="d-flex align-items-center phone_ro" (click)="gotoContact()">
                             <mdb-icon fas icon="phone"></mdb-icon>
@@ -121,42 +113,36 @@
                             <div class="col-lg-6">
                                 <div class="inner-addon left-addon">
                                     <mdb-icon fas icon="user-circle"></mdb-icon>
-                                    <input type="text" placeholder="First Name" [(ngModel)]="profileForm.full_name"
-                                        class="form-control" (ngModelChange)="formValidation()" />
+                                    <input type="text" placeholder="First Name" [(ngModel)]="profileForm.full_name" class="form-control" (ngModelChange)="formValidation()" />
                                 </div>
 
                             </div>
                             <div class="col-lg-6">
                                 <div class="inner-addon left-addon">
                                     <mdb-icon fas icon="envelope"></mdb-icon>
-                                    <input type="email" placeholder="Email" [(ngModel)]="profileForm.email"
-                                        class="form-control" (ngModelChange)="formValidation()" />
+                                    <input type="email" placeholder="Email" [(ngModel)]="profileForm.email" class="form-control" (ngModelChange)="formValidation()" />
                                 </div>
 
                             </div>
                             <div class="col-lg-12">
                                 <div class="inner-addon left-addon">
                                     <mdb-icon fas icon="phone"></mdb-icon>
-                                    <input placeholder="Phone number" type="tel" [(ngModel)]="profileForm.mobile"
-                                        class="form-control" (ngModelChange)="formValidation()" />
+                                    <input placeholder="Phone number" type="tel" [(ngModel)]="profileForm.mobile" class="form-control" (ngModelChange)="formValidation()" />
                                 </div>
 
                             </div>
                             <div class="col-lg-12">
                                 <div class="inner-addon left-addon">
-                                    <textarea placeholder="Address" [(ngModel)]="profileForm.address"
-                                        class="form-control" (ngModelChange)="formValidation()"></textarea>
+                                    <textarea placeholder="Address" [(ngModel)]="profileForm.address" class="form-control" (ngModelChange)="formValidation()"></textarea>
                                 </div>
 
                             </div>
                             <div class="col-12">
                                 <div class="submitBtn">
-                                    <button type="button" (click)="sendVerificationOtp()" mdbWavesEffect mdbBtn
-                                        class="btn custom" *ngIf="form_validate">
+                                    <button type="button" (click)="sendVerificationOtp()" mdbWavesEffect mdbBtn class="btn custom" *ngIf="form_validate">
                                         {{ util.getString("Update Profile") }}
                                     </button>
-                                    <button type="button" mdbWavesEffect mdbBtn class="btn custom" disabled="disabled"
-                                        *ngIf="!form_validate">
+                                    <button type="button" mdbWavesEffect mdbBtn class="btn custom" disabled="disabled" *ngIf="!form_validate">
                                         {{ util.getString("Update Profile") }}
                                     </button>
                                 </div>
@@ -172,14 +158,12 @@
                             <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_email != ''">
                                 <label *ngIf="hidden_otp_value_email != ''">Email Verification Otp:
                                 </label>
-                                <input type="text" placeholder="One time passwoord" [(ngModel)]="otp_value_email"
-                                    class="form-control" />
+                                <input type="text" placeholder="One time passwoord" [(ngModel)]="otp_value_email" class="form-control" />
                             </div>
                             <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_mobile != ''">
                                 <label *ngIf="hidden_otp_value_mobile != ''">Mobile Verification Otp:
                                 </label>
-                                <input placeholder="One time passwoord" type="text" [(ngModel)]="otp_value_mobile"
-                                    class="form-control" />
+                                <input placeholder="One time passwoord" type="text" [(ngModel)]="otp_value_mobile" class="form-control" />
                             </div>
                             <div class="col-12">
                                 <div class="submitBtn">
@@ -221,37 +205,30 @@
                             <div class="col-lg-12">
                                 <div class="inner-addon left-addon">
                                     <mdb-icon fas icon="user-circle"></mdb-icon>
-                                    <input type="password" placeholder="Old Password"
-                                        [(ngModel)]="changePasswordForm.old_password" class="form-control"
-                                        (ngModelChange)="passwordFormValidation()" />
+                                    <input type="password" placeholder="Old Password" [(ngModel)]="changePasswordForm.old_password" class="form-control" (ngModelChange)="passwordFormValidation()" />
                                 </div>
 
                             </div>
                             <div class="col-lg-12">
                                 <div class="inner-addon left-addon">
                                     <mdb-icon fas icon="user-circle"></mdb-icon>
-                                    <input type="password" placeholder="New Password"
-                                        [(ngModel)]="changePasswordForm.password" class="form-control"
-                                        (ngModelChange)="passwordFormValidation()" />
+                                    <input type="password" placeholder="New Password" [(ngModel)]="changePasswordForm.password" class="form-control" (ngModelChange)="passwordFormValidation()" />
                                 </div>
 
                             </div>
                             <div class="col-lg-12">
                                 <div class="inner-addon left-addon">
                                     <mdb-icon fas icon="user-circle"></mdb-icon>
-                                    <input placeholder="Confirm Password" type="password" [(ngModel)]="c_password"
-                                        class="form-control" (ngModelChange)="passwordFormValidation()" />
+                                    <input placeholder="Confirm Password" type="password" [(ngModel)]="c_password" class="form-control" (ngModelChange)="passwordFormValidation()" />
                                 </div>
 
                             </div>
                             <div class="col-12">
                                 <div class="submitBtn">
-                                    <button type="button" (click)="updatePassword()" class="btn custom"
-                                        *ngIf="password_validate">
+                                    <button type="button" (click)="updatePassword()" class="btn custom" *ngIf="password_validate">
                                         Update Password
                                     </button>
-                                    <button type="button" class="btn custom" disabled="disabled"
-                                        *ngIf="!password_validate">
+                                    <button type="button" class="btn custom" disabled="disabled" *ngIf="!password_validate">
                                         Update Password
                                     </button>
                                 </div>
@@ -263,8 +240,7 @@
                         <div class="d-flex justify-content-between">
                             <h3>Emargency Contact</h3>
                             <div class="add_button" *ngIf="myContacts.length < 2">
-                                <h3 (click)="addNewContact()" mdbWavesEffect>{{ util.getString("+ Add Emargency
-                                    Contact") }}</h3>
+                                <h3 (click)="addNewContact()" mdbWavesEffect>{{ util.getString("+ Add Emargency Contact") }}</h3>
                             </div>
                         </div>
 
@@ -303,8 +279,7 @@
                                         <button type="button" class="btn custom" (click)="updateContact(item)">{{
                                             util.getString("Edit Contact") }}</button>
                                         <label *ngIf="i <= 0"> </label>
-                                        <button type="button" class="btn custom" (click)="deleteContact(item)"
-                                            *ngIf="i > 0">{{ util.getString("Delete Contact") }}</button>
+                                        <button type="button" class="btn custom" (click)="deleteContact(item)" *ngIf="i > 0">{{ util.getString("Delete Contact") }}</button>
 
                                     </div>
                                 </li>

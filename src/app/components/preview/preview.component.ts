@@ -14,6 +14,7 @@ import { environment } from '../../../environments/environment';
 })
 export class PreviewComponent implements OnInit {
   isEmailVerified: any;
+  isContactadded: any;
   investmentsForm: any = {
     user:{
       pan: '',
@@ -55,7 +56,15 @@ export class PreviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getInvestmentsRecords();
+	if (this.util.userInfo == '') {
+      this.router.navigate(['/']);
+    }
+    
+    this.isEmailVerified = this.util.userInfo.email_verified;
+    this.isContactadded = this.util.userInfo.contact_added;
+	if (this.util.userInfo.id) {
+		this.getInvestmentsRecords();
+	}
   }
 
   getInvestmentsRecords() {

@@ -3,32 +3,32 @@
         <div class="main_edit_area">
             <div class="row">
                 <div class="col-lg-3 col-md-12 sidemenu">
-                    
+
                     <h3>{{ util.getString("Hi, ") }} {{ contactForm.full_name }} </h3>
-                        <ul class="left_list" >
-                            <li class="d-flex align-items-center" (click)="openProfile()">
-                                <mdb-icon fas icon="user-circle"></mdb-icon>
-                                {{ util.getString("Edit Profile") }}
-                            </li>
-                            <li class="d-flex align-items-center phone_ro" (click)="gotoContact()">
-                                <mdb-icon fas  icon="phone"></mdb-icon>
-                                {{ util.getString("Emargency Contact") }}
-                            </li>
-                            <li class="d-flex align-items-center" (click)="gotoPassword()">
-                                <mdb-icon fas icon="user-circle"></mdb-icon>
-                                {{ util.getString("Change Password") }}
-                            </li>
-                            <li class="d-flex align-items-center" (click)="goTobusiness()">
-                                <mdb-icon fas icon="user-circle"></mdb-icon>
-                                {{ util.getString("Investment Details") }}
-                            </li>
-                            <li class="d-flex align-items-center" (click)="logout()">
-                                <mdb-icon fas icon="lock"></mdb-icon>
-                                {{ util.getString("Logout") }}
-                            </li>
-                        </ul>
+                    <ul class="left_list">
+                        <li class="d-flex align-items-center" (click)="openProfile()">
+                            <mdb-icon fas icon="user-circle"></mdb-icon>
+                            {{ util.getString("View Profile") }}
+                        </li>
+                        <li class="d-flex align-items-center phone_ro" (click)="gotoContact()">
+                            <mdb-icon fas icon="phone"></mdb-icon>
+                            {{ util.getString("Emargency Contact") }}
+                        </li>
+                        <li class="d-flex align-items-center" (click)="gotoPassword()">
+                            <mdb-icon fas icon="user-circle"></mdb-icon>
+                            {{ util.getString("Change Password") }}
+                        </li>
+                        <li class="d-flex align-items-center" (click)="goTobusiness()">
+                            <mdb-icon fas icon="user-circle"></mdb-icon>
+                            {{ util.getString("Investment Details") }}
+                        </li>
+                        <li class="d-flex align-items-center" (click)="logout()">
+                            <mdb-icon fas icon="lock"></mdb-icon>
+                            {{ util.getString("Logout") }}
+                        </li>
+                    </ul>
                 </div>
-        
+
                 <div class="col-lg-9 col-md-12">
                     <!-- User Informations -->
                     <div class="user_div">
@@ -39,27 +39,27 @@
                                     <mdb-icon fas icon="user-circle"></mdb-icon>
                                     <input type="text" placeholder="Contact Name" [(ngModel)]="contactForm.name" class="form-control" (ngModelChange)="formValidation()" />
                                 </div>
-                                
+
                             </div>
                             <div class="col-lg-6">
                                 <div class="inner-addon left-addon">
                                     <mdb-icon fas icon="envelope"></mdb-icon>
                                     <input type="email" placeholder="Email" [(ngModel)]="contactForm.email" class="form-control" (ngModelChange)="formValidation()" />
                                 </div>
-                                
+
                             </div>
                             <div class="col-lg-12">
                                 <div class="inner-addon left-addon">
                                     <mdb-icon fas icon="phone"></mdb-icon>
                                     <input placeholder="Phone number" type="tel" [(ngModel)]="contactForm.mobile" class="form-control" (ngModelChange)="formValidation()" />
                                 </div>
-                                
+
                             </div>
                             <div class="col-lg-12">
                                 <div class="inner-addon left-addon">
                                     <textarea placeholder="Address" type="tel" [(ngModel)]="contactForm.address" class="form-control" (ngModelChange)="formValidation()"></textarea>
                                 </div>
-                                
+
                             </div>
                             <div class="col-12">
                                 <div class="add_button">
@@ -76,6 +76,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>

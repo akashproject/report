@@ -65,9 +65,7 @@ export class UtilService {
   //   token: '',
   //   from: ''
   // }
-  public userInfo = JSON.parse(localStorage.getItem('user'))
-    ? JSON.parse(localStorage.getItem('user'))
-    : '';
+  public userInfo :any = '';
 
   constructor(public router: Router, private toasterService: ToasterService) {}
 

@@ -24,8 +24,6 @@ export class VerifyEmailComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.isEmailVerified = this.util.userInfo.isEmailVerified;
-    console.log(this.util.userInfo, JSON.parse(localStorage.getItem('user')));
-
     this.sendOtp();
   }
 

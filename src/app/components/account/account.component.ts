@@ -58,18 +58,11 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('loginflag'));
-    
+
     if (this.util.userInfo == '') {
       this.router.navigate(['/']);
     }
     
-    // if (localStorage.getItem('loginflag') != '1') {
-    //   this.router.navigate(['/']);
-    // } else {
-    //   setTimeout(function(){ localStorage.setItem('loginflag', '0'); }, 10000);
-    // }
-
     this.isEmailVerified = this.util.userInfo.email_verified;
     console.log(this.util.userInfo);
 
@@ -222,8 +215,7 @@ export class AccountComponent implements OnInit {
     this.api.post('users/edit_profile', this.profileForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
-          localStorage.setItem('user', JSON.stringify(data.data));
-          this.util.userInfo = JSON.parse(localStorage.getItem('user'));
+          this.util.userInfo = data.data;
           this.toastr.success('Profile has been updated', 'Success');
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.message, 'Error!');
@@ -269,8 +261,7 @@ export class AccountComponent implements OnInit {
     this.api.post('users/getById', params).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
-          localStorage.setItem('user', JSON.stringify(data.data));
-          this.util.userInfo = JSON.parse(localStorage.getItem('user'));
+          this.util.userInfo = data.data;
           this.currentDiv = 1;
           this.profileForm.id = data.data.id;
           this.profileForm.email = data.data.email;

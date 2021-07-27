@@ -112,13 +112,8 @@ export class LoginComponent implements OnInit {
       this.hidden_otp_value_email == this.otp_value ||
       this.hidden_otp_value_mobile == this.otp_value
     ) {
-      this.util.userInfo = JSON.parse(localStorage.getItem('user'));
-      //console.log(JSON.parse(localStorage.getItem('user')));
-      localStorage.setItem('user', this.beforeLoginUser);
-      localStorage.setItem('loginflag', '1');
-      this.router.navigate(['/account']).then(() => {
-        window.location.reload();
-      });
+      this.util.userInfo = JSON.parse(this.beforeLoginUser);
+      this.router.navigate(['/account']);
     } else {
       this.toastr.error('invalid one time password', 'Error!');
     }

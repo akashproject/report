@@ -85,12 +85,11 @@ export class InvestmentsComponent implements OnInit {
   ngOnInit(): void {
     if (this.util.userInfo == '') {
       this.router.navigate(['/']);
+    } else {
+      this.isEmailVerified = this.util.userInfo.email_verified;
+      this.getUserRecords();
+      this.getInvestmentsRecords();
     }
-
-    this.isEmailVerified = this.util.userInfo.email_verified;
-    
-    this.getUserRecords();
-    this.getInvestmentsRecords();
   }
 
   getUserRecords() {
@@ -180,7 +179,8 @@ export class InvestmentsComponent implements OnInit {
       policy_no: '',
       sum_insured: '',
       nominee_name: '',
-      maturity_date: '',
+      insurance_company_name: '',
+      renewal_date: '',
     };
     this.investmentsForm.vehicle_insurance.push(vehicleInsurancePolicy);
   }
@@ -213,7 +213,7 @@ export class InvestmentsComponent implements OnInit {
 
   addFixedDeposit() {
     let fixedDeposit = {
-      bank_name: '',
+      bank_name_or_company_name: '',
       full_branch_address: '',
       nominee_name:'',
       account_type: '',
@@ -225,7 +225,7 @@ export class InvestmentsComponent implements OnInit {
 
   addSharedBonds() {
     let sharedBonds = {
-      company_name: '',
+      holding_company_name: '',
       type: '',
       units_hold:'',
       demat_number: '',

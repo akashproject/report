@@ -1,149 +1,9 @@
-<!--
-   Authors : Freelancerstore
-  Website : https://freelancerstore.org/
-  App Name : FR multi store daily needs App
-  Created : 10-Sep-2020
-  This App Template Source code is licensed as per the
-  terms found in the Website https://freelancerstore.org/license
-  Copyright and Good Faith Purchasers © 2020-present initappz.
- -->
-<!--<div
-  mdbModal
-  #cityModal="mdbModal"
-  class="modal fade left"
-  id="frameModalTop"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="myModalLabel"
-  aria-hidden="true"
-  [config]="{ ignoreBackdropClick: true }"
-  style="z-index: 9999"
->
-  <div class="modal-dialog modal-notify modal-success" role="document">
-    
-    <div class="modal-content">
-     
-      <div class="modal-header">
-        <p class="heading lead" style="text-align: center">
-          {{ util.getString("Select city") }}
-        </p>
-      </div>
-      <div class="modal-body">
-        <div *ngFor="let item of cities" (click)="selectedCity(item)">
-          <p>{{ item.name }}</p>
-        </div>
-      </div>
-    </div>
-   
-  </div>
-</div>
-<header class="page-header font-small" style="margin-bottom: 50px">
-  <div class="toolbar">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-1">
-          <a (click)="goToHome('Home')">
-            <img
-              src="assets/logo.png"
-              height="30"
-              alt=""
-              style="border-radius: 50%"
-            />
-          </a>
-        </div>
-        <div class="col-lg-9">
-          <ng-template #popContent let-greeting="greeting">
-            <div *ngFor="let item of dummy">
-              <ngx-skeleton-loader
-                animation="progress"
-                [theme]="{
-                  'border-radius': '5px',
-                  height: '20px',
-                  width: '100px',
-                  border: '1px solid white'
-                }"
-              >
-              </ngx-skeleton-loader>
-            </div>
-          </ng-template>
-          <button
-            type="button"
-            class="btn btn-clear mr-2 cleanBtn"
-            [ngbPopover]="popContent"
-            triggers="manual"
-            #p1="ngbPopover"
-            (click)="p1.open()"
-          >
-            <span
-              class="fa fa-map-pin"
-              aria-hidden="true"
-              *ngIf="cityName"
-            ></span>
-            {{ cityName }}
-            <span
-              class="fa fa-chevron-down"
-              aria-hidden="true"
-              *ngIf="cityName"
-            ></span>
-          </button>
-        </div>
-
-        <div class="col-lg-2">
-          <ng-template #popContent2 let-greeting="greeting">
-            <br />
-            <a
-              mdbWavesEffect
-              class="linkBtn"
-              *ngIf="getAccount() === false"
-              (click)="login()"
-            >
-              {{ util.getString("Login or Sign up") }}
-            </a>
-            <a
-              mdbWavesEffect
-              class="linkBtn"
-              *ngIf="getAccount() === true"
-              (click)="myaccount()"
-            >
-              {{ util.getString("My Account") }}
-            </a>
-            <hr />
-            <div class="flex_box" (click)="help()">
-              <mdb-icon fas icon="info-circle"></mdb-icon>
-              <a class="dark-grey-text">{{ util.getString("Help") }} </a>
-            </div>
-            <hr *ngIf="getAccount() === true" />
-            <div
-              class="flex_box"
-              *ngIf="getAccount() === true"
-              (click)="logout()"
-            >
-              <mdb-icon fas icon="power-off"></mdb-icon>
-              <a class="dark-grey-text">{{ util.getString("Logout") }} </a>
-            </div>
-          </ng-template>
-          <button
-            type="button"
-            class="btn btn-clear mr-2 cleanBtn"
-            [ngbPopover]="popContent2"
-            triggers="manual"
-            #p2="ngbPopover"
-            (click)="p2.open()"
-          >
-            {{ util.getString("My Account") }}
-            <span class="fa fa-chevron-down" aria-hidden="true"></span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>-->
 <ng-container *ngIf="router.url === '/home' || router.url === '/'; then homeheader; else mainheader">
 </ng-container>
 <ng-template #homeheader>
   <header>
     <div class="container d-flex align-items-center justify-content-between">
-      <a href="" class="logo"><img src="assets/images/logo.png" alt=""></a>
+      <a href="" class="logo"><img src="assets/images/logo.png" alt="" style="width: 163px;"></a>
       <div class="hamburger" (click)="open_menu()"></div>
       <div class="right d-flex align-items-center" [class.active]="active">
         <div class="cross" (click)="close_menu()"></div>
@@ -169,12 +29,12 @@
     
     <div class="container d-flex align-items-center justify-content-between">
       <h6>Do Not Reload the Website</h6>
-      <a href="" class="logo"><img src="assets/images/logo.png" alt=""></a>
+      <a href="" class="logo"><img src="assets/images/logo.png" alt="" style="width: 163px;"></a>
       <div class="hamburger" (click)="open_menu()"></div>
       <div class="right d-flex align-items-center" [class.active]="active">
         <div class="cross" (click)="close_menu()"></div>
         <ul class="menu d-flex">
-          <li><a routerLink="/">home</a></li>
+          <li><a (click)="goToHome()" >home</a></li>
           <li><a href="">about us</a></li>
           <li><a href="">our services</a></li>
           <li><a href="">contact us</a></li>
