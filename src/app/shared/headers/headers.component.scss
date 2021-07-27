@@ -162,7 +162,16 @@
   }
 }
 
+.logo_img{
+  height: 138px;
+}
 
+@media only screen and (max-width:1023px){
+  .logo_img{
+    height: 85px;
+  }
+  
+}
 
 
 
