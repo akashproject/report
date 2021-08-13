@@ -5,8 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class DateformatPipe implements PipeTransform {
 
-  transform(value: any, args?: any): any {
-    return null;
+  transform(value: any): any {
+    var d = value;
+    let ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+    let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d);
+    let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+    var str = da+'/' + mo + '/' + ye;
+    return str;
   }
 
   // transform(value: unknown, ...args: unknown[]): unknown {

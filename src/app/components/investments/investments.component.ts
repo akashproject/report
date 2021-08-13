@@ -6,14 +6,19 @@ import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'angular-bootstrap-md';
 import {NgbDateStruct, NgbCalendar,NgbDatepicker} from '@ng-bootstrap/ng-bootstrap';
-
+import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import {DateformatPipe} from '../../pipes/dateformat.pipe';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-investments',
   templateUrl: './investments.component.html',
   styleUrls: ['./investments.component.scss'],
+  providers: [ DateformatPipe ]
 })
 export class InvestmentsComponent implements OnInit {
   mobile: any = '';
+  
   @ViewChild('contactModal') public contactModal: ModalDirective;
   @ViewChild('datePicker') datePicker: NgbDatepicker;
   email: any = '';
@@ -36,6 +41,7 @@ export class InvestmentsComponent implements OnInit {
     bank_account: [],
     fixed_deposit: [],
     shared_bonds: [],
+    mutual_funds: [],
     locker_details: [],
     public_provident_fund: [],
     uan_details:[],
@@ -54,15 +60,21 @@ export class InvestmentsComponent implements OnInit {
     password: '',
   };
   password_validate = false;
+  bsValue = new Date();
+  baseUrl: any = '';
+  public dpConfig: Partial<BsDatepickerConfig> = new BsDatepickerConfig();
   constructor(
     private router: Router,
     private api: ApiService,
     public util: UtilService,
     private toastr: ToastrService,
-    private calendar: NgbCalendar
+    private calendar: NgbCalendar,
+    private http: HttpClient
   ) {
     this.currentDiv = 16;
+    this.dpConfig.dateInputFormat = 'DD/MM/YY';
     localStorage.removeItem("verify_assword");
+    this.baseUrl = environment.baseURL;
   }
 
   selectToday() {
@@ -79,7 +91,9 @@ export class InvestmentsComponent implements OnInit {
   }
 
   navigateEvent(event) {
-    this.date = event.next;
+    console.log("event date",event.target.value);
+    
+    return event.target.value;
   }
 
   ngOnInit(): void {
@@ -123,7 +137,6 @@ export class InvestmentsComponent implements OnInit {
      
             if(data.message == "Success") {
               this.investmentsForm = data.data;
-              console.log(" inserted");            
             }
             
           } else if (data && data.status === 500) {
@@ -148,6 +161,19 @@ export class InvestmentsComponent implements OnInit {
       hr_contact_no: '',
     };
     this.investmentsForm.company.push(company);
+  }
+
+  addMutualFunds() {
+    let mutualFunds = {
+      folio_no: '',
+      bank_name: '',
+      agent_name: '',
+      agent_no: '',
+    };
+    console.log(mutualFunds);
+    console.log(this.investmentsForm.mutual_funds);
+    
+    this.investmentsForm.mutual_funds.push(mutualFunds);
   }
 
   addMedPolicy() {
@@ -190,9 +216,8 @@ export class InvestmentsComponent implements OnInit {
       property_insured: '',
       policy_no: '',
       sum_insured: '',
-      maturity_date: '',
-      risks_covered: '',
       renewal_date: '',
+      risks_covered: '',
     };
     this.investmentsForm.fire_insurance.push(fireInsurancePolicy);
   }
@@ -318,7 +343,12 @@ export class InvestmentsComponent implements OnInit {
     
   }
 
+  changedateformat(event) {
+    console.log(event);
+    
+  }
   publishInvestmentRecords(){
+    console.log("investements ",this.investmentsForm);
     
     this.api.post('investments/publish-investment-records/' + this.util.userInfo.id, this.investmentsForm).subscribe(
       (data: any) => {
@@ -361,16 +391,13 @@ export class InvestmentsComponent implements OnInit {
   }
 
   formValidation(currentDiv,allowSave:any = true) {
-    console.log("start",this.investmentsForm);
     
     if(this.verify_assword != true) {
       this.currentDiv = 16;
     } else {
       let requiredElements = document.getElementById("required_check").querySelectorAll("[required]");
-      console.log("else",requiredElements);
       for (var i = 0; i < requiredElements.length; i++) {
         var e = requiredElements[i];
-        console.log("value",(<HTMLInputElement>e).value);
         
         if(!(<HTMLInputElement>e).value){
           e.setAttribute("class", "form-control required");
@@ -414,4 +441,16 @@ export class InvestmentsComponent implements OnInit {
     return dob;
   }
    
+  post(url, body) {
+    const header = {
+      headers: new HttpHeaders().set(
+        'Content-Type',
+        'application/x-www-form-urlencoded'
+      ),
+    };
+    const data=JSON.stringify(body);
+    
+    return this.http.post(this.baseUrl + url, data, header);
+  }
+
 }

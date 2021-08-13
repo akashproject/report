@@ -56,6 +56,10 @@
                             <mdb-icon fas icon="pen"></mdb-icon>
                             {{ util.getString("Shares/Debentures/Bonds") }}
                         </li>
+                        <li (click)="formValidation(17,false)" [ngClass]="{'active_menu': currentDiv === 17}">
+                            <mdb-icon fas icon="pen"></mdb-icon>
+                            {{ util.getString("Mutual Fund") }}
+                        </li>
                         <li (click)="formValidation(10,false)" [ngClass]="{'active_menu': currentDiv === 10}">
                             <mdb-icon fas icon="pen"></mdb-icon>
                             {{ util.getString("Locker Details") }}
@@ -249,7 +253,7 @@
                                     <input type="number" placeholder="Sum Insured" [(ngModel)]="investmentsForm.med_policy[i].sum_insured" class="form-control" />
                                 </div>
                                 <div class="col-lg-12">
-                                    <input type="text" placeholder="Renewal Date" [(ngModel)]="investmentsForm.med_policy[i].renewal_date" class="form-control" required bsDatepicker />
+                                    <input type="date" placeholder="Renewal Date" [ngModel]="investmentsForm.med_policy[i].renewal_date" (change)="investmentsForm.med_policy[i].renewal_date = navigateEvent($event)" class="form-control" required/>
                                 </div>
 
                             </div>
@@ -298,7 +302,7 @@
                                     <input type="number" placeholder="Insurance Agent contact No" [(ngModel)]="investmentsForm.insurance[i].insurance_agent_contact_no" class="form-control" />
                                 </div>
                                 <div class="col-lg-12">
-                                    <input type="text" placeholder="Maturity Date" [(ngModel)]="investmentsForm.insurance[i].maturity_date" class="form-control" required bsDatepicker />
+                                    <input type="date" placeholder="Maturity Date" [ngModel]="investmentsForm.insurance[i].maturity_date" class="form-control" (change)="investmentsForm.insurance[i].maturity_date = navigateEvent($event)" required />
                                 </div>
                             </div>
                             <div class="buttions d-flex align-items-center">
@@ -339,7 +343,7 @@
                                     <input type="text" placeholder="Insurance Company Name" [(ngModel)]="investmentsForm.vehicle_insurance[i].insurance_company_name" class="form-control" required/>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Renewal Date" [(ngModel)]="investmentsForm.vehicle_insurance[i].renewal_date" class="form-control" bsDatepicker required/>
+                                    <input type="date" placeholder="Renewal Date" [ngModel]="investmentsForm.vehicle_insurance[i].renewal_date" class="form-control" (change)="investmentsForm.vehicle_insurance[i].renewal_date = navigateEvent($event)" required />
                                 </div>
                             </div>
                             <div class="buttions d-flex align-items-center">
@@ -381,7 +385,7 @@
                                     <input type="text" placeholder="Risks covered" [(ngModel)]="investmentsForm.fire_insurance[i].risks_covered" class="form-control" />
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" required placeholder="Renewal Date" [(ngModel)]="investmentsForm.fire_insurance[i].renewal_date" class="form-control" bsDatepicker required/>
+                                    <input type="date" [ngModel]="investmentsForm.fire_insurance[i].renewal_date" (change)="investmentsForm.fire_insurance[i].renewal_date = navigateEvent($event)" required placeholder="Renewal Date" class="form-control" />
                                 </div>
                             </div>
                             <div class="buttions d-flex align-items-center">
@@ -477,7 +481,8 @@
                                         <option value="" selected>Type of account</option>
                                         <option value="FD">FD</option>
                                         <option value="RD">RD</option>
-                                        </select>
+                                        <option value="Company_Deposit">Company Deposit</option>
+                                    </select>
                                 </div>
                                 <div class="col-lg-6">
                                     <input type="text" required placeholder="Last 4 digt of A/C number" [(ngModel)]="investmentsForm.fixed_deposit[i].last_four_digt" class="form-control" />
@@ -520,10 +525,10 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <select [(ngModel)]="investmentsForm.shared_bonds[i].type" class="form-control" aria-label="Type">
-                      <option value="" selected>Type</option>
-                      <option value="Share or Debenture">Share or Debenture</option>
-                      <option value="Bond or Others">Bond or Others</option>
-                    </select>
+                                    <option value="" selected>Type</option>
+                                    <option value="Share or Debenture">Share or Debenture</option>
+                                    <option value="Bond or Others">Bond or Others</option>
+                                    </select>
                                 </div>
                                 <div class="col-lg-6">
                                     <input type="text" placeholder="Units hold" [(ngModel)]="investmentsForm.shared_bonds[i].units_hold" class="form-control" />
@@ -778,14 +783,14 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <select placeholder="Type of Loan" [(ngModel)]="investmentsForm.loans[i].loan_type" class="form-control" aria-label="Type of Loan" required>
-                      <option value="" selected>Type of Loan</option>
-                      <option value="House">House</option>
-                      <option value="Car">Car</option>
-                      <option value="Personal">Personal</option>
-                      <option value="Credit Card">Credit Card</option>
-                      <option value="Education">Education</option>
-                      <option value="Other">Other</option>
-                    </select>
+                                        <option value="" selected>Type of Loan</option>
+                                        <option value="House">House</option>
+                                        <option value="Car">Car</option>
+                                        <option value="Personal">Personal</option>
+                                        <option value="Credit Card">Credit Card</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Other">Other</option>
+                                    </select>
                                 </div>
                                 <div class="col-lg-6">
                                     <input type="text" required placeholder="Bank Name" [(ngModel)]="investmentsForm.loans[i].bank_name" class="form-control" />
@@ -842,6 +847,47 @@
                             </div>
 
                         </div>
+                    </div>
+
+                    <div class="user_div company_details" *ngIf="currentDiv === 17">
+                        <h3>Investment Details</h3>
+                        <h4>Mutual Funds</h4>
+
+
+                        <div class="buttons d-flex align-items-center">
+                            <button type="button" (click)="addMutualFunds()" mdbWavesEffect mdbBtn class="btn custom">
+                                {{ util.getString("Add New Record") }}
+                            </button>
+                            <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="formValidation(17)">  {{ util.getString("Save and continue") }}
+                            </button>
+                        </div>
+
+                        <div class="add_new_record_form" *ngFor="let item of investmentsForm.mutual_funds; let i = index">
+                            <h3>SL No #{{ i+1 }}</h3>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <input required type="text" placeholder="Folio No" [(ngModel)]="investmentsForm.mutual_funds[i].folio_no" class="form-control" required />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Bank/Institute name" [(ngModel)]="investmentsForm.mutual_funds[i].bank_name" class="form-control" required />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Agent name" [(ngModel)]="investmentsForm.mutual_funds[i].agent_name" class="form-control" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="text" placeholder="Agent no" [(ngModel)]="investmentsForm.mutual_funds[i].agent_no" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="buttions d-flex align-items-center">
+                                <button type="button" class="btn custom all" (click)="removeElement('mutual_funds',i)">
+                                    {{ util.getString("Delete") }}
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
                     </div>
                 </div>
             </div>

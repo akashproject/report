@@ -1,34 +1,32 @@
 <div class="others_page_back pt pb">
-  <div class="container ">
-    <div class="alert alert-danger verify_alert" role="alert" *ngIf="isEmailVerified != 'true'">
-      You need to verify you email addreress! click
-      <a routerLink="/verify-email">
-        <b>Here</b>
-      </a>
-      to send OTP
-    </div>
-    <div class="d-flex align-items-center justify-content-between">
-      <h3>
-        <mdb-icon fas icon="long-arrow-alt-left" style="color: #1e8e1e;" routerLink="/investments"></mdb-icon> {{
-        util.getString("Hi") }} {{ profileForm.full_name }}
-      </h3>
-      <a class="btn custom" href="{{uservault}}investment_{{profileForm.id}}.csv" download> {{
-        util.getString("Download") }} </a>
-    </div>
+    <div class="container ">
+        <div class="alert alert-danger verify_alert" role="alert" *ngIf="isEmailVerified != 'true'">
+            You need to verify you email addreress! click
+            <a routerLink="/verify-email">
+                <b>Here</b>
+            </a>
+            to send OTP
+        </div>
+        <div class="d-flex align-items-center justify-content-between">
+            <h3>
+                <mdb-icon fas icon="long-arrow-alt-left" style="color: #1e8e1e;" routerLink="/investments"></mdb-icon> {{ util.getString("Hi") }} {{ profileForm.full_name }}
+            </h3>
+            <a class="btn custom" target="_blank" href="{{uservault}}investment_{{profileForm.id}}.pdf" download> {{ util.getString("Download") }} </a>
+        </div>
 
-    <div class="new_details_add_section" *ngFor="let items of investmentsForm | keyvalue">
-      <h4>{{items.key}}</h4>
-      <table class="table table-striped" *ngFor="let item of items.value | keyvalue">
-        <tbody>
-          <tr *ngFor="let fields of item.value | keyvalue">
-            <td>{{ fields.key }}</td>
-            <td>{{ fields.value }}</td>
-          </tr>
-        </tbody>
-        
-      </table>
-      
-    </div>
+        <div class="new_details_add_section" *ngFor="let items of investmentsForm | keyvalue">
+            <h4>{{items.key}}</h4>
+            <table class="table table-striped" *ngFor="let item of items.value | keyvalue">
+                <tbody>
+                    <tr *ngFor="let fields of item.value | keyvalue">
+                        <td>{{ fields.key }}</td>
+                        <td>{{ fields.value }}</td>
+                    </tr>
+                </tbody>
 
-  </div>
+            </table>
+
+        </div>
+
+    </div>
 </div>
