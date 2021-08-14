@@ -25,6 +25,7 @@ import { EmargencyListComponent } from './components/emargency-list/emargency-li
 import { InvestmentsComponent } from './components/investments/investments.component';
 import { DateformatPipe } from './pipes/dateformat.pipe';
 import { PreviewComponent } from './components/preview/preview.component';
+import { AboutComponent } from './components/about/about.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { PreviewComponent } from './components/preview/preview.component';
     InvestmentsComponent,
     DateformatPipe,
     PreviewComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,

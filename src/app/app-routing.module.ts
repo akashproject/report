@@ -12,6 +12,7 @@ import { EmargencyContactComponent } from './components/emargency-contact/emarge
 import { EmargencyListComponent } from './components/emargency-list/emargency-list.component';
 import { InvestmentsComponent } from './components/investments/investments.component';
 import { PreviewComponent } from './components/preview/preview.component';
+import { AboutComponent } from './components/about/about.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'emargency-list', component: EmargencyListComponent },
   { path: 'investments', component: InvestmentsComponent },
   { path: 'preview', component: PreviewComponent },
+  { path: 'about', component: AboutComponent },
 ];
 
 @NgModule({
