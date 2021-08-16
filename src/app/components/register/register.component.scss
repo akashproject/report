@@ -1,109 +1,98 @@
 label {
-  display: block;
+    display: block;
 }
 
-
-
 .contents {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .form_div,
 .form_div_otp {
-  width: 100%;
-  margin-top: 80px;
-  background-color: var(--white-color);
-  padding: 30px;
-  border-radius: 20px;
-  -webkit-box-shadow: rgba(118, 118, 118, 0.13) 0 24px 60px;
-          box-shadow: rgba(118, 118, 118, 0.13) 0 24px 60px;
-  /* enable absolute positioning */
-  .inner-addon {
-    position: relative;
-  }
-  .form-control{
-    padding-left: 40px !important;
-  }
-
-   /* style glyph */
-   .inner-addon .fas {
-    position: absolute;
-    padding: 0;
-    pointer-events: none;
-    bottom: 0;
-    margin: auto;
-    width: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-  }
-
-  /* align glyph */
-  .left-addon .fas {
-    left: 10px;
-    top: 0;
-  }
-  .right-addon .fas {
-    right: 0px;
-  }
-
-  /* add padding  */
-  .left-addon input {
-    padding-left: 30px;
-  }
-  .right-addon input {
-    padding-right: 30px;
-  }
-  .head_title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid lightgray;
-    margin-bottom: 15px;
     width: 100%;
-
-    label {
-      font-weight: 500;
-      font-size: 26px;
-      text-transform: capitalize;
-      margin: 0;
+    margin-top: 80px;
+    background-color: var(--white-color);
+    padding: 30px;
+    border-radius: 20px;
+    -webkit-box-shadow: rgba(118, 118, 118, 0.13) 0 24px 60px;
+    box-shadow: rgba(118, 118, 118, 0.13) 0 24px 60px;
+    /* enable absolute positioning */
+    .inner-addon {
+        position: relative;
     }
-  }
-
-  .cCode {
-    padding: 0px 10px;
-    border-bottom: 1px solid lightgray;
-    margin-bottom: 5px;
-    .ccLbl {
-      margin: 0px;
-      color: #4571c2;
-      padding: 5px;
+    .form-control {
+        //padding-left: 40px !important;
     }
-  }
-  input {
-    margin-bottom: 15px;
-  }
-
-  .btn {
-    /*background: #4571c2;*/
-    background-image: var(--gradient-style);
-    color: white;
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-
-  .bottom_lbl {
-    text-align: center;
-    font-weight: 400;
-    font-size: 15px;
-  }
-
-  .bottom_lbl:hover {
-    color: #4571c2;
-  }
+    /* style glyph */
+    .inner-addon .fas {
+        position: absolute;
+        padding: 0;
+        pointer-events: none;
+        bottom: 0;
+        margin: auto;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    /* align glyph */
+    .left-addon .fas {
+        left: 10px;
+        top: 0;
+    }
+    .right-addon .fas {
+        right: 0px;
+    }
+    /* add padding  */
+    .left-addon input {
+        padding-left: 30px;
+    }
+    .right-addon input {
+        padding-right: 30px;
+    }
+    .head_title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid lightgray;
+        margin-bottom: 15px;
+        width: 100%;
+        label {
+            font-weight: 500;
+            font-size: 26px;
+            text-transform: capitalize;
+            margin: 0;
+        }
+    }
+    .cCode {
+        padding: 0px 10px;
+        border-bottom: 1px solid lightgray;
+        margin-bottom: 5px;
+        .ccLbl {
+            margin: 0px;
+            color: #4571c2;
+            padding: 5px;
+        }
+    }
+    input {
+        margin-bottom: 15px;
+    }
+    .btn {
+        /*background: #4571c2;*/
+        background-image: var(--gradient-style);
+        color: white;
+        width: 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .bottom_lbl {
+        text-align: center;
+        font-weight: 400;
+        font-size: 15px;
+    }
+    .bottom_lbl:hover {
+        color: #4571c2;
+    }
 }

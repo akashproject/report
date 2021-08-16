@@ -13,9 +13,9 @@
 
 export const environment = {
   production: false,
-  baseURL: 'https://developer.yusmota.in/api/index.php/',
-  mediaURL: 'https://developer.yusmota.in/api/uploads/',
-  uservault: 'https://developer.yusmota.in/api/investments/',
+  baseURL: 'https://conjugation.in/api/index.php/',
+  mediaURL: 'https://conjugation.in/api/uploads/',
+  uservault: 'https://conjugation.in/api/investments/',
   general: {
     symbol: '$',
     code: 'USD',

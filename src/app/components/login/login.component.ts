@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
             this.email = data.data.email;
             this.sendOtp(false);
             this.toastr.success(
-              'has been sent to your mobile and email',
+              'has been sent to your mobile',
               'One time password'
             );
           } else {
@@ -67,21 +67,21 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         this.showOtp = false;
-        this.toastr.error('Something went wrong', 'Error!');
+        this.toastr.error('error', 'Error!');
       }
     );
   }
 
   sendOtp(resend) {
     if (!this.mobile) {
-      this.toastr.error('Something went wrong', 'Error!');
+      this.toastr.error('Invalid Mobile Number', 'Error!');
       return false;
     }
     let mobile = new String(this.mobile);
     console.log(mobile);
     console.log('Length ' + mobile.length);
     if (mobile.length != 10) {
-      this.toastr.error('Something went wrong', 'Error!');
+      this.toastr.error('Invalid Mobile Number', 'Error!');
       return false;
     }
     const param = {
@@ -102,7 +102,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        this.toastr.error('Something went wrong', 'Error!');
+        this.toastr.error('error', 'Error!');
       }
     );
   }
@@ -156,7 +156,7 @@ export class LoginComponent implements OnInit {
         this.util.toast(
           'error',
           this.util.getString('Error'),
-          this.util.getString('Something went wrong')
+          this.util.getString('error')
         );
       }
     );
@@ -168,8 +168,6 @@ export class LoginComponent implements OnInit {
   }
 
   formValidation() {
-    console.log(this.loginForm);
-
     if (this.loginForm.password != '' && this.loginForm.email != '') {
       this.form_validate = true;
     }

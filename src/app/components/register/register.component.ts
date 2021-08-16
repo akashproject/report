@@ -111,15 +111,20 @@ export class RegisterComponent implements OnInit {
   }
 
   formValidation() {
-    console.log(this.signupUserForm);
-
+//    let mobileElements = document.getElementById("mobileno").querySelectorAll("[required]");
+    let mobile = new String(this.signupUserForm.mobile);
+    console.log(mobile.length);
+    
     if (
       this.signupUserForm.password == this.c_password &&
       this.signupUserForm.full_name != '' &&
       this.signupUserForm.email != '' &&
-      this.signupUserForm.mobile != ''
+      this.signupUserForm.mobile != ''  &&
+      mobile.length == 10
     ) {
       this.form_validate = true;
+    } else {
+      this.form_validate = false;
     }
   }
 }

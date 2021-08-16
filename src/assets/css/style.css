@@ -287,7 +287,7 @@ header ul.menu li {
 }
 
 header ul.menu li a {
-    color: var(--white-color);
+    color: var(--white-color) !important;
     text-transform: capitalize;
 }
 
@@ -405,7 +405,6 @@ header ul.social li:last-child {
 
 .hero_section .container {
     position: relative;
-    margin-top: 19px;
 }
 
 .hero_section .content_back {
@@ -756,6 +755,7 @@ header ul.social li:last-child {
 
 .common_section.no .list li {
     padding-left: 57px;
+    font-size: 18px;
 }
 
 .common_section.no .list li::before {
@@ -890,7 +890,7 @@ header ul.social li:last-child {
 
 .our_services_section .main_section .portion {
     width: 100%;
-    min-height: 430px;
+    min-height: 473px;
     padding: 40px 30px 40px 30px;
     background-color: var(--primary-color);
     border-radius: 30px;
