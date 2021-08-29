@@ -83,7 +83,7 @@
                     <h3>{{ util.getString("Hi, ") }} {{ profileForm.full_name }} </h3>
 
                     <ul class="left_list">
-                        <li class="d-flex align-items-center" (click)="openProfile()">
+                        <li class="d-flex align-items-center" (click)="previewProfile()">
                             <mdb-icon fas icon="user-circle"></mdb-icon>
                             {{ util.getString("View Profile") }}
                         </li>
@@ -99,15 +99,58 @@
                             <mdb-icon fas icon="user-circle"></mdb-icon>
                             {{ util.getString("Investment Details") }}
                         </li>
-                        <li class="d-flex align-items-center" (click)="logout()">
-                            <mdb-icon fas icon="lock"></mdb-icon>
-                            {{ util.getString("Logout") }}
-                        </li>
+                        
                     </ul>
+                </div>
+                <!-- Business Informations -->
+                <div class="user_div col-md-9" *ngIf="currentDiv === 1">
+                    <div class="d-flex justify-content-between">
+                        <h3>Preview Profile</h3>                       
+                    </div>
+
+                    <div class="emer_section" >
+                        <ul class="emar_details_list">
+                            <li class="d-flex">
+                                <div class="title">
+                                    <mdb-icon fas icon="user-circle"></mdb-icon>
+                                    Name:
+                                </div>
+                                <div class="details">{{ profileForm.full_name }}</div>
+                            </li>
+                            <li class="d-flex">
+                                <div class="title">
+                                    <mdb-icon fas icon="phone"></mdb-icon>
+                                    Mobile:
+                                </div>
+                                <div class="details">{{ profileForm.mobile }} </div>
+                            </li>
+                            <li class="d-flex">
+                                <div class="title">
+                                    <mdb-icon fas icon="envelope"></mdb-icon>
+                                    Mobile:
+                                </div>
+                                <div class="details">{{ profileForm.email }}</div>
+                            </li>
+                            <li class="d-flex">
+                                <div class="title">
+                                    <mdb-icon fas icon="envelope"></mdb-icon>
+                                    Address:
+                                </div>
+                                <div class="details">{{ profileForm.address }}</div>
+                            </li>
+                            <li>
+                                <div class="action_div d-flex align-items-center">
+                                    <button type="button" class="btn custom" (click)="openProfile()">
+                                        {{ util.getString("Edit Profile") }}</button>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
                 </div>
                 <div class="col-lg-9 col-md-12">
                     <!-- User Informations -->
-                    <div class="user_div" *ngIf="currentDiv === 1">
+                    <div class="user_div" *ngIf="currentDiv === 6">
                         <h3>Update Your Profile</h3>
                         <div class="row form_div main_form">
                             <div class="col-lg-6">

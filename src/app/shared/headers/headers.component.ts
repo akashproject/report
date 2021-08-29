@@ -34,7 +34,7 @@ export class HeadersComponent implements OnInit {
   }
 
   goToHome() {
-    console.log(this.util.userInfo);
+    this.active = false;
     
 	if (this.util.userInfo == null) {
 		this.router.navigate(['/']);

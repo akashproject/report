@@ -21,6 +21,8 @@ export class AppComponent {
     private bnIdle: BnNgIdleService
   ) {
     this.bnIdle.startWatching(120).subscribe((res) => {
+      console.log(res);
+      
       if(res) {        
         if (this.util.userInfo != '') {
           localStorage.clear();

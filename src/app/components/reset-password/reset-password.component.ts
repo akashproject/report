@@ -66,7 +66,9 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   formValidation() {
-    if (this.passwordForm.password == this.c_password) {
+    let re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+
+    if (this.passwordForm.password == this.c_password && re.test(this.passwordForm.password) ) {
       this.form_validate = true;
     }
   }

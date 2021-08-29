@@ -182,7 +182,7 @@ img {
     background-image: none;
 }
 
-.custom_button input[type="submit"] {
+.contact_button {
     width: 185px;
     height: 46px;
     border-radius: 50px;
@@ -206,7 +206,7 @@ img {
     cursor: pointer;
 }
 
-.custom_button input[type="submit"]:hover {
+.contact_button:hover {
     background-color: var(--primary-color);
     color: var(--white-color);
     background-image: none;
@@ -851,8 +851,9 @@ header {
 }
 
 .common_section.no .list li {
-    padding-left: 57px;
-    font-size: 18px;
+    padding-left: 23px;
+    font-size: 21px;
+    line-height: 30px;
 }
 
 .common_section.no .list li::before {
@@ -1030,6 +1031,7 @@ header {
 
 .encrypted_section img {
     width: 100%;
+    margin-top: 20px;
 }
 
 .encrypted_section .custom_heading {

@@ -8,9 +8,9 @@
             <div class="right d-flex align-items-center" [class.active]="active">
                 <div class="cross" (click)="close_menu()"></div>
                 <ul class="menu d-flex" *ngIf="!util.userInfo">
-                    <li><a routerLink="/">home</a></li>
-                    <li><a routerLink="/about">about us</a></li>
-                    <li><a href="#get_in_touch">contact us</a></li>
+                    <li><a routerLink="/" (click)="close_menu()">home</a></li>
+                    <li><a routerLink="/about" (click)="close_menu()">about us</a></li>
+                    <li><a routerLink="/faq" (click)="close_menu()">FAQ </a></li>
                 </ul>
                 <ul class="social d-flex align-items-center">
                     <li><a target="_blank" href=""><span class="fa fa-whatsapp"></span></a></li>
@@ -32,10 +32,13 @@
             <div class="hamburger" (click)="open_menu()"></div>
             <div class="right d-flex align-items-center" [class.active]="active">
                 <div class="cross" (click)="close_menu()"></div>
-                <ul class="menu d-flex" *ngIf="!util.userInfo">
-                    <li><a (click)="goToHome()">home</a></li>
-                    <li><a routerLink="/about">about us</a></li>
-                    <li><a href="#get_in_touch">contact us</a></li>
+                <ul class="menu d-flex" *ngIf="!util.userInfo">                   
+                    <li><a routerLink="/" (click)="close_menu()">home</a></li>
+                    <li><a routerLink="/about" (click)="close_menu()">about us</a></li>
+                    <li><a routerLink="/faq" (click)="close_menu()">FAQ </a></li>
+                </ul>
+                <ul class="menu d-flex" *ngIf="util.userInfo">                   
+                    <li><a (click)="logout()">Logout</a></li>
                 </ul>
                 <ul class="social d-flex align-items-center">
                     <li><a target="_blank" href=""><span class="fa fa-whatsapp"></span></a></li>
@@ -43,6 +46,7 @@
                     <li><a target="_blank" href=""><span class="fa fa-linkedin"></span></a></li>
                     <li><a target="_blank" href=""><span class="fa fa-twitter"></span></a></li>
                 </ul>
+                
             </div>
 
         </div>

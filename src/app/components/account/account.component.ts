@@ -58,8 +58,8 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    if (this.util.userInfo == '') {
+    
+    if (this.util.userInfo == '' || this.util.userInfo == null) {
       this.router.navigate(['/']);
     }
     
@@ -88,6 +88,10 @@ export class AccountComponent implements OnInit {
       this.currentDiv = 4;
     }
     //
+  }
+
+  previewProfile() {
+    this.currentDiv = 1;
   }
 
   gotoPassword() {
@@ -216,6 +220,8 @@ export class AccountComponent implements OnInit {
       (data: any) => {
         if (data && data.status === 200) {
           this.util.userInfo = data.data;
+          this.currentDiv = 1;
+          this.otp_value_email = "";
           this.toastr.success('Profile has been updated', 'Success');
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.message, 'Error!');
@@ -262,7 +268,7 @@ export class AccountComponent implements OnInit {
       (data: any) => {
         if (data && data.status === 200) {
           this.util.userInfo = data.data;
-          this.currentDiv = 1;
+          this.currentDiv = 6;
           this.profileForm.id = data.data.id;
           this.profileForm.email = data.data.email;
           this.profileForm.full_name = data.data.full_name;

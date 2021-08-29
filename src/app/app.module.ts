@@ -26,6 +26,7 @@ import { InvestmentsComponent } from './components/investments/investments.compo
 import { DateformatPipe } from './pipes/dateformat.pipe';
 import { PreviewComponent } from './components/preview/preview.component';
 import { AboutComponent } from './components/about/about.component';
+import { FaqComponent } from './components/faq/faq.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { AboutComponent } from './components/about/about.component';
     DateformatPipe,
     PreviewComponent,
     AboutComponent,
+    FaqComponent,
   ],
   imports: [
     BrowserModule,

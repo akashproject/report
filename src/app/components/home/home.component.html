@@ -35,7 +35,7 @@
                         </div>
                         <h6>INR 1.5 Lakh Crore money <br> is still unclaimed </h6>
                         <p>Lying with indian banks & insurance cos. With 10% annual growth.
-                            <a style="color: red;font-weight: 600;" href="https://www.thehindu.com/data/data-unclaimed-wealth-with-indian-banks-rose-to-a-three-year-high-in-2020/article35769865.ece">The Hindu Article link </a> </p>
+                            <a style="color: red;font-weight: 600;" target="_blank" href="https://www.thehindu.com/data/data-unclaimed-wealth-with-indian-banks-rose-to-a-three-year-high-in-2020/article35769865.ece">The Hindu Article link </a> </p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -79,7 +79,7 @@
             </div>
             <div class="col-lg-6">
                 <div class="custom_heading left">
-                    <h4>Ensure your investments are claimed in you absence</h4>
+                    <h4>Ensure your investments are claimed in your absence</h4>
                     <h2>WHAT YOU SHOULD DO?</h2>
                 </div>
                 <ul class="list">
@@ -169,16 +169,13 @@
             <div class="col-lg-6 order-lg-2">
                 <img src="assets/images/encrypt_avator.png" alt="">
             </div>
-            <div class="col-lg-6">
-                <div class="custom_heading left">
-                    <h4>Safe. Secured. Future Proof.</h4>
-                    <h2>With 256 Bit Encrypted<br>System Security</h2>
-                </div>
+            <div class="col-lg-6" style="background: #112871;color: #fff;padding: 3px 23px;">
                 <ul class="list" style="margin-top: 15px;font-size: 18px;">
-                    <li style="margin: 10px 0;">End to end Encryption : We encrypt Your Data and store encrypted data in our system</li>
-                    <li style="margin: 10px 0;">Highly Secured: Even our team does not have any access to your data.</li>
-                    <li style="margin: 10px 0;">Two Factor Authentication Is Mandatory To Access The System.</li>
-                    <li style="margin: 10px 0;">The System Is SSL Enabled and Behind The Firewall.</li>
+					<li style="margin: 21px 0;font-size: 21px;line-height: 30px;"><b style="font-weight: 600;"> Your financial data is not required </b></li>
+                    <li style="margin: 21px 0;font-size: 21px;line-height: 30px;"><b style="font-weight: 600;">End to end encryption</b> : we encrypt your data and store encrypted data in our system</li>
+                    <li style="margin: 21px 0;font-size: 21px;line-height: 30px;"><b style="font-weight: 600;">Highly secured: </b> even our team does not have any access to your data.</li>
+                    <li style="margin: 21px 0;font-size: 21px;line-height: 30px;"><b style="font-weight: 600;">Two Factor Authentication</b> is mandatory to access the system.</li>
+                    <li style="margin: 21px 0;font-size: 21px;line-height: 30px;">The system is SSL enabled and behind the firewall.</li>
                 </ul>
             </div>
         </div>
@@ -197,38 +194,44 @@
                     <div class="main_form">
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="" placeholder="Your Name" id="">
+                                <input type="text" [(ngModel)]="contactForm.name" placeholder="Your Name" id="" (ngModelChange)="formValidation()">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="" placeholder="Your Email" id="">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" name="" placeholder="Your Phone No" id="">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="" placeholder="Age" id="">
+                                <input type="text" [(ngModel)]="contactForm.email" placeholder="Your Email" id="" (ngModelChange)="formValidation()">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <input type="text" name="" placeholder="Service Industries" id="">
+                                <input type="text" [(ngModel)]="contactForm.mobile" placeholder="Your Phone No" id="" (ngModelChange)="formValidation()">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="" placeholder="State" id="">
+                                <input type="text" [(ngModel)]="contactForm.age" placeholder="Age" id="" (ngModelChange)="formValidation()">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" [(ngModel)]="contactForm.service" placeholder="Service Industries" id="" (ngModelChange)="formValidation()">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" [(ngModel)]="contactForm.state" placeholder="State" id="" (ngModelChange)="formValidation()">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <textarea name="" placeholder="Your message..."></textarea>
+                                <textarea [(ngModel)]="contactForm.message" placeholder="Your message..." (ngModelChange)="formValidation()"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="custom_button d-flex justify-content-center">
-                                    <input type="submit" value="Submit">
-                                </div>
+<!-- 									<input type="button" value="Submit">
+ -->                                    <button type="button" (click)="contactus()" *ngIf="form_validate" class="contact_button">
+										{{ util.getString("Submit") }}
+									</button>
+									<button type="button" disabled="disabled" *ngIf="!form_validate" class="contact_button">
+										{{ util.getString("Submit") }}
+									</button>
+								</div>
                             </div>
                         </div>
                     </div>
