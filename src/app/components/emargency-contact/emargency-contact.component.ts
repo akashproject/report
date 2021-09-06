@@ -79,8 +79,14 @@ export class EmargencyContactComponent implements OnInit {
   }
 
   formValidation() {
+    let mobile = new String(this.contactForm.mobile);
+
     console.log(this.contactForm);
-    if (this.contactForm.mobile != '' || this.contactForm.email != '') {
+      if (
+        this.contactForm.name != '' &&
+        this.contactForm.mobile != '' &&
+        mobile.length == 10
+      ) {
       this.form_validate = true;
     } else {
       this.form_validate = false;
