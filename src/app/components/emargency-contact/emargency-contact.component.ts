@@ -20,6 +20,14 @@ export class EmargencyContactComponent implements OnInit {
     address: '',
   };
 
+  profileForm: any = {
+    id: "",
+    email: "",
+    full_name: "",
+    mobile: "",
+    address: "",
+  };
+
   isEmailVerified: any;
   currentDiv: any;
   form_validate = false;
@@ -29,7 +37,9 @@ export class EmargencyContactComponent implements OnInit {
     private api: ApiService,
     public util: UtilService,
     private toastr: ToastrService
-  ) {}
+  ) {
+    this.profileForm.full_name = this.util.userInfo.full_name;
+  }
 
   ngOnInit(): void {}
 

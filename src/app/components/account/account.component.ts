@@ -359,8 +359,7 @@ export class AccountComponent implements OnInit {
 
   contactFromValidation(){
     console.log(this.contactForm);
-    console.log(this.contactform_validate);
-    
+    console.log(this.contactform_validate);    
     if (
       this.contactForm.name != '' &&
       this.contactForm.email != '' &&
@@ -371,6 +370,29 @@ export class AccountComponent implements OnInit {
     } else {
       this.contactform_validate = false;
     }
+  }
+
+  verifyOtpToServer() {
+    const param = {
+      id: this.util.userInfo.id,
+      email_verified: true,
+    };
+    this.api.post('users/updateEmailVerification', param).subscribe(
+      (data: any) => {
+        if (data && data.status === 200) {
+          localStorage.setItem('user', JSON.stringify(data.data));
+          this.util.userInfo = data.data;
+          this.router.navigate(['/account']);
+        } else if (data && data.status === 500) {
+          this.toastr.error(data.data.error, 'Error!');
+        } else {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('Something went wrong', 'Error!');
+      }
+    );
   }
 
 }

@@ -124,7 +124,6 @@ export class RegisterComponent implements OnInit {
     if (
       this.signupUserForm.password == this.c_password &&
       this.signupUserForm.full_name != '' &&
-      this.signupUserForm.email != '' &&
       this.signupUserForm.mobile != ''  &&
       mobile.length == 10 &&
       re.test(this.signupUserForm.password)

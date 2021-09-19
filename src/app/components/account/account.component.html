@@ -61,7 +61,7 @@
                 </div>
             </div>
         </div>
-        <div class="alert alert-danger verify_alert" role="alert" *ngIf="isEmailVerified != 'true'">
+        <div class="alert alert-danger verify_alert" role="alert" *ngIf="isEmailVerified != 'true' && profileForm.email != ''">
             You need to verify you email addreress! click
             <a routerLink="/verify-email">
                 <b>Here</b>
@@ -127,7 +127,7 @@
                             <li class="d-flex">
                                 <div class="title">
                                     <mdb-icon fas icon="envelope"></mdb-icon>
-                                    Mobile:
+                                    Email:
                                 </div>
                                 <div class="details">{{ profileForm.email }}</div>
                             </li>
