@@ -8,10 +8,10 @@
           </button>
                     <h4 class="modal-title w-100" id="myModalLabel">
                         <span *ngIf="newContact === true">
-              {{ util.getString("Create Emargency Contact") }}
+              {{ util.getString("Create Emergency Contact") }}
             </span>
                         <span *ngIf="newContact === false">
-              {{ util.getString("Update Emargency Contact") }}
+              {{ util.getString("Update Emergency Contact") }}
             </span>
                     </h4>
                 </div>
@@ -65,7 +65,7 @@
     <div class="row" *ngIf="!isContactadded">
         <div class="col-md-12 text-center">
             <h3 class="alert alert-primary">
-                You need to add a Emargency contact to furthur proceed! click
+                You need to add a Emergency contact to furthur proceed! click
                 <a (click)="gotoContact()">
                     <strong>Here</strong>
                 </a>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="right_div">
                     <label class="title_lbl">
-            {{ util.getString("Emargency Contact") }}
+            {{ util.getString("Emergency Contact") }}
           </label>
                 </div>
             </div>

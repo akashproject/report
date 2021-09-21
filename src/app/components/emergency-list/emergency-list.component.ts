@@ -8,11 +8,11 @@ import { ModalDirective } from 'angular-bootstrap-md';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-emargency-list',
-  templateUrl: './emargency-list.component.html',
-  styleUrls: ['./emargency-list.component.scss'],
+  selector: 'app-emergency-list',
+  templateUrl: './emergency-list.component.html',
+  styleUrls: ['./emergency-list.component.scss'],
 })
-export class EmargencyListComponent implements OnInit {
+export class EmergencyListComponent implements OnInit {
   mobile: any = '';
   @ViewChild('contactModal') public contactModal: ModalDirective;
   email: any = '';
@@ -75,7 +75,7 @@ export class EmargencyListComponent implements OnInit {
     if(this.myContacts.length > 0){
       this.router.navigate(['/investments']);
     } else {
-      this.toastr.error('Please add at least 1 emargency contact details', 'Error!');
+      this.toastr.error('Please add at least 1 emergency contact details', 'Error!');
       this.currentDiv = 4;
     }
     //
@@ -92,7 +92,7 @@ export class EmargencyListComponent implements OnInit {
 
   getAllContacts() {
     this.api
-      .get('users/get_emargencycontact/' + this.util.userInfo.id)
+      .get('users/get_emergencycontact/' + this.util.userInfo.id)
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
@@ -121,15 +121,15 @@ export class EmargencyListComponent implements OnInit {
   }
 
   addNewContact() {
-    this.router.navigate(['/emargency-contact']);
+    this.router.navigate(['/emergency-contact']);
   }
 
   actionContact() {
-    this.api.post('users/add_emargency', this.contactForm).subscribe(
+    this.api.post('users/add_emergency', this.contactForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
           this.contactModal.hide();
-          this.toastr.success('Emargency contact has been updated', 'Success');
+          this.toastr.success('Emergency contact has been updated', 'Success');
           this.router.navigate(['/account']);
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.message, 'Error!');
@@ -293,7 +293,7 @@ export class EmargencyListComponent implements OnInit {
         this.api.post('users/deleteContact', param).subscribe(
           (info) => {
             this.toastr.success(
-              'Emargency contact has been deleted',
+              'Emergency contact has been deleted',
               'Success'
             );
             this.getAllContacts();

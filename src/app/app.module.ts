@@ -20,8 +20,8 @@ import { AccountComponent } from './components/account/account.component';
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { EmargencyContactComponent } from './components/emargency-contact/emargency-contact.component';
-import { EmargencyListComponent } from './components/emargency-list/emargency-list.component';
+import { EmergencyContactComponent } from './components/emergency-contact/emergency-contact.component';
+import { EmergencyListComponent } from './components/emergency-list/emergency-list.component';
 import { InvestmentsComponent } from './components/investments/investments.component';
 import { DateformatPipe } from './pipes/dateformat.pipe';
 import { PreviewComponent } from './components/preview/preview.component';
@@ -40,8 +40,8 @@ import { FaqComponent } from './components/faq/faq.component';
     VerifyEmailComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    EmargencyContactComponent,
-    EmargencyListComponent,
+    EmergencyContactComponent,
+    EmergencyListComponent,
     InvestmentsComponent,
     DateformatPipe,
     PreviewComponent,

@@ -6,11 +6,11 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-emargency-contact',
-  templateUrl: './emargency-contact.component.html',
-  styleUrls: ['./emargency-contact.component.scss'],
+  selector: 'app-emergency-contact',
+  templateUrl: './emergency-contact.component.html',
+  styleUrls: ['./emergency-contact.component.scss'],
 })
-export class EmargencyContactComponent implements OnInit {
+export class EmergencyContactComponent implements OnInit {
   contactForm: any = {
     id: '',
     user_id: this.util.userInfo.id,
@@ -45,13 +45,13 @@ export class EmargencyContactComponent implements OnInit {
 
   update() {
     console.log(this.contactForm);
-    this.api.post('users/add_emargency', this.contactForm).subscribe(
+    this.api.post('users/add_emergency', this.contactForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
           // localStorage.setItem('user', JSON.stringify(data.data));
           this.util.userInfo.contact_added = true;
-          this.toastr.success('Emargency contact has been inserted', 'Success');
-          this.router.navigate(['/emargency-list']);
+          this.toastr.success('Emergency contact has been inserted', 'Success');
+          this.router.navigate(['/emergency-list']);
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.error, 'Error!');
         } else {

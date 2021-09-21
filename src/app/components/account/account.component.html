@@ -9,10 +9,10 @@
                         </button>
                         <h3 class="modal-title w-100" id="myModalLabel">
                             <span *ngIf="newContact === true">
-                                {{ util.getString("Create Emargency Contact") }}
+                                {{ util.getString("Create Emergency Contact") }}
                             </span>
                             <span *ngIf="newContact === false">
-                                {{ util.getString("Update Emargency Contact") }}
+                                {{ util.getString("Update Emergency Contact") }}
                             </span>
                         </h3>
                     </div>
@@ -70,7 +70,7 @@
         </div>
 
         <div class="alert alert-danger verify_alert" role="alert" *ngIf="!isContactadded">
-            You need to add a Emargency contact to furthur proceed! click
+            You need to add a Emergency contact to furthur proceed! click
             <a (click)="gotoContact()">
                 <strong>Here</strong>
             </a>
@@ -89,7 +89,7 @@
                         </li>
                         <li class="d-flex align-items-center phone_ro" (click)="gotoContact()">
                             <mdb-icon fas icon="phone"></mdb-icon>
-                            {{ util.getString("Emargency Contact") }}
+                            {{ util.getString("Emergency Contact") }}
                         </li>
                         <li class="d-flex align-items-center" (click)="gotoPassword()">
                             <mdb-icon fas icon="user-circle"></mdb-icon>
@@ -281,9 +281,9 @@
                     <!-- Business Informations -->
                     <div class="user_div" *ngIf="currentDiv === 4">
                         <div class="d-flex justify-content-between">
-                            <h3>Emargency Contact</h3>
+                            <h3>Emergency Contact</h3>
                             <div class="add_button" *ngIf="myContacts.length < 2">
-                                <h3 (click)="addNewContact()" mdbWavesEffect>{{ util.getString("+ Add Emargency Contact") }}</h3>
+                                <h3 (click)="addNewContact()" mdbWavesEffect>{{ util.getString("+ Add Emergency Contact") }}</h3>
                             </div>
                         </div>
 

@@ -12,7 +12,7 @@
                         </li>
                         <li class="d-flex align-items-center phone_ro" (click)="gotoContact()">
                             <mdb-icon fas icon="phone"></mdb-icon>
-                            {{ util.getString("Emargency Contact") }}
+                            {{ util.getString("Emergency Contact") }}
                         </li>
                         <li class="d-flex align-items-center" (click)="gotoPassword()">
                             <mdb-icon fas icon="user-circle"></mdb-icon>
@@ -32,7 +32,7 @@
                 <div class="col-lg-9 col-md-12">
                     <!-- User Informations -->
                     <div class="user_div">
-                        <h3>Add Emargency Contact</h3>
+                        <h3>Add Emergency Contact</h3>
                         <div class="row form_div main_form">
                             <div class="col-lg-6">
                                 <div class="inner-addon left-addon">
@@ -67,7 +67,7 @@
 										{{ util.getString("Update Contact") }}
 									</button>
                                     <button type="button" mdbWavesEffect mdbBtn class="btn custom" disabled="disabled" *ngIf="!form_validate">
-										{{ util.getString("Add Emargency Contact") }}
+										{{ util.getString("Add Emergency Contact") }}
 									</button>
                                 </div>
                             </div>

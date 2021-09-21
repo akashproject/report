@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EmargencyContactComponent } from './emargency-contact.component';
+import { EmergencyContactComponent } from './emergency-contact.component';
 
-describe('EmargencyContactComponent', () => {
-  let component: EmargencyContactComponent;
-  let fixture: ComponentFixture<EmargencyContactComponent>;
+describe('EmergencyContactComponent', () => {
+  let component: EmergencyContactComponent;
+  let fixture: ComponentFixture<EmergencyContactComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmargencyContactComponent ]
+      declarations: [ EmergencyContactComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EmargencyContactComponent);
+    fixture = TestBed.createComponent(EmergencyContactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
