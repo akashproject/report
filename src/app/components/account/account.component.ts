@@ -362,7 +362,6 @@ export class AccountComponent implements OnInit {
     console.log(this.contactform_validate);    
     if (
       this.contactForm.name != '' &&
-      this.contactForm.email != '' &&
       this.contactForm.mobile != '' &&
       this.contactForm.address != ''
     ) {
