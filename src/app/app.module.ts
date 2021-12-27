@@ -27,6 +27,9 @@ import { DateformatPipe } from './pipes/dateformat.pipe';
 import { PreviewComponent } from './components/preview/preview.component';
 import { AboutComponent } from './components/about/about.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { TermConditionComponent } from './components/term-condition/term-condition.component';
+import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +50,9 @@ import { FaqComponent } from './components/faq/faq.component';
     PreviewComponent,
     AboutComponent,
     FaqComponent,
+    PrivacyPolicyComponent,
+    TermConditionComponent,
+    CookiePolicyComponent,
   ],
   imports: [
     BrowserModule,

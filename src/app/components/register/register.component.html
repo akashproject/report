@@ -32,6 +32,7 @@
                             <mdb-icon fas icon="lock"></mdb-icon>
                             <input type="password" name="c_password" [(ngModel)]="c_password" [placeholder]="util.getString('Confirm Password')" class="form-control" (ngModelChange)="formValidation()" />
                         </div>
+                        <p  style="font-size: 13px;">By clicking Next button, you agree to our <a  href="/privacy-policy" style="font-size: 13px;font-weight: 600;" target="_blank">Privacy Policy</a>, <a  href="/term-condition" style="font-size: 13px;font-weight: 600;" target="_blank" > Terms & Conditions </a>, <a href="/cookie-policy" style="font-size: 13px;font-weight: 600;"  target="_blank" > Cookies Policy </a>, Refund Policy. You may receive SMS notifications from us. </p>
                         <button type="button" class="btn custom" (click)="sendCustomOtp()" *ngIf="form_validate">
 						  {{ util.getString("Next") }}
 						</button>

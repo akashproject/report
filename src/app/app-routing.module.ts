@@ -14,6 +14,9 @@ import { InvestmentsComponent } from './components/investments/investments.compo
 import { PreviewComponent } from './components/preview/preview.component';
 import { AboutComponent } from './components/about/about.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { TermConditionComponent } from './components/term-condition/term-condition.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,6 +33,9 @@ const routes: Routes = [
   { path: 'preview', component: PreviewComponent },
   { path: 'about', component: AboutComponent },
   { path: 'faq', component: FaqComponent },
+  { path: 'term-condition', component: TermConditionComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+  { path: 'cookie-policy', component: CookiePolicyComponent },
 ];
 
 @NgModule({
