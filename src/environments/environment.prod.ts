@@ -9,9 +9,9 @@
 */
 export const environment = {
   production: true,
-  baseURL: 'https://conjugation.in/api/index.php/',
-  mediaURL: 'https://conjugation.in/api/uploads/',
-  uservault: 'https://conjugation.in/api/investments/',
+  baseURL: 'https://npconjug.co.in/api/index.php/',
+  mediaURL: 'https://npconjug.co.in/api/uploads/',
+  uservault: 'https://npconjug.co.in/api/investments/',
 
   general: {
     symbol: '$',
