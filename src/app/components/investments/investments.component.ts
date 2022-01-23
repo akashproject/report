@@ -107,8 +107,12 @@ export class InvestmentsComponent implements OnInit {
   }
 
   getUserRecords() {
+    let userdata: any = {
+      mobile: this.util.userInfo.mobile,
+      password: this.util.userInfo.password,
+    };
     this.api
-      .get('investments/get-user-records/' + this.util.userInfo.id)
+      .post('investments/get_user_records',userdata)
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
@@ -129,8 +133,12 @@ export class InvestmentsComponent implements OnInit {
   }
 
   getInvestmentsRecords() {
+    let userdata: any = {
+      mobile: this.util.userInfo.mobile,
+      password: this.util.userInfo.password,
+    };
     this.api
-      .get('investments/get-investment-records/' + this.util.userInfo.id)
+      .post('investments/get_investment_records',userdata)
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {  

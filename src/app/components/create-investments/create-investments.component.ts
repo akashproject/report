@@ -88,8 +88,12 @@ export class CreateInvestmentsComponent implements OnInit {
   }
 
   getAllContacts() {
+    let userdata: any = {
+      mobile: this.util.userInfo.mobile,
+      password: this.util.userInfo.password,
+    };
     this.api
-      .get('users/get_emergencycontact/' + this.util.userInfo.id)
+      .post('users/get_emergencycontact/',userdata)
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
