@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { UtilService } from './util.service';
 import Swal from 'sweetalert2';
 import { forkJoin } from 'rxjs';
 @Injectable({
@@ -9,7 +10,7 @@ import { forkJoin } from 'rxjs';
 export class ApiService {
   baseUrl: any = '';
   mediaURL: any = '';
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private util: UtilService) {
     this.baseUrl = environment.baseURL;
     this.mediaURL = environment.mediaURL;
   }
@@ -91,13 +92,15 @@ export class ApiService {
   }
 
   post(url, body) {
+    let token = 'scriptcrown';
+    if(this.util.userInfo) {
+      token = this.util.userInfo.token;
+    }
+    
     const header = {
-      headers: new HttpHeaders().set(
-        'Content-Type',
-        'application/x-www-form-urlencoded'
-      )
-      .set('client_d', `123456789`)
-      .set('client_secret', `987654321`),
+      headers: new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
+      .set('Basic', token),
     };
     const param = this.JSON_to_URLEncoded(body);
     console.log(param);
