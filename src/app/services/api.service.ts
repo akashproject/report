@@ -95,7 +95,9 @@ export class ApiService {
       headers: new HttpHeaders().set(
         'Content-Type',
         'application/x-www-form-urlencoded'
-      ),
+      )
+      .set('client_d', `123456789`)
+      .set('client_secret', `987654321`),
     };
     const param = this.JSON_to_URLEncoded(body);
     console.log(param);
