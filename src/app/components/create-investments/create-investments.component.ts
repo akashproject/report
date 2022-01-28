@@ -36,7 +36,6 @@ export class CreateInvestmentsComponent implements OnInit {
   };
   myContacts: any = [];
   changePasswordForm: any = {
-    id: this.util.userInfo.id,
     old_password: '',
     password: '',
   };
@@ -89,8 +88,7 @@ export class CreateInvestmentsComponent implements OnInit {
 
   getAllContacts() {
     let userdata: any = {
-      mobile: this.util.userInfo.mobile,
-      password: this.util.userInfo.password,
+      
     };
     this.api
       .post('users/get_emergencycontact/',userdata)

@@ -100,7 +100,7 @@ export class ApiService {
     const header = {
       headers: new HttpHeaders()
       .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
-      .set('Basic', token),
+      .set('Token', token),
     };
     const param = this.JSON_to_URLEncoded(body);
     console.log(param);
@@ -108,10 +108,14 @@ export class ApiService {
   }
 
   filepost(url, post) {
+    let token = 'scriptcrown';
+    if(this.util.userInfo) {
+      token = this.util.userInfo.token;
+    }
     const header = {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8')
-        .set('Basic', `123456789`),
+        .set('Token', token),
     };
     return this.http.post(
       'https://api.circlepoint.in/index.php/' + url,
@@ -154,11 +158,16 @@ export class ApiService {
     console.log(order);
     return this.http.post(url, order, header);
   }
+  
   get(url) {
+    let token = environment.authToken;
+    if(this.util.userInfo) {
+      token = this.util.userInfo.token;
+    }
     const header = {
       headers: new HttpHeaders()
         .set('Content-Type', 'application/x-www-form-urlencoded')
-        .set('Basic', `${environment.authToken}`),
+        .set('Token', token),
     };
     return this.http.get(this.baseUrl + url, header);
   }

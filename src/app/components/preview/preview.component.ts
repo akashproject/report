@@ -69,7 +69,7 @@ export class PreviewComponent implements OnInit {
 
   getInvestmentsRecords() {
     this.api
-      .get('investments/preview-investment/' + this.util.userInfo.id)
+      .get('investments/preview-investment/')
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {

@@ -36,7 +36,6 @@ export class AccountComponent implements OnInit {
   };
   myContacts: any = [];
   changePasswordForm: any = {
-    id: '',
     old_password: '',
     password: '',
   };
@@ -75,8 +74,6 @@ export class AccountComponent implements OnInit {
     this.profileForm.full_name = this.util.userInfo.full_name;
     this.profileForm.mobile = this.util.userInfo.mobile;
     this.profileForm.address = this.util.userInfo.address;
-    this.changePasswordForm.id = this.util.userInfo.id;
-
   }
 
   goTobusiness() {
@@ -105,8 +102,7 @@ export class AccountComponent implements OnInit {
 
   getAllContacts() {
     let userdata: any = {
-      mobile: this.util.userInfo.mobile,
-      password: this.util.userInfo.password,
+      
     };
     this.api
       .post('users/get_emergencycontact/',userdata)
@@ -266,7 +262,6 @@ export class AccountComponent implements OnInit {
 
   openProfile() {
     let params: any = {
-      id: this.util.userInfo.id,
     };
     this.api.post('users/getById', params).subscribe(
       (data: any) => {
@@ -377,7 +372,6 @@ export class AccountComponent implements OnInit {
 
   verifyOtpToServer() {
     const param = {
-      id: this.util.userInfo.id,
       email_verified: true,
     };
     this.api.post('users/updateEmailVerification', param).subscribe(

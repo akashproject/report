@@ -61,7 +61,6 @@ export class VerifyEmailComponent implements OnInit {
   verifyOtp() {
     if (this.hidden_otp_value_email == this.otp_value) {
       const param = {
-        id: this.util.userInfo.id,
         email_verified: true,
       };
       this.api.post('users/updateEmailVerification', param).subscribe(

@@ -56,7 +56,6 @@ export class InvestmentsComponent implements OnInit {
   model: NgbDateStruct;
   date: { year: number, month: number };
   verifyPasswordForm: any = {
-    id: this.util.userInfo.id,
     password: '',
   };
   password_validate = false;
@@ -107,12 +106,9 @@ export class InvestmentsComponent implements OnInit {
   }
 
   getUserRecords() {
-    let userdata: any = {
-      mobile: this.util.userInfo.mobile,
-      password: this.util.userInfo.password,
-    };
+
     this.api
-      .post('investments/get_user_records',userdata)
+      .get('investments/get-user-records/')
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
@@ -133,12 +129,8 @@ export class InvestmentsComponent implements OnInit {
   }
 
   getInvestmentsRecords() {
-    let userdata: any = {
-      mobile: this.util.userInfo.mobile,
-      password: this.util.userInfo.password,
-    };
     this.api
-      .post('investments/get_investment_records',userdata)
+      .get('investments/get-investment-records/')
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {  
@@ -334,7 +326,7 @@ export class InvestmentsComponent implements OnInit {
   }
 
   previewRecords(){
-    this.api.get('investments/export-to-csv/' + this.util.userInfo.id).subscribe(
+    this.api.get('investments/export-to-csvbk/').subscribe(
       (data: any) => {
         if (data && data.status === 200) {
           this.router.navigate(['/preview']);
@@ -351,14 +343,10 @@ export class InvestmentsComponent implements OnInit {
     
   }
 
-  changedateformat(event) {
-    console.log(event);
-    
-  }
+
   publishInvestmentRecords(){
-    console.log("investements ",this.investmentsForm);
     
-    this.api.post('investments/publish-investment-records/' + this.util.userInfo.id, this.investmentsForm).subscribe(
+    this.api.post('investments/publish-investment-records/', this.investmentsForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
           this.toastr.success('Information has been updated', 'Success');

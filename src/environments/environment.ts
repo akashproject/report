@@ -20,7 +20,7 @@ export const environment = {
     symbol: '$',
     code: 'USD',
   },
-  authToken: 'sL2lM7bL8pE1mD7t',
+  authToken: 'scriptcrown',
 };
 
 /*
