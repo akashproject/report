@@ -45,6 +45,7 @@ export class ResetPasswordComponent implements OnInit {
             'Password Updated'
           );
           localStorage.setItem('reset_user_data', '');
+          this.router.navigate(['/login']);
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.error, 'Error!');
         } else {

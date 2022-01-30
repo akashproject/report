@@ -15,8 +15,9 @@ export class ForgotPasswordComponent implements OnInit {
   email: any = '';
   showOtp = false;
   otp_value: any = '';
-  hidden_otp_value_email: any = '';
-  hidden_otp_value_mobile: any = '';
+  // hidden_otp_value_email: any = '';
+  // hidden_otp_value_mobile: any = '';
+  hidden_otp_id: any = '';
   form_validate = false;
   passwordForm: any = {
     post_data: '',
@@ -42,8 +43,7 @@ export class ForgotPasswordComponent implements OnInit {
             this.showOtp = true;
           }
           localStorage.setItem('reset_user_data', this.passwordForm.post_data);
-          this.hidden_otp_value_email = data.data.otp_value_email;
-          this.hidden_otp_value_mobile = data.data.otp_value_mobile;
+          this.hidden_otp_id = data.data;
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.error, 'Error!');
         } else {
@@ -57,14 +57,24 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   verifyOtp() {
-    if (
-      this.hidden_otp_value_email == this.otp_value ||
-      this.hidden_otp_value_mobile == this.otp_value
-    ) {
-      this.router.navigate(['/reset-password']);
-    } else {
-      this.toastr.error('invalid one time password', 'Error!');
-    }
+    const param = {
+      otp_value: this.otp_value,
+      otp_id:this.hidden_otp_id
+    };
+    this.api.post('users/verifyLoginOtp', param).subscribe(
+      (data: any) => {
+        if (data && data.status === 200) {
+          this.router.navigate(['/reset-password']);
+        } else if (data && data.status === 500) {
+          this.toastr.error(data.data.error, 'Error!');
+        } else {
+          this.toastr.error('invalid one time password', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('invalid one time password', 'Error!');
+      }
+    );
   }
 
   goToLogin() {
