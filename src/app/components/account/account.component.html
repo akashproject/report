@@ -198,16 +198,12 @@
                             <label> Verify One time password </label>
                         </div>
                         <div class="row form_div" *ngIf="showOtp">
-                            <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_email != ''">
-                                <label *ngIf="hidden_otp_value_email != ''">Email Verification Otp:
+                            <div class="col-lg-12 class_col" *ngIf="hidden_otp_id != ''">
+                                <label >Verification Otp:
                                 </label>
-                                <input type="text" placeholder="One time passwoord" [(ngModel)]="otp_value_email" class="form-control" />
+                                <input type="text" placeholder="One time passwoord" [(ngModel)]="otp_value" class="form-control" />
                             </div>
-                            <div class="col-lg-12 class_col" *ngIf="hidden_otp_value_mobile != ''">
-                                <label *ngIf="hidden_otp_value_mobile != ''">Mobile Verification Otp:
-                                </label>
-                                <input placeholder="One time passwoord" type="text" [(ngModel)]="otp_value_mobile" class="form-control" />
-                            </div>
+                           
                             <div class="col-12">
                                 <div class="submitBtn">
                                     <button type="button" (click)="verifyOtp()" mdbWavesEffect mdbBtn class="btn">

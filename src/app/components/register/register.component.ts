@@ -13,7 +13,7 @@ import Swal from 'sweetalert2';
 export class RegisterComponent implements OnInit {
   showOtp = false;
   otp_value: any = '';
-  hidden_otp_value: any = '';
+  hidden_otp_id: any = '';
   form_validate = false;
   signupUserForm: any = {
     email: '',
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
       (data: any) => {
         if (data && data.status == '200') {
           this.showOtp = true;
-          this.hidden_otp_value = data.data.otp_value;
+          this.hidden_otp_id = data.data;
         } else if (data && data.status == '500') {
           this.toastr.error(data.data.error, 'Error!');
         } else {
@@ -68,13 +68,27 @@ export class RegisterComponent implements OnInit {
   }
 
   verifyOtp() {
-    if (this.hidden_otp_value == this.otp_value) {
-      //this.navCtrl.navigateRoot([""]);
-      this.signup();
-    } else {
-      this.toastr.error('invalid one time password', 'Error!');
-    }
+    const param = {
+      otp_value: this.otp_value,
+      otp_id:this.hidden_otp_id
+    };
+    this.api.post('users/verifyLoginOtp', param).subscribe(
+      (data: any) => {
+        if (data && data.status === 200) {
+          this.signup();
+        } else if (data && data.status === 500) {
+          this.toastr.error(data.data.error, 'Error!');
+        } else {
+          this.toastr.error('invalid one time password', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('invalid one time password', 'Error!');
+      }
+    );
   }
+
+  
 
   goToLogin() {
     this.router.navigate(['/login']);
@@ -115,11 +129,11 @@ export class RegisterComponent implements OnInit {
     let mobile = new String(this.signupUserForm.mobile);
     let re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     
-    // if (re.test(this.signupUserForm.password)) {
-    //     console.log("Valid");
-    // } else {
-    //     console.log("Invalid");
-    // }
+    if (re.test(this.signupUserForm.password)) {
+        console.log("Valid");
+    } else {
+        console.log("Invalid");
+    }
 
     if (
       this.signupUserForm.password == this.c_password &&

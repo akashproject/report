@@ -71,6 +71,8 @@ export class ResetPasswordComponent implements OnInit {
 
     if (this.passwordForm.password == this.c_password && re.test(this.passwordForm.password) ) {
       this.form_validate = true;
+    } else {
+      this.form_validate = false;
     }
   }
 }

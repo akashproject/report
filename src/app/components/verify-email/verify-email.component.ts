@@ -45,7 +45,7 @@ export class VerifyEmailComponent implements OnInit {
     this.api.post('users/sendVerificationEmailOtp', param).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
-          this.hidden_otp_value_email = data.data.otp_value_email;
+          this.hidden_otp_value_email = data.data;
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.error, 'Error!');
         } else {
@@ -59,28 +59,46 @@ export class VerifyEmailComponent implements OnInit {
   }
 
   verifyOtp() {
-    if (this.hidden_otp_value_email == this.otp_value) {
-      const param = {
-        email_verified: true,
-      };
-      this.api.post('users/updateEmailVerification', param).subscribe(
-        (data: any) => {
-          if (data && data.status === 200) {
-            localStorage.setItem('user', JSON.stringify(data.data));
-            this.util.userInfo = data.data;
-            this.router.navigate(['/account']);
-          } else if (data && data.status === 500) {
-            this.toastr.error(data.data.error, 'Error!');
-          } else {
-            this.toastr.error('Something went wrong', 'Error!');
-          }
-        },
-        (error) => {
-          this.toastr.error('Something went wrong', 'Error!');
+    
+    
+    const param = {
+      otp_value: this.otp_value,
+      otp_id:this.hidden_otp_value_email
+    };
+    console.log(param);
+    this.api.post('users/verifyLoginOtp', param).subscribe(
+      (data: any) => {
+        if (data && data.status === 200) {
+          const param = {
+            email_verified: true,
+          };
+          this.api.post('users/updateEmailVerification', param).subscribe(
+            (data: any) => {
+              if (data && data.status === 200) {
+                localStorage.setItem('user', JSON.stringify(data.data));
+                this.util.userInfo = data.data;
+                this.router.navigate(['/account']);
+              } else if (data && data.status === 500) {
+                this.toastr.error(data.data.error, 'Error!');
+              } else {
+                this.toastr.error('Something went wrong', 'Error!');
+              }
+            },
+            (error) => {
+              this.toastr.error('Something went wrong', 'Error!');
+            }
+          );
+        } else if (data && data.status === 500) {
+          this.toastr.error(data.data.error, 'Error!');
+        } else {
+          this.toastr.error('invalid one time password', 'Error!');
         }
-      );
-    } else {
-      this.toastr.error('invalid one time password', 'Error!');
-    }
+      },
+      (error) => {
+        this.toastr.error('invalid one time password', 'Error!');
+      }
+    );
+
+   
   }
 }
