@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { UtilService } from '../../services/util.service';
-import * as moment from 'moment';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'angular-bootstrap-md';
 import Swal from 'sweetalert2';
@@ -60,6 +59,10 @@ export class AccountComponent implements OnInit {
       this.router.navigate(['/']);
     }
     
+    if(localStorage.getItem('planId')){
+      this.router.navigate(['/payment']);
+    }
+
     this.isEmailVerified = this.util.userInfo.email_verified;
     console.log(this.util.userInfo);
 
@@ -87,6 +90,10 @@ export class AccountComponent implements OnInit {
 
   previewProfile() {
     this.currentDiv = 1;
+  }
+  
+  gotoMembership() {
+    this.currentDiv = 5;
   }
 
   gotoPassword() {

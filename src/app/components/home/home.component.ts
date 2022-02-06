@@ -50,6 +50,11 @@ export class HomeComponent implements OnInit {
     );  
   }
 
+  gotoSubscription(){
+    localStorage.setItem('routesource','register');
+    this.router.navigate(['/subscription']);
+  }
+
 	formValidation() {
 		if (this.contactForm.name != '' && this.contactForm.age != '' && this.contactForm.mobile != '' && this.contactForm.email != '' && this.contactForm.message != '') {
 		  this.form_validate = true;

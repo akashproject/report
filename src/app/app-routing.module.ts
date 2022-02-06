@@ -17,6 +17,8 @@ import { FaqComponent } from './components/faq/faq.component';
 import { TermConditionComponent } from './components/term-condition/term-condition.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { PaymentComponent } from './components/payment/payment.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,6 +38,8 @@ const routes: Routes = [
   { path: 'term-condition', component: TermConditionComponent },
   { path: 'privacy-policy', component: PrivacyPolicyComponent },
   { path: 'cookie-policy', component: CookiePolicyComponent },
+  { path: 'subscription', component: SubscriptionComponent },
+  { path: 'payment', component: PaymentComponent },
 ];
 
 @NgModule({

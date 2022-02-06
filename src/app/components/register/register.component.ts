@@ -100,10 +100,9 @@ export class RegisterComponent implements OnInit {
         if (data && data.status == '200') {
           this.toastr.success('You have successfully registered.', 'Success!');
           localStorage.setItem('user', JSON.stringify(data.data));
+          this.util.userInfo = JSON.parse(data.data);
           localStorage.setItem('loginflag', '1');
-          this.router.navigate(['/account']).then(() => {
-            window.location.reload();
-          });
+          this.router.navigate(['/account']);
         } else if (data && data.status == '500') {
           this.toastr.error(data.data.message, 'Error!');
           this.showOtp = false;

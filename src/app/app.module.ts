@@ -30,6 +30,8 @@ import { FaqComponent } from './components/faq/faq.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermConditionComponent } from './components/term-condition/term-condition.component';
 import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
+import { PaymentComponent } from './components/payment/payment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +55,8 @@ import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.
     PrivacyPolicyComponent,
     TermConditionComponent,
     CookiePolicyComponent,
+    SubscriptionComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

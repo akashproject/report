@@ -87,6 +87,10 @@
                             <mdb-icon fas icon="user-circle"></mdb-icon>
                             {{ util.getString("View Profile") }}
                         </li>
+                        <li class="d-flex align-items-center" (click)="gotoMembership()">
+                            <mdb-icon fas icon="user-circle"></mdb-icon>
+                            {{ util.getString("Membership Plan") }}
+                        </li>
                         <li class="d-flex align-items-center phone_ro" (click)="gotoContact()">
                             <mdb-icon fas icon="phone"></mdb-icon>
                             {{ util.getString("Emergency Contact") }}

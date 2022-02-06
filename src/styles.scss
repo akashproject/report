@@ -178,7 +178,7 @@ img {
 
 .custom_button a:hover {
     background-color: var(--primary-color);
-    color: var(--white-color);
+    color: var(--white-color) !important;
     background-image: none;
 }
 

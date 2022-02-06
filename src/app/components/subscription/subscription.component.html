@@ -1,0 +1,43 @@
+<div class="others_page_back pt pb">
+    <div class="container">
+        <div class="custom_heading center">
+            <h4>Secure Payment</h4>
+            <h2><label>{{ util.getString("Premium Plans") }} </label></h2>
+        </div>
+        <div class="row form_row">
+            <div class="card-deck mb-3 col-md-12 text-center">
+                <div class="card mb-4 box-shadow" *ngFor="let item of plans; let i = index" >
+                  <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{ item.plan }}</h4>
+                  </div>
+                  <div class="card-body">
+                    <h1 class="card-title pricing-card-title">₹ {{item.price}} <small class="text-muted">/ Yr</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                      <li>10 users included</li>
+                      <li>2 GB of storage</li>
+                      <li>Email support</li>
+                      <li>Help center access</li>
+                    </ul>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type == 'free'" (click)="goToPayment(item)" >Sign up for free</button>
+                    <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type != 'free'" (click)="goToPayment(item)" >Premium Member</button>
+                  </div>
+                </div>
+                <div class="card mb-4 box-shadow">
+                    <div class="card-header">
+                      <h4 class="my-0 font-weight-normal">Enterprise</h4>
+                    </div>
+                    <div class="card-body">
+                      <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
+                      <ul class="list-unstyled mt-3 mb-4">
+                        <li>30 users included</li>
+                        <li>15 GB of storage</li>
+                        <li>Phone and email support</li>
+                        <li>Help center access</li>
+                      </ul>
+                      <button type="button" class="btn btn-lg btn-block btn-primary ">Contact us</button>
+                    </div>
+                  </div>
+                </div>
+        </div>
+    </div>
+</div>
