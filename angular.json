@@ -44,7 +44,7 @@
                         "scripts": [
                             "node_modules/chart.js/dist/Chart.js",
                             "node_modules/hammerjs/hammer.min.js",
-                            "scr/js/cashfree.js"
+                            "src/assets/js/cashfree.js"
                         ]
                     },
                     "configurations": {

@@ -32,6 +32,8 @@ export class AccountComponent implements OnInit {
     address: "",
   };
   myContacts: any = [];
+  membershipPlan : any = []               
+
   changePasswordForm: any = {
     old_password: '',
     password: '',
@@ -91,9 +93,33 @@ export class AccountComponent implements OnInit {
   previewProfile() {
     this.currentDiv = 1;
   }
+
+  gotoSubscription(){
+    this.router.navigate(['/subscription']);
+  }
+
+  goToPayment(item) {
+    localStorage.setItem('planId',item.id);
+    this.router.navigate(['/payment']);
+  }
   
   gotoMembership() {
-    this.currentDiv = 5;
+    this.api.get('subscription/plan/'+this.util.userInfo.plan_id).subscribe(
+      (data: any) => {
+        if (data && data.status === 200) {
+          this.membershipPlan = data.data;
+          this.currentDiv = 7;
+        } else if (data && data.status === 500) {
+          this.toastr.error(data.data.message, 'Error!');
+        } else {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('Something went wrong', 'Error!');
+      }
+    );
+    
   }
 
   gotoPassword() {

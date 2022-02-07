@@ -2,62 +2,50 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { UtilService } from '../../services/util.service';
+import { WindowRefService } from '../../services/window-ref.service';
 import { ToastrService } from 'ngx-toastr';
-declare const Cashfree;
+import { Cashfree } from '../../../assets/js/cashfree';
+const cashfree = new Cashfree();
+const paymentDom = document.getElementById("payment-form")
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+  styleUrls: ['./payment.component.scss'],
+  providers: [WindowRefService]
 })
 export class PaymentComponent implements OnInit {
-  @ViewChild("paymentForm") div: ElementRef;
+  //@ViewChild('paymentDom', { static: true }) paymentDom: ElementRef;
+ 
   success = ((data, error) => {
     if (data.order && data.order.status == "PAID") {
-      alert("Order is PAID")
-      //order is paid
-      //verify order status by making an API call using your server to cashfree's server
       console.log(data.order);
-    } else {
-        //order is still active
-        alert("Order is ACTIVE")
-    } 
+      
+    }
   })
 
   failure = ((data, error) => {
     alert(data.order.errorText)
   })
-
-  orderData: any = {"cf_order_id":2134630,"order_id":"order_12314224hlamCRG78RPabkMJ1g5ysjgdr","entity":"order","order_currency":"INR","order_amount":1000,"order_expiry_time":"2022-03-08T01:22:44+05:30","customer_details":{"customer_id":"cust_eb1u4S8UZo","customer_name":"Test","customer_email":"asdadad@dasad.cc","customer_phone":"6589774411"},"order_meta":{"return_url":null,"notify_url":null,"payment_methods":null},"settlements":{"url":"https:\/\/sandbox.cashfree.com\/pg\/orders\/order_12314224hlamCRG78RPabkMJ1g5ysjgdr\/settlements"},"payments":{"url":"https:\/\/sandbox.cashfree.com\/pg\/orders\/order_12314224hlamCRG78RPabkMJ1g5ysjgdr\/payments"},"refunds":{"url":"https:\/\/sandbox.cashfree.com\/pg\/orders\/order_12314224hlamCRG78RPabkMJ1g5ysjgdr\/refunds"},"order_status":"ACTIVE","order_token":"TXLUrFb7IdOFW2DjGGVa","order_note":null,"payment_link":"https:\/\/payments-test.cashfree.com\/order\/#TXLUrFb7IdOFW2DjGGVa","order_tags":null,"order_splits":[]};
-
-  paymentForm: any = {
-    appId: '123142bc881f64ee8a6bb906fc241321',
-    orderId: 'TXLUrFb7IdOFW2DjGGVa',
-    orderAmount: '1000',
-    orderCurrency: 'INR',
-    customerName: 'Test',
-    customerEmail: 'asdadad@dasad.cc',
-    customerPhone: '6589774411',
-    returnUrl: 'https://npconjug.co.in/checkout/response.php',
-  };
- 
+  orderData: any;
 
   constructor(
     private router: Router,
     private api: ApiService,
     public util: UtilService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private element: ElementRef,
+    private winRef: WindowRefService,
+
     ) { }
 
   ngOnInit(): void {
-    console.log(this.orderData);
-    
-    // if(localStorage.getItem('routesource') == "register") {
-    //   this.router.navigate(['/register']);
-    // } else if (this.util.userInfo == '' || this.util.userInfo == null) {
-    //   this.router.navigate(['/login']);
-    // } else {
-    //   this.createOrder()
-    // }
+    if(localStorage.getItem('routesource') == "register") {
+      this.router.navigate(['/register']);
+    } else if (this.util.userInfo == '' || this.util.userInfo == null) {
+      this.router.navigate(['/login']);
+    } else {
+      this.createOrder()
+    }
     
   }
 
@@ -70,6 +58,7 @@ export class PaymentComponent implements OnInit {
           if (data && data.status === 200) {
             console.log(data.data);
             this.orderData = data.data;
+            //this.payWithRazor(data.data.id);
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
           } else {
@@ -81,6 +70,68 @@ export class PaymentComponent implements OnInit {
         }
       );
   }
+
+  updateRecivedPayment(params){
+    this.api
+      .post('subscription/recived-payment/',params)
+      .subscribe(
+        (data: any) => {
+          if (data && data.status === 200) {
+            this.toastr.success(data.data, 'Success!');
+            localStorage.removeItem("planId");            
+            this.router.navigate(['/account']);
+          } else if (data && data.status === 500) {
+            this.toastr.error(data.data.message, 'Error!');
+          } else {
+            this.toastr.error('Something went wrong', 'Error!');
+          }
+        },
+        (error) => {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      );
+  }
+
+  createRzpayOrder() {
+    // call api to create order_id
+    this.payWithRazor(this.orderData.id);
+  }
+
+  payWithRazor(val) {
+    const options: any = {
+      key: 'rzp_test_lR38QPQGgGfLYD',
+      amount: 125500, // amount should be in paise format to display Rs 1255 without decimal point
+      currency: 'INR',
+      name: '', // company name or product name
+      description: '',  // product description
+      image: './assets/logo.png', // company logo or product image
+      order_id: val, // order_id created by you in backend
+      modal: {
+        // We should prevent closing of the form when esc key is pressed.
+        escape: false,
+      },
+      notes: {
+        // include notes if any
+      },
+      theme: {
+        color: '#0c238a'
+      }
+    };
+    options.handler = ((response, error) => {
+      options.response = response;
+      console.log(response);
+      console.log(options);
+      this.updateRecivedPayment(response);
+      // call your backend api to verify payment signature & capture transaction
+    });
+    options.modal.ondismiss = (() => {
+      // handle the case when user closes the form while transaction is in progress
+      console.log('Transaction cancelled.');
+    });
+    const rzp = new this.winRef.nativeWindow.Razorpay(options);
+    rzp.open();
+  }
+
 
  render() {
     const dropConfig = {
@@ -105,8 +156,9 @@ export class PaymentComponent implements OnInit {
       }
   }
   console.log("hi",dropConfig);
-  
-  Cashfree.initialiseDropin(this.paymentForm, dropConfig);
+  cashfree.initialiseDropin(paymentDom, dropConfig);
+  //Cashfree.initialiseDropin(this.element.nativeElement("paymentDom"), dropConfig);
  }
+
 
 }

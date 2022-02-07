@@ -330,6 +330,37 @@
 
                         </div>
                     </div>
+                    <div class="user_div" *ngIf="currentDiv === 7">
+                        <div class="d-flex justify-content-between">
+                            <h3>Active Plan</h3>
+                            <div class="add_button" *ngIf="myContacts.length < 2">
+                                <h3 (click)="gotoSubscription()" mdbWavesEffect>{{ util.getString("Change Membership Plan") }}</h3>
+                            </div>
+                        </div>
+
+                        <div class="emer_section" >
+                            <div class="row form_row">
+                                <div class="card-deck mb-3 col-md-12 text-center">
+                                  <div class="card mb-4 box-shadow"  >
+                                    <div class="card-header">
+                                      <h4 class="my-0 font-weight-normal">{{ membershipPlan.plan }}</h4>
+                                    </div>
+                                    <div class="card-body">
+                                      <h1 class="card-title pricing-card-title">₹ {{membershipPlan.price}} <small class="text-muted">/ Yr</small></h1>
+                                      <ul class="list-unstyled mt-3 mb-4">
+                                        <li>1 users included</li>
+                                        <li>Maximum Duration <span style="font-weight: 600;" > {{membershipPlan.duration}} </span> Month </li>
+                                        <li>Email support</li>
+                                        <li>Help center access</li>
+                                      </ul>
+                                      <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="membershipPlan.type == 'free'" (click)="goToPayment(membershipPlan)" >Free Membership</button>
+                                      <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="membershipPlan.type != 'free'" (click)="goToPayment(membershipPlan)" >Renew Membership</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
