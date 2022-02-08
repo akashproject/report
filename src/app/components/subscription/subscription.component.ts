@@ -52,6 +52,9 @@ export class SubscriptionComponent implements OnInit {
 
   goToPayment(item) {
     localStorage.setItem('planId',item.id);
+    localStorage.setItem('selectedPlan',JSON.stringify(item));
+    console.log(localStorage.getItem('selectedPlan'));
+    
     this.router.navigate(['/payment']);
   }
 

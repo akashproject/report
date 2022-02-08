@@ -61,7 +61,6 @@ export class RegisterComponent implements OnInit {
         }
       },
       (error) => {
-        console.log(error);
         this.toastr.error('Something went wrong', 'Error!');
       }
     );
@@ -119,7 +118,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onOtpChange(event) {
-    console.log(event);
     this.userCode = event;
   }
 
@@ -128,11 +126,6 @@ export class RegisterComponent implements OnInit {
     let mobile = new String(this.signupUserForm.mobile);
     let re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
     
-    if (re.test(this.signupUserForm.password)) {
-        console.log("Valid");
-    } else {
-        console.log("Invalid");
-    }
 
     if (
       this.signupUserForm.password == this.c_password &&

@@ -65,7 +65,6 @@ export class VerifyEmailComponent implements OnInit {
       otp_value: this.otp_value,
       otp_id:this.hidden_otp_value_email
     };
-    console.log(param);
     this.api.post('users/verifyLoginOtp', param).subscribe(
       (data: any) => {
         if (data && data.status === 200) {

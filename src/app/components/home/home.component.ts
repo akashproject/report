@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
   }
   
   contactus(){
-	console.log(this.contactForm);
 	this.api.post('users/contact-us', this.contactForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {

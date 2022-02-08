@@ -21,7 +21,6 @@ export class AppComponent {
     private bnIdle: BnNgIdleService
   ) {
     this.bnIdle.startWatching(120).subscribe((res) => {
-      console.log(res);
       
       if(res) {        
         if (this.util.userInfo != '') {
@@ -29,7 +28,6 @@ export class AppComponent {
           this.util.userInfo = null;
           window.location.reload();
         } else {
-          console.log("else");
         }     
       } 
     })

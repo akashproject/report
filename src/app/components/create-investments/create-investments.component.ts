@@ -61,7 +61,6 @@ export class CreateInvestmentsComponent implements OnInit {
     }
 
     this.isEmailVerified = this.util.userInfo.email_verified;
-    console.log(this.util.userInfo);
 
     this.isContactadded = this.util.userInfo.contact_added;
     if (this.util.userInfo.id) {
@@ -83,7 +82,6 @@ export class CreateInvestmentsComponent implements OnInit {
 
   gotoContact() {
     this.currentDiv = 4;
-    console.log(this.myContacts);
   }
 
   getAllContacts() {
@@ -195,7 +193,6 @@ export class CreateInvestmentsComponent implements OnInit {
   }
 
   update() {
-    console.log(this.profileForm);
     this.api.post('users/edit_profile', this.profileForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
@@ -214,7 +211,6 @@ export class CreateInvestmentsComponent implements OnInit {
   }
 
   updatePassword() {
-    console.log(this.changePasswordForm, this.c_password);
     if (this.changePasswordForm.password != this.c_password) {
       this.toastr.error(
         "Password and Confirm password does'nt matched",
@@ -275,7 +271,6 @@ export class CreateInvestmentsComponent implements OnInit {
   }
 
   deleteContact(item) {
-    console.log(item);
     Swal.fire({
       title: 'Are you sure',
       text: 'to delete this address',
@@ -287,7 +282,6 @@ export class CreateInvestmentsComponent implements OnInit {
       background: 'white',
     }).then((status) => {
       if (status && status.value) {
-        console.log('delete');
         const param = {
           id: item.id,
         };
@@ -309,7 +303,6 @@ export class CreateInvestmentsComponent implements OnInit {
   }
 
   formValidation() {
-    console.log(this.profileForm);
 
     if (
       this.profileForm.full_name != this.util.userInfo.full_name ||

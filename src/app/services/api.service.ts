@@ -33,47 +33,6 @@ export class ApiService {
     return environment.general.symbol;
   }
 
-  // createOrderNotification(stores) {
-  //   const ids = [...new Set(stores.map((item) => item.token))];
-  //   const apiCalls = [];
-  //   ids.forEach((element) => {
-  //     apiCalls.push(
-  //       this.sendNotification(
-  //         'You have received new order',
-  //         'New Order Received',
-  //         element
-  //       )
-  //     );
-  //   });
-  //   forkJoin(apiCalls).subscribe(
-  //     (data) => {
-  //       console.log('fork result', data);
-  //     },
-  //     (error) => {
-  //       console.log('fork error', error);
-  //     }
-  //   );
-  // }
-
-  // sendNotification(msg, title, id) {
-  //   const body = {
-  //     app_id: environment.onesignal.appId,
-  //     include_player_ids: [id],
-  //     headings: { en: title },
-  //     contents: { en: msg },
-  //     data: { task: msg },
-  //   };
-  //   const header = {
-  //     headers: new HttpHeaders()
-  //       .set('Content-Type', 'application/json')
-  //       .set('Authorization', `Basic ${environment.onesignal.restKey}`),
-  //   };
-  //   return this.http.post(
-  //     'https://onesignal.com/api/v1/notifications',
-  //     body,
-  //     header
-  //   );
-  // }
 
   JSON_to_URLEncoded(element, key?, list?) {
     let new_list = list || [];
@@ -103,7 +62,6 @@ export class ApiService {
       .set('Token', token),
     };
     const param = this.JSON_to_URLEncoded(body);
-    console.log(param);
     return this.http.post(this.baseUrl + url, param, header);
   }
 
@@ -131,7 +89,6 @@ export class ApiService {
         .set('X-Api-Key', `Bearer ${key}`),
     };
     const order = this.JSON_to_URLEncoded(body);
-    console.log(order);
     return this.http.post(url, order, header);
   }
 
@@ -143,7 +100,6 @@ export class ApiService {
       ),
     };
     const order = this.JSON_to_URLEncoded(body);
-    console.log(order);
     return this.http.post(url, order, header);
   }
 
@@ -155,7 +111,6 @@ export class ApiService {
         .set('X-Auth-Token', token),
     };
     const order = this.JSON_to_URLEncoded(body);
-    console.log(order);
     return this.http.post(url, order, header);
   }
   

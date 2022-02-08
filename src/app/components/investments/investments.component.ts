@@ -89,9 +89,7 @@ export class InvestmentsComponent implements OnInit {
     this.datePicker.navigateTo({ year: 2013, month: 2 });
   }
 
-  navigateEvent(event) {
-    console.log("event date",event.target.value);
-    
+  navigateEvent(event) {    
     return event.target.value;
   }
 
@@ -170,8 +168,6 @@ export class InvestmentsComponent implements OnInit {
       agent_name: '',
       agent_no: '',
     };
-    console.log(mutualFunds);
-    console.log(this.investmentsForm.mutual_funds);
     
     this.investmentsForm.mutual_funds.push(mutualFunds);
   }

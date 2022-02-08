@@ -70,7 +70,6 @@ export class EmergencyListComponent implements OnInit {
   }
 
   goTobusiness() {
-    console.log(this.myContacts.length);
     if(this.myContacts.length > 0){
       this.router.navigate(['/investments']);
     } else {
@@ -86,11 +85,9 @@ export class EmergencyListComponent implements OnInit {
 
   gotoContact() {
     this.currentDiv = 4;
-    console.log(this.myContacts);
   }
 
   getAllContacts() {
-    console.log(this.util.userInfo);
     let userdata: any = {
       
     };
@@ -196,7 +193,6 @@ export class EmergencyListComponent implements OnInit {
   }
 
   update() {
-    console.log(this.profileForm);
     this.api.post('users/edit_profile', this.profileForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
@@ -215,7 +211,6 @@ export class EmergencyListComponent implements OnInit {
   }
 
   updatePassword() {
-    console.log(this.changePasswordForm, this.c_password);
     if (this.changePasswordForm.password != this.c_password) {
       this.toastr.error(
         "Password and Confirm password does'nt matched",
@@ -276,7 +271,6 @@ export class EmergencyListComponent implements OnInit {
   }
 
   deleteContact(item) {
-    console.log(item);
     Swal.fire({
       title: 'Are you sure',
       text: 'to delete this address',
@@ -288,7 +282,6 @@ export class EmergencyListComponent implements OnInit {
       background: 'white',
     }).then((status) => {
       if (status && status.value) {
-        console.log('delete');
         const param = {
           id: item.id,
         };
@@ -310,7 +303,6 @@ export class EmergencyListComponent implements OnInit {
   }
 
   formValidation() {
-    console.log(this.profileForm);
 
     if (
       this.profileForm.full_name != this.util.userInfo.full_name ||

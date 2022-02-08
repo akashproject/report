@@ -79,8 +79,6 @@ export class LoginComponent implements OnInit {
       return false;
     }
     let mobile = new String(this.mobile);
-    console.log(mobile);
-    console.log('Length ' + mobile.length);
     if (mobile.length != 10) {
       this.toastr.error('Invalid Mobile Number', 'Error!');
       return false;
@@ -146,7 +144,6 @@ export class LoginComponent implements OnInit {
     this.api.post('users/loginForUser', param).subscribe(
       (data: any) => {
         this.util.stop();
-        console.log(data);
         if (data && data.status === 200) {
         } else if (data && data.status === 500) {
           this.util.toast(
@@ -163,7 +160,6 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        console.log(error);
         this.util.toast(
           'error',
           this.util.getString('Error'),
@@ -174,7 +170,6 @@ export class LoginComponent implements OnInit {
   }
 
   reset() {
-    console.log('reset password');
     this.router.navigate(['reset']);
   }
 

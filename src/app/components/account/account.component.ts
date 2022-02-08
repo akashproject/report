@@ -66,7 +66,6 @@ export class AccountComponent implements OnInit {
     }
 
     this.isEmailVerified = this.util.userInfo.email_verified;
-    console.log(this.util.userInfo);
 
     this.isContactadded = this.util.userInfo.contact_added;
     if (this.util.userInfo.id) {
@@ -80,7 +79,6 @@ export class AccountComponent implements OnInit {
   }
 
   goTobusiness() {
-    console.log(this.myContacts.length);
     if(this.myContacts.length > 0){
       this.router.navigate(['/investments']);
     } else {
@@ -104,7 +102,7 @@ export class AccountComponent implements OnInit {
   }
   
   gotoMembership() {
-    this.api.get('subscription/plan/'+this.util.userInfo.plan_id).subscribe(
+    this.api.get('subscription/plan/').subscribe(
       (data: any) => {
         if (data && data.status === 200) {
           this.membershipPlan = data.data;
@@ -128,7 +126,6 @@ export class AccountComponent implements OnInit {
 
   gotoContact() {
     this.currentDiv = 4;
-    console.log(this.myContacts.length);
   }
 
   getAllContacts() {
@@ -232,8 +229,6 @@ export class AccountComponent implements OnInit {
       otp_value: this.otp_value,
       otp_id:this.hidden_otp_id
     };
-
-    console.log(param);
     
     this.api.post('users/verifyLoginOtp', param).subscribe(
       (data: any) => {
@@ -254,7 +249,6 @@ export class AccountComponent implements OnInit {
   }
 
   update() {
-    console.log(this.profileForm);
     this.api.post('users/edit_profile', this.profileForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
@@ -275,7 +269,6 @@ export class AccountComponent implements OnInit {
   }
 
   updatePassword() {
-    console.log(this.changePasswordForm, this.c_password)
     if (this.changePasswordForm.password != this.c_password) {
       this.toastr.error(
         "Password and Confirm password does'nt matched",
@@ -336,7 +329,6 @@ export class AccountComponent implements OnInit {
   }
 
   deleteContact(item) {
-    console.log(item);
     Swal.fire({
       title: 'Are you sure',
       text: 'to delete this address',
@@ -348,7 +340,6 @@ export class AccountComponent implements OnInit {
       background: 'white',
     }).then((status) => {
       if (status && status.value) {
-        console.log('delete');
         const param = {
           id: item.id,
         };
@@ -370,7 +361,6 @@ export class AccountComponent implements OnInit {
   }
 
   formValidation() {
-    console.log(this.profileForm);
 
     if (
       this.profileForm.full_name != this.util.userInfo.full_name ||
@@ -386,11 +376,7 @@ export class AccountComponent implements OnInit {
 
   passwordFormValidation() {
      let re = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-      if (re.test(this.changePasswordForm.password)) {
-          console.log("Valid");
-      } else {
-          console.log("Invalid");
-      }
+
     if (
       this.changePasswordForm.password != '' &&
       this.changePasswordForm.old_password != '' &&
@@ -405,8 +391,7 @@ export class AccountComponent implements OnInit {
   }
 
   contactFromValidation(){
-    console.log(this.contactForm);
-    console.log(this.contactform_validate);    
+      
     if (
       this.contactForm.name != '' &&
       this.contactForm.mobile != '' &&

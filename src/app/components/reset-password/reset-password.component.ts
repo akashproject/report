@@ -35,7 +35,6 @@ export class ResetPasswordComponent implements OnInit {
         ? JSON.parse(localStorage.getItem('reset_user_data'))
         : '',
     };
-    console.log(param);
 
     this.api.post('users/update_password', param).subscribe(
       (data: any) => {

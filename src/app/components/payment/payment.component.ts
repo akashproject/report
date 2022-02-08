@@ -18,7 +18,6 @@ export class PaymentComponent implements OnInit {
  
   success = ((data, error) => {
     if (data.order && data.order.status == "PAID") {
-      console.log(data.order);
       
     }
   })
@@ -27,7 +26,12 @@ export class PaymentComponent implements OnInit {
     alert(data.order.errorText)
   })
   orderData: any;
-
+  membershipPlan:any;
+  couponCode:any;
+  couponData:any;
+  amount:any;
+  isLoading: any = false;
+  x_timer:any;
   constructor(
     private router: Router,
     private api: ApiService,
@@ -36,32 +40,73 @@ export class PaymentComponent implements OnInit {
     private element: ElementRef,
     private winRef: WindowRefService,
 
-    ) { }
+    ) { 
+      
+    }
 
   ngOnInit(): void {
     if(localStorage.getItem('routesource') == "register") {
       this.router.navigate(['/register']);
     } else if (this.util.userInfo == '' || this.util.userInfo == null) {
       this.router.navigate(['/login']);
-    } else {
-      this.createOrder()
     }
-    
+    this.membershipPlan = JSON.parse(localStorage.getItem('selectedPlan'));    
+    this.amount = this.membershipPlan.price;
   }
 
   createOrder(){
-    let planId = localStorage.getItem('planId');
+    let planParams : any = {
+      'plan_id':localStorage.getItem('planId'),
+      'coupon_id':this.couponData.id,
+      'order_amount':this.amount
+    }
     this.api
-      .get('subscription/create-order/'+planId)
+      .post('subscription/create-order/',planParams)
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
-            console.log(data.data);
             this.orderData = data.data;
             //this.payWithRazor(data.data.id);
+            this.createRzpayOrder();
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
           } else {
+            this.toastr.error('Something went wrong', 'Error!');
+          }
+        },
+        (error) => {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      );
+  }
+
+  couponValidation(){
+    if (this.couponCode) {
+      this.isLoading = true;   
+      clearTimeout(this.x_timer);
+      this.x_timer = setTimeout(() => {
+        this.getCouponByCode()
+      }, 3000); 
+    }
+  }
+
+  getCouponByCode(){
+    let options: any = {
+      coupon: this.couponCode
+    }
+    this.api.post('subscription/coupon-code/',options)
+      .subscribe(
+        (data: any) => {
+          if (data && data.status === 200) {
+            this.isLoading = false;
+            this.toastr.success('Coupon Applied.', 'Great!');
+            this.couponData = data.data;
+            this.amount = this.amount - data.data.offer_price;
+          } else if (data && data.status === 500) {
+            this.isLoading = false;
+            this.toastr.error(data.data.message, 'Error!');
+          } else {
+            this.isLoading = false;
             this.toastr.error('Something went wrong', 'Error!');
           }
         },
@@ -102,9 +147,9 @@ export class PaymentComponent implements OnInit {
       key: 'rzp_test_lR38QPQGgGfLYD',
       amount: 125500, // amount should be in paise format to display Rs 1255 without decimal point
       currency: 'INR',
-      name: '', // company name or product name
-      description: '',  // product description
-      image: './assets/logo.png', // company logo or product image
+      name: 'Conjugation', // company name or product name
+      description: 'Ensure your investments are claimed in your absence',  // product description
+      image: './assets/images/logo.png', // company logo or product image
       order_id: val, // order_id created by you in backend
       modal: {
         // We should prevent closing of the form when esc key is pressed.
@@ -114,19 +159,16 @@ export class PaymentComponent implements OnInit {
         // include notes if any
       },
       theme: {
-        color: '#0c238a'
+        color: '#0e226a'
       }
     };
     options.handler = ((response, error) => {
       options.response = response;
-      console.log(response);
-      console.log(options);
       this.updateRecivedPayment(response);
       // call your backend api to verify payment signature & capture transaction
     });
     options.modal.ondismiss = (() => {
       // handle the case when user closes the form while transaction is in progress
-      console.log('Transaction cancelled.');
     });
     const rzp = new this.winRef.nativeWindow.Razorpay(options);
     rzp.open();
@@ -155,7 +197,6 @@ export class PaymentComponent implements OnInit {
           "theme": "light", //(or dark)
       }
   }
-  console.log("hi",dropConfig);
   cashfree.initialiseDropin(paymentDom, dropConfig);
   //Cashfree.initialiseDropin(this.element.nativeElement("paymentDom"), dropConfig);
  }

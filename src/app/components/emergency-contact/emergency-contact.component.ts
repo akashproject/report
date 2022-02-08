@@ -44,7 +44,6 @@ export class EmergencyContactComponent implements OnInit {
   ngOnInit(): void {}
 
   update() {
-    console.log(this.contactForm);
     this.api.post('users/add_emergency', this.contactForm).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
@@ -91,7 +90,6 @@ export class EmergencyContactComponent implements OnInit {
   formValidation() {
     let mobile = new String(this.contactForm.mobile);
 
-    console.log(this.contactForm);
       if (
         this.contactForm.name != '' &&
         this.contactForm.mobile != '' &&

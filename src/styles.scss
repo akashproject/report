@@ -1602,6 +1602,17 @@ textarea {
     }
 }
 
+.plan_wrap { 
+    background: #e9e4e4;
+    padding: 0.5rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    li {
+        padding: 0.6rem;
+        font-size: 20px;
+        padding-left: 2.5rem;
+    }
+}
 @media only screen and (max-width:500px) {
     .others_page_back {
         &.pt {

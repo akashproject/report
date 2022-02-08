@@ -11,7 +11,6 @@ import { Component, OnInit } from "@angular/core";
 import { Router, NavigationExtras } from "@angular/router";
 import { UtilService } from "src/app/services/util.service";
 import { ApiService } from "src/app/services/api.service";
-import { CartService } from "src/app/services/cart.service";
 
 @Component({
   selector: "app-mobile-header",
@@ -31,7 +30,6 @@ export class MobileHeaderComponent implements OnInit {
     private router: Router,
     public util: UtilService,
     public api: ApiService,
-    public cart: CartService
   ) {
     this.getCities();
     this.getLangs();
@@ -63,7 +61,6 @@ export class MobileHeaderComponent implements OnInit {
 
   changed(value) {
     this.lngId = value;
-    console.log(this.lngId);
     const item = this.langs.filter((x) => x.file === this.lngId);
     if (item && item.length > 0) {
       this.util.direction = item[0].positions === "1" ? "ltr" : "rtl";
@@ -76,17 +73,12 @@ export class MobileHeaderComponent implements OnInit {
   getLangs() {
     this.api.get("lang").subscribe(
       (data: any) => {
-        console.log(
-          "---------------------------------------------------",
-          data
-        );
         this.dummyLang = [];
         if (data && data.status === 200 && data.data && data.data.length) {
           this.langs = data.data.filter((x) => x.status === "1");
         }
       },
       (error) => {
-        console.log("error", error);
         this.dummyLang = [];
         this.util.toast(
           "error",
@@ -102,7 +94,6 @@ export class MobileHeaderComponent implements OnInit {
   getCities() {
     this.api.get("cities").subscribe(
       (data: any) => {
-        console.log(data);
         this.dummy = [];
         if (data && data.status === 200 && data.data && data.data.length) {
           this.cities = data.data.filter((x) => x.status === "1");
@@ -126,7 +117,6 @@ export class MobileHeaderComponent implements OnInit {
         }
       },
       (error) => {
-        console.log("error", error);
         this.dummy = [];
         this.util.toast(
           "error",
@@ -137,7 +127,6 @@ export class MobileHeaderComponent implements OnInit {
     );
   }
   selected(item) {
-    console.log("id", this.id);
     this.id = item.id;
     this.clicked = true;
     localStorage.setItem("city", this.id);
@@ -145,12 +134,7 @@ export class MobileHeaderComponent implements OnInit {
     this.util.city = city[0];
     this.cityName = city[0].name;
     this.util.publishCity(city);
-    this.cart.cart = [];
-    this.cart.itemId = [];
-    this.cart.totalPrice = 0;
-    this.cart.grandTotal = 0;
-    this.cart.coupon = null;
-    this.cart.discount = null;
+    
     this.util.clearKeys("cart");
     this.util.publishCity("data");
   }

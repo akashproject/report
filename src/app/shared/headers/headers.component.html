@@ -40,7 +40,8 @@
                     <li><a routerLink="/faq" (click)="close_menu()">FAQ </a></li>
                 </ul>
                 <div class="custom_button white_color"><a routerLink="/subscription" routerLinkActive="active" class="d-flex align-items-center justify-content-center" style="margin-right: 3rem;">Membership Plan</a></div>
-                <ul class="menu d-flex" *ngIf="util.userInfo">                   
+                <ul class="menu d-flex" *ngIf="util.userInfo">  
+                    <li><a routerLink="/account" > <mdb-icon fas icon="user-circle"></mdb-icon> Profile </a></li>                 
                     <li><a (click)="logout()">Logout</a></li>
                 </ul>
                 <ul class="social d-flex align-items-center">
