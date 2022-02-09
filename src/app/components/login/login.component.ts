@@ -46,10 +46,6 @@ export class LoginComponent implements OnInit {
             this.mobile = data.data.mobile;
             this.email = data.data.email;
             this.sendOtp(false);
-            this.toastr.success(
-              'has been sent to your mobile',
-              'One time password'
-            );
           } else {
             this.toastr.error(
               'Your are blocked please contact administrator',
@@ -89,6 +85,10 @@ export class LoginComponent implements OnInit {
     this.api.post('users/sendLoginOtp', param).subscribe(
       (data: any) => {
         if (data && data.status === 200) {
+          this.toastr.success(
+            'has been sent to your mobile',
+            'One time password'
+          );
           if (!resend) {
             this.showOtp = true;
           }          

@@ -57,8 +57,10 @@ export class PaymentComponent implements OnInit {
   createOrder(){
     let planParams : any = {
       'plan_id':localStorage.getItem('planId'),
-      'coupon_id':this.couponData.id,
       'order_amount':this.amount
+    }
+    if(this.couponData){
+      planParams.coupon_id = this.couponData.id
     }
     this.api
       .post('subscription/create-order/',planParams)
@@ -82,6 +84,7 @@ export class PaymentComponent implements OnInit {
 
   couponValidation(){
     if (this.couponCode) {
+      this.amount = this.membershipPlan.price;
       this.isLoading = true;   
       clearTimeout(this.x_timer);
       this.x_timer = setTimeout(() => {
@@ -122,8 +125,9 @@ export class PaymentComponent implements OnInit {
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
-            this.toastr.success(data.data, 'Success!');
-            localStorage.removeItem("planId");            
+            this.toastr.success('Payment Recived! Your Premium menbership has been activated', 'Success!');
+            localStorage.removeItem("planId");   
+            this.util.userInfo = data.data;         
             this.router.navigate(['/account']);
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
@@ -151,12 +155,17 @@ export class PaymentComponent implements OnInit {
       description: 'Ensure your investments are claimed in your absence',  // product description
       image: './assets/images/logo.png', // company logo or product image
       order_id: val, // order_id created by you in backend
+      "prefill": {
+        "name": this.util.userInfo.full_name,
+        "email": this.util.userInfo.email,
+        "contact": this.util.userInfo.mobile
+      },
       modal: {
         // We should prevent closing of the form when esc key is pressed.
         escape: false,
       },
       notes: {
-        // include notes if any
+        "address": "Conjugation Corporate Office"
       },
       theme: {
         color: '#0e226a'

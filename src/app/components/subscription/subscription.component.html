@@ -4,20 +4,20 @@
         <h4>Secure Payment</h4>
         <h2><label>{{ util.getString("Premium Plans") }} </label></h2>
     </div>
-    <div class="row form_row">
+    <div class="row membership_form_row form_row">
       <div class="card-deck mb-3 col-md-12 text-center">
-        <div class="card mb-4 box-shadow" *ngFor="let item of plans; let i = index" >
+        <div class="card col-md-4 box-shadow" *ngFor="let item of plans; let i = index" >
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">{{ item.plan }}</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">₹ {{item.price}} <small class="text-muted">/ Yr</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-              <li>1 users included</li>
-              <li>Maximum Duration <span style="font-weight: 600;" > {{item.duration}} </span> Month </li>
-              <li>Email support</li>
-              <li>Help center access</li>
-            </ul>
+            <h1 class="card-title pricing-card-title">₹ {{item.price}} <small class="text-muted"></small></h1>
+            <ul class="list-unstyled mt-3 mb-4 text-left plan_wrap">
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> 1 users included</li>
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Maximum Duration <span style="font-weight: 600;" > {{item.duration}} </span> Month </li>
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Email support</li>
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Help center access</li>
+            </ul> 
             <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type == 'free'" (click)="goToPayment(item)" >Sign up for free</button>
             <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type != 'free'" (click)="goToPayment(item)" >Premium Member</button>
           </div>

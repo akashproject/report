@@ -77,6 +77,14 @@
             to add
         </div>
 
+        <div class="alert alert-danger verify_alert" role="alert" *ngIf="isPlanExpired < 0">
+            Your Membership Plan has been expired! click
+            <a (click)="gotoSubscription()">
+                <strong>Here</strong>
+            </a>
+            to Renew Plan
+        </div>
+
         <div class="main_edit_area">
             <div class="row">
                 <div class="col-lg-3 col-md-12 sidemenu">
@@ -332,34 +340,73 @@
                     </div>
                     <div class="user_div" *ngIf="currentDiv === 7">
                         <div class="d-flex justify-content-between">
-                            <h3>Active Plan</h3>
-                            <div class="add_button" *ngIf="myContacts.length < 2">
-                                <h3 (click)="gotoSubscription()" mdbWavesEffect>{{ util.getString("+ Change Membership Plan") }}</h3>
+                            <h3>Membership Plan</h3>
+                            <div class="add_button" >
+                                <h3 *ngIf="isPlanExpired > 0" >{{ isPlanExpired }} Days Left to expire your membership plan</h3>
+                                <h3 *ngIf="isPlanExpired == 0" > Today You Membership Plan will be expire! Renew immediately</h3>
+                                <!-- <h3 (click)="gotoSubscription()" mdbWavesEffect>{{ util.getString("+ Change Membership Plan") }}</h3> -->
                             </div>
                         </div>
 
-                        <div class="emer_section" >
-                            <div class="row form_row">
-                                <div class="col-md-7" >
+                        <div class="emer_section" *ngIf="util.userInfo.premium_membership == '1'">
+                            <div class="row membership_form_row form_row">                               
+                                <div class="col-md-9 offset-lg-2" >
                                     <div class="card-deck mb-3 col-md-12 text-center">
                                         <div class="card mb-4 box-shadow"  >
                                             <div class="card-header">
                                                 <h4 class="my-0 font-weight-normal">{{ membershipPlan.plan }}</h4>
                                             </div>
                                             <div class="card-body">
-                                                <h1 class="card-title pricing-card-title">₹ {{membershipPlan.price}} <small class="text-muted">/ Yr</small></h1>
-                                                <ul class="list-unstyled mt-3 mb-4 text-left">
-                                                    <li> <mdb-icon fas icon="user-circle"></mdb-icon> 1 users included</li>
-                                                    <li>Maximum Duration <span style="font-weight: 600;" > {{membershipPlan.duration}} </span> Month </li>
-                                                    <li>Email support</li>
-                                                    <li>Help center access</li>
+                                                <h1 class="card-title pricing-card-title">₹ {{membershipPlan.price}} <small class="text-muted"></small></h1>
+                                                <ul class="list-unstyled mt-3 mb-4 text-left plan_wrap">
+                                                    <li> 
+                                                        <mdb-icon fas icon="user-circle"></mdb-icon> 
+                                                        <span class="plan_lavel" >Expired On</span> 
+                                                        <span class="plan_lavel_msg" style="font-weight: 600;" >{{util.userInfo.expire_date}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <mdb-icon fas icon="user-circle"></mdb-icon> 
+                                                        <span class="plan_lavel" >Maximum Duration</span>
+                                                        <span class="plan_lavel_msg" style="font-weight: 600;" >{{membershipPlan.duration}} Month</span>
+                                                    </li>
+                                                    <li>
+                                                        <mdb-icon fas icon="user-circle"></mdb-icon> 
+                                                        <span class="plan_lavel" >Email support</span> <span class="plan_lavel_msg" style="font-weight: 600;" >Yes</span>
+                                                    </li>
+                                                    <li>
+                                                        <mdb-icon fas icon="user-circle"></mdb-icon> 
+                                                        <span class="plan_lavel" >Help center access</span> <span class="plan_lavel_msg" style="font-weight: 600;" >Yes</span>                                                       
+                                                    </li>
                                                 </ul>
-                                                <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="membershipPlan.type == 'free'" (click)="goToPayment(membershipPlan)" >Free Membership</button>
-                                                <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="membershipPlan.type != 'free'" (click)="goToPayment(membershipPlan)" >Renew Membership</button>
+                                                <!-- <h4 style="margin: 0.5rem;"> Coupon Code : </h4>
+                                                <div class="inner-addon left-addon">
+                                                  <mdb-icon fas icon="user-circle"></mdb-icon>
+                                                  <input type="text" placeholder="Apply Coupon Code" [(ngModel)]="couponCode" class="form-control" (keyup)="couponValidation()" />
+                                                </div>
+                                                <span class="loading" *ngIf="isLoading === true">Please Wait ...</span>
+                                                <h3 style="margin-bottom: 0.5rem;">Total Amout : ₹ {{ amount }}/-</h3> -->
+                                                <div class="col-12 text-center">
+                                                    <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="goToPayment(membershipPlan)" >  
+                                                        {{ util.getString("Renew Membership Plan") }} 
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>                               
+                                </div>                              
+                            </div>  
+                        </div>
+                        <div class="emer_section" *ngIf="!util.userInfo.premium_membership">
+                            <div class="row form_row">
+                                <div class="col-12">
+                                    <h3>You do not have any Membership Plan</h3>
+                                </div>
+                                <div class="col-12">
+                                    <div class="action_div d-flex align-items-center">
+                                        <a routerLink="/subscription"  class="btn custom" style=" width: auto;"> 
+                                            {{ util.getString("Be Premium Member") }}</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

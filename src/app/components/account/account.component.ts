@@ -17,6 +17,7 @@ export class AccountComponent implements OnInit {
   showOtp = false;
   hidden_otp_id: any = '';
   otp_value: any = '';
+  isPlanExpired : number;
   contactForm: any = {
     id: '',
     name: '',
@@ -32,7 +33,7 @@ export class AccountComponent implements OnInit {
     address: "",
   };
   myContacts: any = [];
-  membershipPlan : any = []               
+  membershipPlan :any = "false";        
 
   changePasswordForm: any = {
     old_password: '',
@@ -62,9 +63,14 @@ export class AccountComponent implements OnInit {
     }
     
     if(localStorage.getItem('planId')){
+      localStorage.removeItem('planId');
       this.router.navigate(['/payment']);
     }
-
+    
+    if(this.util.userInfo.expire_date){
+      this.isPlanExpired = this.dateCompare(this.util.userInfo.expire_date);
+    }
+    
     this.isEmailVerified = this.util.userInfo.email_verified;
 
     this.isContactadded = this.util.userInfo.contact_added;
@@ -76,6 +82,8 @@ export class AccountComponent implements OnInit {
     this.profileForm.full_name = this.util.userInfo.full_name;
     this.profileForm.mobile = this.util.userInfo.mobile;
     this.profileForm.address = this.util.userInfo.address;
+
+
   }
 
   goTobusiness() {
@@ -102,22 +110,24 @@ export class AccountComponent implements OnInit {
   }
   
   gotoMembership() {
-    this.api.get('subscription/plan/').subscribe(
-      (data: any) => {
-        if (data && data.status === 200) {
-          this.membershipPlan = data.data;
-          this.currentDiv = 7;
-        } else if (data && data.status === 500) {
-          this.toastr.error(data.data.message, 'Error!');
-        } else {
+    if(this.util.userInfo.premium_membership == '1'){
+      this.api.get('subscription/plan/').subscribe(
+        (data: any) => {
+          if (data && data.status === 200) {
+            this.membershipPlan = data.data;
+            console.log(this.membershipPlan);
+          } else if (data && data.status === 500) {
+            this.toastr.error(data.data.message, 'Error!');
+          } else {
+            this.toastr.error('Something went wrong', 'Error!');
+          }
+        },
+        (error) => {
           this.toastr.error('Something went wrong', 'Error!');
         }
-      },
-      (error) => {
-        this.toastr.error('Something went wrong', 'Error!');
-      }
-    );
-    
+      );
+    }
+    this.currentDiv = 7;
   }
 
   gotoPassword() {
@@ -423,6 +433,13 @@ export class AccountComponent implements OnInit {
         this.toastr.error('Something went wrong', 'Error!');
       }
     );
+  }
+
+   dateCompare(dateSent) {
+    let currentDate = new Date();
+      dateSent = new Date(dateSent);
+  
+      return Math.floor((Date.UTC(dateSent.getFullYear(), dateSent.getMonth(), dateSent.getDate()) - Date.UTC(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()) ) /(1000 * 60 * 60 * 24));
   }
 
 }

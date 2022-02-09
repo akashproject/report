@@ -1611,6 +1611,33 @@ textarea {
         padding: 0.6rem;
         font-size: 20px;
         padding-left: 2.5rem;
+        .plan_lavel {
+            margin-left: 0.5rem;
+        }
+        .plan_lavel_msg {
+            float: right;
+        }
+    }
+}
+
+.membership_form_row {
+    margin-top: 1.5rem;
+    .plan_wrap { 
+        background: #e9e4e4;
+        padding: 0.5rem;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        li {
+            padding: 0.6rem;
+            font-size: 16px;
+            padding-left: 1.2rem;
+            .plan_lavel {
+                margin-left: 0.5rem;
+            }
+            .plan_lavel_msg {
+                float: right;
+            }
+        }
     }
 }
 @media only screen and (max-width:500px) {

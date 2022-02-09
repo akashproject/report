@@ -10,7 +10,7 @@ import { BnNgIdleService } from 'bn-ng-idle'; // import it to your component
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'rp';
+  title = 'Conjugation';
   deviceType = 'desktop';
   innerHeight: string;
 
