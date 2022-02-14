@@ -1,25 +1,25 @@
 <div class="others_page_back pt pb">
   <div class="container">
     <div class="custom_heading center">
-        <h4>Secure Payment</h4>
-        <h2><label>{{ util.getString("Premium Plans") }} </label></h2>
+        <h2><label>{{ util.getString("Membership Plan") }} </label></h2>
     </div>
-    <div class="row membership_form_row form_row">
-      <div class="card-deck mb-4 col-md-8 text-center">
+    <div class="row membership_form_row form_row text-center">
+      <div class="card-deck mb-5 col-md-5" style="margin: auto;">
         <div class="card mb-4 box-shadow" *ngFor="let item of plans; let i = index" >
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">{{ item.plan }}</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">₹ {{item.price}} <small class="text-muted"></small></h1>
+            <h1 class="card-title pricing-card-title">&#8377; {{item.price}} <small class="text-muted"></small></h1>
             <ul class="list-unstyled mt-3 mb-4 text-left plan_wrap">
-              <li><mdb-icon fas icon="user-circle"></mdb-icon> 1 users included</li>
               <li><mdb-icon fas icon="user-circle"></mdb-icon> Maximum Duration <span style="font-weight: 600;" > {{item.duration}} </span> Month </li>
-              <li><mdb-icon fas icon="user-circle"></mdb-icon> Email support</li>
-              <li><mdb-icon fas icon="user-circle"></mdb-icon> Help center access</li>
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Dedicated Service Officer</li>
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Service call in every three months</li>         
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Premium help center access </li>
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Incase of eventuality, help your family with your investment details</li>
             </ul> 
             <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type == 'free'" (click)="goToPayment(item)" >Sign up for free</button>
-            <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type != 'free'" (click)="goToPayment(item)" >Premium Member</button>
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type != 'free'" (click)="goToPayment(item)" >Subscribe</button>
           </div>
         </div>
       </div>

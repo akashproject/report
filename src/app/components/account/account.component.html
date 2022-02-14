@@ -342,13 +342,16 @@
                         <div class="d-flex justify-content-between">
                             <h3>Membership Plan</h3>
                             <div class="add_button" >
-                                <h3 *ngIf="isPlanExpired > 0" >{{ isPlanExpired }} Days Left to expire your membership plan</h3>
-                                <h3 *ngIf="isPlanExpired == 0" > Today You Membership Plan will be expire! Renew immediately</h3>
+                                <h3 (click)="getAllOrders()"  mdbWavesEffect><mdb-icon fas icon="user-circle"></mdb-icon> {{ util.getString("Orders History") }}</h3>
                                 <!-- <h3 (click)="gotoSubscription()" mdbWavesEffect>{{ util.getString("+ Change Membership Plan") }}</h3> -->
                             </div>
                         </div>
 
                         <div class="emer_section" *ngIf="util.userInfo.premium_membership == '1'">
+                            <div class="row" >
+                                <h3 *ngIf="isPlanExpired > 0" >{{ isPlanExpired }} Days Left to expire your membership plan</h3>
+                                <h3 *ngIf="isPlanExpired == 0" > Today You Membership Plan will be expire! Renew immediately</h3>
+                            </div>
                             <div class="row membership_form_row form_row">                               
                                 <div class="col-md-9 offset-lg-2" >
                                     <div class="card-deck mb-3 col-md-12 text-center">
@@ -357,12 +360,12 @@
                                                 <h4 class="my-0 font-weight-normal">{{ membershipPlan.plan }}</h4>
                                             </div>
                                             <div class="card-body">
-                                                <h1 class="card-title pricing-card-title">₹ {{membershipPlan.price}} <small class="text-muted"></small></h1>
+                                                <h1 class="card-title pricing-card-title">&#8377; {{membershipPlan.price}} <small class="text-muted"></small></h1>
                                                 <ul class="list-unstyled mt-3 mb-4 text-left plan_wrap">
                                                     <li> 
                                                         <mdb-icon fas icon="user-circle"></mdb-icon> 
                                                         <span class="plan_lavel" >Expired On</span> 
-                                                        <span class="plan_lavel_msg" style="font-weight: 600;" >{{util.userInfo.expire_date}}</span>
+                                                        <span class="plan_lavel_msg" style="font-weight: 600;" >{{util.userInfo.expire_date | date}}</span>
                                                     </li>
                                                     <li>
                                                         <mdb-icon fas icon="user-circle"></mdb-icon> 
@@ -384,7 +387,7 @@
                                                   <input type="text" placeholder="Apply Coupon Code" [(ngModel)]="couponCode" class="form-control" (keyup)="couponValidation()" />
                                                 </div>
                                                 <span class="loading" *ngIf="isLoading === true">Please Wait ...</span>
-                                                <h3 style="margin-bottom: 0.5rem;">Total Amout : ₹ {{ amount }}/-</h3> -->
+                                                <h3 style="margin-bottom: 0.5rem;">Total Amout : &#8377; {{ amount }}/-</h3> -->
                                                 <div class="col-12 text-center">
                                                     <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="goToPayment(membershipPlan)" >  
                                                         {{ util.getString("Renew Membership Plan") }} 
@@ -405,6 +408,29 @@
                                     <div class="action_div d-flex align-items-center">
                                         <a routerLink="/subscription"  class="btn custom" style=" width: auto;"> 
                                             {{ util.getString("Be Premium Member") }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user_div" *ngIf="currentDiv === 8">
+                        <div class="d-flex justify-content-between">
+                            <h3>Order History</h3>
+                        </div>
+
+                        <div class="emer_section" *ngIf="orders.length > 0">
+                            <div class="emar_details_list" >
+                                <div class="row order_history" *ngFor="let item of orders; let i = index">
+                                    <div class="col-md-4">
+                                        <mdb-icon fas icon="user-circle"></mdb-icon>
+                                        Plan : {{ item.plan }}
+                                    </div>
+                                    <div class="col-md-4">
+                                        Amount : &#8377;{{ item.price }}/-
+                                    </div>
+                                    <div class="col-md-4">
+                                        Date : {{ item.created_date | date }}
                                     </div>
                                 </div>
                             </div>

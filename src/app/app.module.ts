@@ -32,6 +32,7 @@ import { TermConditionComponent } from './components/term-condition/term-conditi
 import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { OrdersComponent } from './components/orders/orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +58,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     CookiePolicyComponent,
     SubscriptionComponent,
     PaymentComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

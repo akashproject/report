@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { UtilService } from '../../services/util.service';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDirective } from 'angular-bootstrap-md';
+import { DateformatPipe } from '../../pipes/dateformat.pipe';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-account',
@@ -18,6 +19,7 @@ export class AccountComponent implements OnInit {
   hidden_otp_id: any = '';
   otp_value: any = '';
   isPlanExpired : number;
+  orders : any ;
   contactForm: any = {
     id: '',
     name: '',
@@ -105,17 +107,43 @@ export class AccountComponent implements OnInit {
   }
 
   goToPayment(item) {
-    localStorage.setItem('planId',item.id);
+    localStorage.setItem('selectedPlan',JSON.stringify(item));
     this.router.navigate(['/payment']);
   }
   
+  getAllOrders() {
+    this.api
+      .get('subscription/orders')
+      .subscribe(
+        (data: any) => {
+          if (data && data.status === 200) {
+            this.orders = [];
+            this.currentDiv = 8;
+            if(data.data.length !=undefined && data.data.length > 0){
+              for (let i = 0; i < Object.keys(data.data).length; i++) {
+                this.orders.push(data.data[i]);
+              }
+            }
+            
+
+          } else if (data && data.status === 500) {
+            this.toastr.error(data.data.message, 'Error!');
+          } else {
+            this.toastr.error('Something went wrong', 'Error!');
+          }
+        },
+        (error) => {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      );
+  }
+
   gotoMembership() {
     if(this.util.userInfo.premium_membership == '1'){
       this.api.get('subscription/plan/').subscribe(
         (data: any) => {
           if (data && data.status === 200) {
             this.membershipPlan = data.data;
-            console.log(this.membershipPlan);
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
           } else {

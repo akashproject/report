@@ -19,6 +19,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { CookiePolicyComponent } from './components/cookie-policy/cookie-policy.component';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -40,6 +41,7 @@ const routes: Routes = [
   { path: 'cookie-policy', component: CookiePolicyComponent },
   { path: 'subscription', component: SubscriptionComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'orders', component: OrdersComponent },
 ];
 
 @NgModule({

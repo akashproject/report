@@ -4,8 +4,8 @@ import { ApiService } from '../../services/api.service';
 import { UtilService } from '../../services/util.service';
 import { WindowRefService } from '../../services/window-ref.service';
 import { ToastrService } from 'ngx-toastr';
-import { Cashfree } from '../../../assets/js/cashfree';
-const cashfree = new Cashfree();
+//import { Cashfree } from '../../../assets/js/cashfree';
+//const cashfree = new Cashfree();
 const paymentDom = document.getElementById("payment-form")
 @Component({
   selector: 'app-payment',
@@ -55,8 +55,10 @@ export class PaymentComponent implements OnInit {
   }
 
   createOrder(){
+    console.log(this.membershipPlan);
+    
     let planParams : any = {
-      'plan_id':localStorage.getItem('planId'),
+      'plan_id':this.membershipPlan.id,
       'order_amount':this.amount
     }
     if(this.couponData){
@@ -83,8 +85,8 @@ export class PaymentComponent implements OnInit {
   }
 
   couponValidation(){
+    this.amount = this.membershipPlan.price;
     if (this.couponCode) {
-      this.amount = this.membershipPlan.price;
       this.isLoading = true;   
       clearTimeout(this.x_timer);
       this.x_timer = setTimeout(() => {
@@ -149,11 +151,11 @@ export class PaymentComponent implements OnInit {
   payWithRazor(val) {
     const options: any = {
       key: 'rzp_test_lR38QPQGgGfLYD',
-      amount: 125500, // amount should be in paise format to display Rs 1255 without decimal point
+      amount: this.amount+"00", // amount should be in paise format to display Rs 1255 without decimal point
       currency: 'INR',
       name: 'Conjugation', // company name or product name
       description: 'Ensure your investments are claimed in your absence',  // product description
-      image: './assets/images/logo.png', // company logo or product image
+      image: './assets/images/logo_rz.png', // company logo or product image
       order_id: val, // order_id created by you in backend
       "prefill": {
         "name": this.util.userInfo.full_name,
@@ -184,31 +186,31 @@ export class PaymentComponent implements OnInit {
   }
 
 
- render() {
-    const dropConfig = {
-      "components": [
-          "order-details",
-          "card",
-          "netbanking",
-          "app",
-          "upi-collect",
-          "upi-intent"
-      ],
-      "orderToken": "TXLUrFb7IdOFW2DjGGVa",
-      "onSuccess":this.success,
-      "onFailure": this.failure,
-      "style": {
-          "backgroundColor": "#ffffff",
-          "color": "#11385b",
-          "fontFamily": "Lato",
-          "fontSize": "14px",
-          "errorColor": "#ff0000",
-          "theme": "light", //(or dark)
-      }
-  }
-  cashfree.initialiseDropin(paymentDom, dropConfig);
-  //Cashfree.initialiseDropin(this.element.nativeElement("paymentDom"), dropConfig);
- }
+  // render() {
+  //   const dropConfig = {
+  //     "components": [
+  //         "order-details",
+  //         "card",
+  //         "netbanking",
+  //         "app",
+  //         "upi-collect",
+  //         "upi-intent"
+  //     ],
+  //     "orderToken": "TXLUrFb7IdOFW2DjGGVa",
+  //     "onSuccess":this.success,
+  //     "onFailure": this.failure,
+  //     "style": {
+  //         "backgroundColor": "#ffffff",
+  //         "color": "#11385b",
+  //         "fontFamily": "Lato",
+  //         "fontSize": "14px",
+  //         "errorColor": "#ff0000",
+  //         "theme": "light", //(or dark)
+  //     }
+  //   }
+  // cashfree.initialiseDropin(paymentDom, dropConfig);
+  // //Cashfree.initialiseDropin(this.element.nativeElement("paymentDom"), dropConfig);
+  // }
 
 
 }

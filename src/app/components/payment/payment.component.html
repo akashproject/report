@@ -16,7 +16,7 @@
                     <h4 class="my-0 font-weight-normal">{{ membershipPlan.plan }}</h4>
                 </div>
                 <div class="card-body">
-                    <h1 class="card-title pricing-card-title">₹ {{membershipPlan.price}} <small class="text-muted"></small></h1>
+                    <h1 class="card-title pricing-card-title">&#8377; {{membershipPlan.price}} <small class="text-muted"></small></h1>
                     <ul class="list-unstyled mt-3 mb-4 text-left plan_wrap">
                       <li>
                         <mdb-icon fas icon="user-circle"></mdb-icon> 
@@ -41,7 +41,7 @@
                       <input type="text" placeholder="Apply Coupon Code" [(ngModel)]="couponCode" class="form-control" (keyup)="couponValidation()" />
                     </div>
                     <span class="loading" *ngIf="isLoading === true">Please Wait ...</span>
-                    <h3 style="margin-bottom: 0.5rem;">Total Amout : ₹ {{ amount }}/-</h3>
+                    <h3 style="margin-bottom: 0.5rem;">Total Amout : &#8377; {{ amount }}/-</h3>
                     <button class="btn btn-primary btn-block" (click)="createOrder()" >Confirm Your Payment</button> 
                 </div>
             </div>

@@ -3,37 +3,35 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { UtilService } from '../../services/util.service';
 import { ToastrService } from 'ngx-toastr';
-import { ModalDirective } from 'angular-bootstrap-md';
+
 @Component({
-  selector: 'app-subscription',
-  templateUrl: './subscription.component.html',
-  styleUrls: ['./subscription.component.scss']
+  selector: 'app-orders',
+  templateUrl: './orders.component.html',
+  styleUrls: ['./orders.component.scss']
 })
-export class SubscriptionComponent implements OnInit {
-  plans: any = [];
-  constructor(
+export class OrdersComponent implements OnInit {
+  orders : any ;
+  constructor(  
     private router: Router,
     private api: ApiService,
     public util: UtilService,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService) {}
 
   ngOnInit(): void {
-    
-    this.getAllPlans();
+    this.getAllOrders();
   }
 
-  getAllPlans() {
+  getAllOrders() {
     this.api
-      .get('subscription/plans')
+      .get('subscription/orders')
       .subscribe(
         (data: any) => {
           if (data && data.status === 200) {
-            this.plans = [];
+            this.orders = [];
             
             if(data.data.length !=undefined && data.data.length > 0){
               for (let i = 0; i < Object.keys(data.data).length; i++) {
-                this.plans.push(data.data[i]);
+                this.orders.push(data.data[i]);
               }
             }
             
@@ -49,11 +47,4 @@ export class SubscriptionComponent implements OnInit {
         }
       );
   }
-
-  goToPayment(item) {
-    localStorage.setItem('planId',item.id);
-    localStorage.setItem('selectedPlan',JSON.stringify(item));    
-    this.router.navigate(['/payment']);
-  }
-
 }

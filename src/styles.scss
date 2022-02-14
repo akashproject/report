@@ -1640,6 +1640,13 @@ textarea {
         }
     }
 }
+
+.order_history{
+    margin: 1.5rem 0;
+    border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
+    padding: 0.5rem;
+}
+
 @media only screen and (max-width:500px) {
     .others_page_back {
         &.pt {
