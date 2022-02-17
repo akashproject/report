@@ -17,10 +17,8 @@ export class EmergencyListComponent implements OnInit {
   @ViewChild('contactModal') public contactModal: ModalDirective;
   email: any = '';
   showOtp = false;
-  otp_value_email: any = '';
-  otp_value_mobile: any = '';
-  hidden_otp_value_email: any = '';
-  hidden_otp_value_mobile: any = '';
+  otp_value: any = '';
+  hidden_otp_id: any = '';
   contactForm: any = {
     id: '',
     name: '',
@@ -158,12 +156,7 @@ export class EmergencyListComponent implements OnInit {
               this.currentDiv = 5;
               this.showOtp = true;
             }
-            if (data.data.otp_value_email) {
-              this.hidden_otp_value_email = data.data.otp_value_email;
-            }
-            if (data.data.otp_value_mobile) {
-              this.hidden_otp_value_mobile = data.data.otp_value_mobile;
-            }
+            this.hidden_otp_id = data.data;
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
           } else {
@@ -180,16 +173,25 @@ export class EmergencyListComponent implements OnInit {
   }
 
   verifyOtp() {
-    if (
-      (this.hidden_otp_value_email != '' &&
-        this.hidden_otp_value_email == this.otp_value_email) ||
-      (this.hidden_otp_value_mobile != '' &&
-        this.hidden_otp_value_mobile == this.otp_value_mobile)
-    ) {
-      this.update();
-    } else {
-      this.toastr.error('invalid one time password', 'Error!');
-    }
+    const param = {
+      otp_value: this.otp_value,
+      otp_id:this.hidden_otp_id
+    };
+    
+    this.api.post('users/verifyLoginOtp', param).subscribe(
+      (data: any) => {
+        if (data && data.status === 200) {
+          this.update();
+        } else if (data && data.status === 500) {
+          this.toastr.error(data.data.error, 'Error!');
+        } else {
+          this.toastr.error('invalid one time password', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('invalid one time password', 'Error!');
+      }
+    );
   }
 
   update() {

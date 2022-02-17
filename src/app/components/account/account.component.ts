@@ -247,6 +247,7 @@ export class AccountComponent implements OnInit {
               this.showOtp = true;
             }
             this.hidden_otp_id = data.data;
+            this.toastr.success('One time password has been send', 'Success');
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
           } else {
@@ -282,8 +283,6 @@ export class AccountComponent implements OnInit {
         this.toastr.error('invalid one time password', 'Error!');
       }
     );
-
-    
   }
 
   update() {

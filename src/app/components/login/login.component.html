@@ -43,12 +43,9 @@
                         <mdb-icon fas icon="lock"></mdb-icon>
                         <input type="number" [placeholder]="util.getString('Enter Otp')" [(ngModel)]="otp_value" class="form-control" />
                     </div>
-                    <button type="button" class="btn" (click)="verifyOtp()">
-            {{ util.getString("Verify otp") }}
-          </button>
-                    <label class="bottom_lbl" (click)="sendOtp(true)">
-            {{ util.getString("Resend Otp") }}
-          </label>
+                    <button type="button" (click)="verifyOtp()" mdbWavesEffect mdbBtn class="btn" *ngIf="otp_value">{{ util.getString("Verify otp") }}</button>
+                    <button type="button" disabled mdbWavesEffect mdbBtn class="btn" *ngIf="!otp_value">{{ util.getString("Verify otp") }}</button>
+                    <label class="bottom_lbl" (click)="sendOtp(true)">{{ util.getString("Resend Otp") }}</label>
                     <hr />
 
                     <label class="bottom_lbl" (click)="goToRegister()">
