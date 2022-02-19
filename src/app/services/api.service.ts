@@ -66,7 +66,7 @@ export class ApiService {
   }
 
   filepost(url, post) {
-    let token = 'scriptcrown';
+    let token = environment.authToken;
     if(this.util.userInfo) {
       token = this.util.userInfo.token;
     }
