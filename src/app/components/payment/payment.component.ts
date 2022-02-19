@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { UtilService } from '../../services/util.service';
 import { WindowRefService } from '../../services/window-ref.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from '../../../environments/environment';
 //import { Cashfree } from '../../../assets/js/cashfree';
 //const cashfree = new Cashfree();
 const paymentDom = document.getElementById("payment-form")
@@ -150,7 +151,7 @@ export class PaymentComponent implements OnInit {
 
   payWithRazor(val) {
     const options: any = {
-      key: 'rzp_test_lR38QPQGgGfLYD',
+      key: environment.gatewayAuthKey,
       amount: this.amount+"00", // amount should be in paise format to display Rs 1255 without decimal point
       currency: 'INR',
       name: 'Conjugation', // company name or product name

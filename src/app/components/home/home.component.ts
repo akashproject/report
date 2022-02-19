@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     localStorage.clear();
     this.util.userInfo = null;
+    this.getGateWaySettings();
   }
 
   getGateWaySettings(){
