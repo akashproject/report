@@ -18,4 +18,5 @@ export const environment = {
     code: 'USD',
   },
   authToken: 'scriptcrown',
+  gatewayAuthKey:'rzp_live_QxhL6zkgWlxvmh'
 };
