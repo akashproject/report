@@ -12,7 +12,7 @@
                     <li><a routerLink="/about" (click)="close_menu()">about us</a></li>
                     <li><a routerLink="/faq" (click)="close_menu()">FAQ </a></li>
                 </ul>
-                <div class="custom_button white_color"><a routerLink="/subscription" routerLinkActive="active" class="d-flex align-items-center justify-content-center" style="margin-right: 3rem;">Membership Plan</a></div>
+                <div class="custom_button white_color membership-btn"><a routerLink="/subscription" routerLinkActive="active" class="d-flex align-items-center justify-content-center " (click)="close_menu()">Membership Plan</a></div>
                 <ul class="social d-flex align-items-center">
                     <li><a target="_blank" href="https://wa.me/9903038282?text=Hi"><span class="fa fa-whatsapp"></span></a></li>
                     <li><a target="_blank" href="https://www.facebook.com/Conjugation-109386434809788"><span class="fa fa-facebook"></span></a></li>
@@ -39,9 +39,9 @@
                     <li><a routerLink="/about" (click)="close_menu()">about us</a></li>
                     <li><a routerLink="/faq" (click)="close_menu()">FAQ </a></li>
                 </ul>
-                <div class="custom_button white_color"><a routerLink="/subscription" routerLinkActive="active" class="d-flex align-items-center justify-content-center" style="margin-right: 3rem;">Membership Plan</a></div>
+                <div class="custom_button white_color membership-btn"><a routerLink="/subscription" routerLinkActive="active" class="d-flex align-items-center justify-content-center " (click)="close_menu()">Membership Plan</a></div>
                 <ul class="menu d-flex" *ngIf="util.userInfo">  
-                    <li><a routerLink="/account" > <mdb-icon fas icon="user-circle"></mdb-icon> Profile </a></li>                 
+                    <li><a routerLink="/account"  (click)="close_menu()" > <mdb-icon fas icon="user-circle"></mdb-icon> Profile </a></li>                 
                     <li><a (click)="logout()">Logout</a></li>
                 </ul>
                 <ul class="social d-flex align-items-center">

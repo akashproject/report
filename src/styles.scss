@@ -1646,6 +1646,9 @@ textarea {
     border-bottom: rgba(0, 0, 0, 0.1) 1px solid;
     padding: 0.5rem;
 }
+.membership-btn{
+    margin-right: 3rem;
+}
 
 @media only screen and (max-width:500px) {
     .others_page_back {
@@ -1753,4 +1756,30 @@ textarea {
     .custom .modal-body {
         width: 90%;
     }
+
+    .membership-btn{
+        width: 82%;
+        margin: 0 auto;
+        margin-bottom: 1.5rem;
+    }
+    .membership-btn a {
+        width: 100%;
+    }
+    .membership_form_row {
+        .plan_wrap { 
+            li {
+                padding: 0.3rem;
+                font-size: 14px;
+                padding-left: 0;
+            }
+        }   
+    }
+    .plan_wrap { 
+        li {
+            padding: 0.3rem;
+            font-size: 14px;
+            padding-left: 0;
+        }
+    }   
+    
 }

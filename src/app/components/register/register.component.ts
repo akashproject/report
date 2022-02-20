@@ -101,7 +101,7 @@ export class RegisterComponent implements OnInit {
           localStorage.setItem('user', JSON.stringify(data.data));
           this.util.userInfo = JSON.parse(data.data);
           localStorage.setItem('loginflag', '1');
-          this.router.navigate(['/account']);
+          this.router.navigate(['/']);
         } else if (data && data.status == '500') {
           this.toastr.error(data.data.message, 'Error!');
           this.showOtp = false;

@@ -346,9 +346,9 @@
                         </div>
 
                         <div class="emer_section" *ngIf="util.userInfo.premium_membership == '1'">
-                            <div class="row" >
-                                <h3 *ngIf="isPlanExpired > 0" >{{ isPlanExpired }} Days Left to expire your membership plan</h3>
-                                <h3 *ngIf="isPlanExpired == 0" > Today You Membership Plan will be expire! Renew immediately</h3>
+                            <div class="row" style="margin: auto;">
+                                <h3 class="expiry-msg" *ngIf="isPlanExpired > 0" >{{ isPlanExpired }} Days Left to expire your membership plan</h3>
+                                <h3 class="expiry-msg" *ngIf="isPlanExpired == 0" > Today You Membership Plan will be expire! Renew immediately</h3>
                             </div>
                             <div class="row membership_form_row form_row">                               
                                 <div class="col-md-9 offset-lg-2" >
@@ -368,7 +368,7 @@
                                                     <li><mdb-icon fas icon="user-circle"></mdb-icon> Dedicated Service Officer</li>
                                                     <li><mdb-icon fas icon="user-circle"></mdb-icon> Service call in every three months</li>         
                                                     <li><mdb-icon fas icon="user-circle"></mdb-icon> Premium help center access </li>
-                                                    <li><mdb-icon fas icon="user-circle"></mdb-icon> Incase of eventuality, help your family with your investment details</li>
+                                                    <li><mdb-icon fas icon="user-circle"></mdb-icon> Family Care </li>
                                                 </ul>
                                                 <!-- <h4 style="margin: 0.5rem;"> Coupon Code : </h4>
                                                 <div class="inner-addon left-addon">
@@ -378,7 +378,7 @@
                                                 <span class="loading" *ngIf="isLoading === true">Please Wait ...</span>
                                                 <h3 style="margin-bottom: 0.5rem;">Total Amout : &#8377; {{ amount }}/-</h3> -->
                                                 <div class="col-12 text-center">
-                                                    <button type="button" mdbWavesEffect mdbBtn class="btn custom all" (click)="goToPayment(membershipPlan)" >  
+                                                    <button type="button" mdbWavesEffect mdbBtn class="btn custom all renewplan-btn" (click)="goToPayment(membershipPlan)" >  
                                                         {{ util.getString("Renew Membership Plan") }} 
                                                     </button>
                                                 </div>

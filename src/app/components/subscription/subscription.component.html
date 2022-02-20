@@ -12,11 +12,11 @@
           <div class="card-body">
             <h1 class="card-title pricing-card-title">&#8377; {{item.price}} <small class="text-muted"></small></h1>
             <ul class="list-unstyled mt-3 mb-4 text-left plan_wrap">
-              <li><mdb-icon fas icon="user-circle"></mdb-icon> Maximum Duration <span style="font-weight: 600;" > {{item.duration}} </span> Month </li>
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Validity <span style="font-weight: 600;" > {{item.duration}} </span> Months </li>
               <li><mdb-icon fas icon="user-circle"></mdb-icon> Dedicated Service Officer</li>
               <li><mdb-icon fas icon="user-circle"></mdb-icon> Service call in every three months</li>         
               <li><mdb-icon fas icon="user-circle"></mdb-icon> Premium help center access </li>
-              <li><mdb-icon fas icon="user-circle"></mdb-icon> Incase of eventuality, help your family with your investment details</li>
+              <li><mdb-icon fas icon="user-circle"></mdb-icon> Family Care </li>
             </ul> 
             <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type == 'free'" (click)="goToPayment(item)" >Sign up for free</button>
             <button type="button" class="btn btn-lg btn-block btn-outline-primary" *ngIf="item.type != 'free'" (click)="goToPayment(item)" >Subscribe</button>
