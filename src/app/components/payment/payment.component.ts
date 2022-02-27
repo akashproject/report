@@ -5,6 +5,7 @@ import { UtilService } from '../../services/util.service';
 import { WindowRefService } from '../../services/window-ref.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from '../../../environments/environment';
+import Swal from 'sweetalert2';
 //import { Cashfree } from '../../../assets/js/cashfree';
 //const cashfree = new Cashfree();
 const paymentDom = document.getElementById("payment-form")
@@ -131,15 +132,57 @@ export class PaymentComponent implements OnInit {
             this.toastr.success('Payment Recived! Your Premium menbership has been activated', 'Success!');
             localStorage.removeItem("planId");   
             this.util.userInfo = data.data;         
-            this.router.navigate(['/account']);
+            Swal.fire({
+              title: 'Payment Recived!',
+              text: 'Your Premium menbership has been activated',
+              icon: 'success',
+              showConfirmButton: true,
+              confirmButtonText: 'Okay',
+              backdrop: false,
+              background: 'white',
+            }).then((status) => {
+              this.router.navigate(['/account']);
+            });
+            
           } else if (data && data.status === 500) {
             this.toastr.error(data.data.message, 'Error!');
+            Swal.fire({
+              title: 'Payment Failure',
+              text: "Sorry for inconvenience! Please contact us on 9903038282",
+              icon: 'error',
+              showConfirmButton: true,
+              confirmButtonText: 'Okay',
+              backdrop: false,
+              background: 'white',
+            }).then((status) => {
+              this.router.navigate(['/account']);
+            });
           } else {
-            this.toastr.error('Something went wrong', 'Error!');
+            Swal.fire({
+              title: 'Payment Failure',
+              text: "Sorry for inconvenience! Please contact us on 9903038282",
+              icon: 'error',
+              showConfirmButton: true,
+              confirmButtonText: 'Okay',
+              backdrop: false,
+              background: 'white',
+            }).then((status) => {
+              this.router.navigate(['/account']);
+            });
           }
         },
         (error) => {
-          this.toastr.error('Something went wrong', 'Error!');
+          Swal.fire({
+            title: 'Payment Failure',
+            text: "Sorry for inconvenience! Please contact us on 9903038282",
+            icon: 'error',
+            showConfirmButton: true,
+            confirmButtonText: 'Okay',
+            backdrop: false,
+            background: 'white',
+          }).then((status) => {
+            this.router.navigate(['/account']);
+          });
         }
       );
   }

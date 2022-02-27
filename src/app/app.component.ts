@@ -20,8 +20,7 @@ export class AppComponent {
     private router: Router,
     private bnIdle: BnNgIdleService
   ) {
-    this.bnIdle.startWatching(120).subscribe((res) => {
-      
+    this.bnIdle.startWatching(1200000).subscribe((res) => {
       if(res) {        
         if (this.util.userInfo != '') {
           localStorage.clear();

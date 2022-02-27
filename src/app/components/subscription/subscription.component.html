@@ -4,13 +4,13 @@
         <h2><label>{{ util.getString("Membership Plan") }} </label></h2>
     </div>
     <div class="row membership_form_row form_row text-center">
-      <div class="card-deck mb-5 col-md-5" style="margin: auto;">
+      <div class="card-deck" style="margin: auto;">
         <div class="card mb-4 box-shadow" *ngFor="let item of plans; let i = index" >
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">{{ item.plan }}</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title">&#8377; {{item.price}} <small class="text-muted"></small></h1>
+            <h1 class="card-title pricing-card-title">&#8377; {{item.price}} <small class="text-muted" style="font-size: 15px;display: block;"> (Including GST)</small></h1>
             <ul class="list-unstyled mt-3 mb-4 text-left plan_wrap">
               <li><mdb-icon fas icon="user-circle"></mdb-icon> Validity <span style="font-weight: 600;" > {{item.duration}} </span> Months </li>
               <li><mdb-icon fas icon="user-circle"></mdb-icon> Dedicated Service Officer</li>

@@ -218,6 +218,7 @@ export class AccountComponent implements OnInit {
         if (data && data.status === 200) {
           this.contactModal.hide();
           this.toastr.success('Emergency contact has been updated', 'Success');
+          this.getAllContacts();
           this.router.navigate(['/account']);
         } else if (data && data.status === 500) {
           this.toastr.error(data.data.message, 'Error!');
