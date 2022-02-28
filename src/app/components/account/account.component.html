@@ -152,7 +152,7 @@
                             </li>
                             <li>
                                 <div class="action_div d-flex align-items-center">
-                                    <button type="button" class="btn custom" (click)="openProfile()">
+                                    <button type="button" class="btn custom" (click)="verifyPassword()">
                                         {{ util.getString("Edit Profile") }}</button>
                                 </div>
                             </li>
@@ -378,7 +378,7 @@
                                                 <span class="loading" *ngIf="isLoading === true">Please Wait ...</span>
                                                 <h3 style="margin-bottom: 0.5rem;">Total Amout : &#8377; {{ amount }}/-</h3> -->
                                                 <div class="col-12 text-center">
-                                                    <button type="button" mdbWavesEffect mdbBtn class="btn custom all renewplan-btn" (click)="goToPayment(membershipPlan)" >  
+                                                    <button type="button" mdbWavesEffect mdbBtn class="btn custom all renewplan-btn" (click)="gotoSubscription(membershipPlan)" >  
                                                         {{ util.getString("Renew Membership Plan") }} 
                                                     </button>
                                                 </div>
@@ -423,6 +423,25 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <!-- User Informations -->
+                    <div class="user_div" *ngIf="currentDiv === 9">
+                        <h3> Verify Your Password</h3>
+                        <div class="form_div main_form">
+                            <div class="inner-addon left-addon">
+                                <mdb-icon fas icon="user-circle"></mdb-icon>
+                                <input type="password" placeholder="Password" [(ngModel)]="verifyPasswordForm.password" class="form-control" (ngModelChange)="verifyPasswordValidation()" />
+                            </div>
+                            <div class="">
+                                <button type="button" (click)="submitVerifyPassword()" class="btn custom" *ngIf="password_validate"> 
+                                    Verify Password
+                                </button>
+                                <button type="button" class="btn custom" disabled="disabled" *ngIf="!password_validate">
+                                    Verify Password
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

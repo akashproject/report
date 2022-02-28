@@ -20,6 +20,9 @@ export class AccountComponent implements OnInit {
   otp_value: any = '';
   isPlanExpired : number;
   orders : any ;
+  verifyPasswordForm: any = {
+    password: '',
+  };
   contactForm: any = {
     id: '',
     name: '',
@@ -104,11 +107,6 @@ export class AccountComponent implements OnInit {
 
   gotoSubscription(){
     this.router.navigate(['/subscription']);
-  }
-
-  goToPayment(item) {
-    localStorage.setItem('selectedPlan',JSON.stringify(item));
-    this.router.navigate(['/payment']);
   }
   
   getAllOrders() {
@@ -331,6 +329,27 @@ export class AccountComponent implements OnInit {
     );
   }
 
+  verifyPassword(){
+    this.currentDiv = 9;
+  }
+
+  submitVerifyPassword(){
+    this.api.post('users/verifyPassword', this.verifyPasswordForm).subscribe(
+      (data: any) => {
+        if (data && data.status == '200') {
+          this.openProfile();
+        } else if (data && data.status == '500') {
+          this.toastr.error(data.data.message, 'Error!');
+        } else {
+          this.toastr.error('Something went wrong', 'Error!');
+        }
+      },
+      (error) => {
+        this.toastr.error('Something went wrong', 'Error!');
+      }
+    );
+  }
+
   openProfile() {
     let params: any = {
     };
@@ -421,6 +440,16 @@ export class AccountComponent implements OnInit {
       this.c_password != '' &&
       re.test(this.changePasswordForm.password) &&
       this.changePasswordForm.password == this.c_password
+    ) {
+      this.password_validate = true;
+    } else {
+      this.password_validate = false;
+    }
+  }
+
+  verifyPasswordValidation(){
+    if (
+      this.verifyPasswordForm.password != '' 
     ) {
       this.password_validate = true;
     } else {
