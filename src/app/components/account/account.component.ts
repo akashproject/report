@@ -87,8 +87,6 @@ export class AccountComponent implements OnInit {
     this.profileForm.full_name = this.util.userInfo.full_name;
     this.profileForm.mobile = this.util.userInfo.mobile;
     this.profileForm.address = this.util.userInfo.address;
-
-
   }
 
   goTobusiness() {

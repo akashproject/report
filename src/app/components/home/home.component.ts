@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { UtilService } from '../../services/util.service';
 import { ApiService } from '../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
-import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -30,21 +29,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     localStorage.clear();
     this.util.userInfo = null;
-    this.getGateWaySettings();
-  }
-
-  getGateWaySettings(){
-    this.api.get('get-gateway-settings').subscribe(
-      (data: any) => {
-        if (data && data.status === 200) {
-          environment.gatewayAuthKey = data.data;
-        } else if (data && data.status === 500) {
-        } else {
-        }
-      },
-      (error) => {
-      }
-    );
   }
   
   contactus(){
